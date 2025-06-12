@@ -18,6 +18,37 @@
             --info-color: #3b82f6;
             --sidebar-width: 280px;
             --navbar-height: 70px;
+            --footer-bg: #f8fafc;
+            --footer-text: #64748b;
+            --footer-link-hover: #3b82f6;
+        }
+
+        /* Estilos para el footer */
+        footer {
+            background-color: var(--footer-bg);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        footer p {
+            color: var(--footer-text);
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .footer-link {
+            color: var(--footer-text) !important;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            padding: 2px 0;
+        }
+
+        .footer-link:hover {
+            color: var(--footer-link-hover) !important;
+            text-decoration: underline;
+        }
+
+        .footer-link:active {
+            color: var(--primary-color) !important;
         }
 
         /* Panel lateral SIEMPRE VISIBLE para admin/teacher */
@@ -709,13 +740,13 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start">
-                    <p class="mb-0 text-muted">&copy; 2023 EduControl. Todos los derechos reservados.</p>
+                    <p class="mb-0 text-muted">&copy; 2025 EduControl. Todos los derechos reservados.</p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
                     <p class="mb-0 text-muted">
-                        <a href="#" class="text-muted me-3">Términos de servicio</a>
-                        <a href="#" class="text-muted me-3">Privacidad</a>
-                        <a href="#" class="text-muted">Contacto</a>
+                        <a href="#" class="text-muted me-3 footer-link">Términos de servicio</a>
+                        <a href="#" class="text-muted me-3 footer-link">Privacidad</a>
+                        <a href="#" class="text-muted footer-link">Contacto</a>
                     </p>
                 </div>
             </div>

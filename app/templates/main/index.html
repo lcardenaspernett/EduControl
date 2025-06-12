@@ -15,15 +15,22 @@
     --texto-blanco-opacidad: rgba(255, 255, 255, 0.9);
   }
 
-  /* Hero Section - Actualizado con gradiente morado */
+  /* Eliminar padding/margin global que causa el espacio en blanco */
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Hero Section - Sin espacio superior */
   .hero {
     background: var(--hero-gradient);
     color: white;
     text-align: center;
-    padding: 5rem 0 6rem;
+    padding: 6rem 0 6rem; /* Aumentado el padding superior */
     position: relative;
     overflow: hidden;
-    margin-top: 80px; /* Espacio para el header fijo */
+    margin-top: 0; /* Eliminado el margin-top que causaba el espacio */
+    padding-top: calc(6rem + 80px); /* Espacio para el header fijo incluido en el padding */
   }
 
   .hero h1 {
@@ -53,12 +60,14 @@
     color: var(--texto-blanco);
     flex-wrap: wrap;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: fixed; /* Hacer fijo */
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000; /* Asegurar que esté por encima de otros elementos */
-    backdrop-filter: blur(10px); /* Efecto de desenfoque */
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    height: 80px; /* Altura fija para evitar cambios */
+    box-sizing: border-box;
   }
 
   .landing-logo {
@@ -129,9 +138,9 @@
   /* Features Section - Optimizada para 2 filas de 4 */
   .features {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Exactamente 4 columnas */
-    gap: 1.5rem; /* Reducido el espacio entre tarjetas */
-    padding: 4rem 2rem; /* Reducido el padding */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    padding: 4rem 2rem;
     background: linear-gradient(to bottom, #f8fafc, #ffffff);
     max-width: 1400px;
     margin: 0 auto;
@@ -139,15 +148,39 @@
 
   .feature-card {
     background: white;
-    padding: 1.8rem 1.5rem; /* Reducido el padding interno */
-    border-radius: 16px; /* Reducido el border-radius */
+    padding: 1.8rem 1.5rem;
+    border-radius: 16px;
     text-align: center;
     box-shadow: var(--feature-shadow);
     transition: all 0.4s ease;
-    border: 1px solid rgba(0,0,0,0.05);
     position: relative;
     overflow: hidden;
-    height: fit-content; /* Altura automática */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .feature-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1e40af;
+    margin-bottom: 0.8rem;
+    transition: color 0.3s ease;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    min-height: 2.5rem;
+  }
+
+  .feature-description {
+    color: #64748b;
+    line-height: 1.6;
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 1;
+    min-height: 3.5rem;
   }
 
   /* Borde morado arriba */
@@ -191,14 +224,14 @@
   }
 
   .feature-card:hover {
-    transform: translateY(-10px) scale(1.02); /* Reducido el efecto hover */
+    transform: translateY(-10px) scale(1.02);
     box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-    border-color: transparent; /* Quitar el border original en hover */
+    border-color: transparent;
   }
 
   .feature-icon {
-    font-size: 3rem; /* Reducido el tamaño del icono */
-    margin-bottom: 1rem; /* Reducido el margin */
+    font-size: 3rem;
+    margin-bottom: 1rem;
     display: block;
     transition: transform 0.3s ease;
     position: relative;
@@ -210,10 +243,10 @@
   }
 
   .feature-title {
-    font-size: 1.3rem; /* Reducido el tamaño del título */
+    font-size: 1.3rem;
     font-weight: 700;
     color: #1e40af;
-    margin-bottom: 0.8rem; /* Reducido el margin */
+    margin-bottom: 0.8rem;
     transition: color 0.3s ease;
     position: relative;
     z-index: 1;
@@ -225,8 +258,8 @@
 
   .feature-description {
     color: #64748b;
-    line-height: 1.6; /* Reducido el line-height */
-    font-size: 0.9rem; /* Reducido el tamaño del texto */
+    line-height: 1.6;
+    font-size: 0.9rem;
     position: relative;
     z-index: 1;
   }
@@ -297,20 +330,20 @@
   /* Responsive Design */
   @media (max-width: 1200px) {
     .features {
-      grid-template-columns: repeat(3, 1fr); /* 3 columnas en pantallas medianas */
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 
   @media (max-width: 968px) {
     .features {
-      grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+      grid-template-columns: repeat(2, 1fr);
       gap: 1.2rem;
     }
   }
 
   @media (max-width: 768px) {
     .hero {
-      margin-top: 70px; /* Menos espacio en móvil */
+      padding-top: calc(4rem + 70px); /* Ajuste para móvil */
     }
     
     .hero h1 {
@@ -322,7 +355,7 @@
     }
     
     .features {
-      grid-template-columns: 1fr; /* 1 columna en móvil */
+      grid-template-columns: 1fr;
       padding: 3rem 1rem;
     }
     
@@ -357,15 +390,24 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 25px rgba(74, 0, 224, 0.4);
     }
+
+    .landing-header {
+      height: 70px; /* Menor altura en móvil */
+    }
   }
 
   @media (max-width: 480px) {
     .landing-header {
       padding: 1rem;
+      height: 60px; /* Aún menor en pantallas muy pequeñas */
     }
     
     .landing-logo {
       font-size: 1.4rem;
+    }
+
+    .hero {
+      padding-top: calc(4rem + 60px); /* Ajuste para pantallas muy pequeñas */
     }
   }
 </style>
@@ -393,7 +435,7 @@
     <p>Tu plataforma integral para la gestión educativa.
     Administra estudiantes, docentes, cursos y calificaciones desde un solo lugar, con eficiencia, simplicidad y control.</p>
 
-        <div class="mobile-auth d-md-none">
+    <div class="mobile-auth d-md-none">
       <a href="{{ url_for('auth.login') }}" class="login">
         <span>🔐</span>
         <label>Iniciar Sesión</label>
@@ -445,17 +487,7 @@
   </div>
 </section>
 
-<!-- Footer personalizado para landing -->
-<footer class="landing-footer">
-  <div class="container">
-    <div class="footer-logo-section">
-      <div class="footer-logo-icon">📚</div>
-      EduControl
-    </div>
-    <p class="footer-description">Sistema integral de gestión educativa</p>
-    <p class="footer-copyright">© 2025 EduControl. Todos los derechos reservados.</p>
-  </div>
-</footer>
+
 {% endblock %}
 
 {% block scripts %}
@@ -503,7 +535,6 @@
     const scrolled = window.pageYOffset;
     const hero = document.querySelector('.hero');
     if (hero && scrolled < hero.offsetHeight) {
-      // Solo aplicar paralaje mientras el hero esté visible
       hero.style.transform = `translateY(${scrolled * 0.3}px)`;
     }
   });

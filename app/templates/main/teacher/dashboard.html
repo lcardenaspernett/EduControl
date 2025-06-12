@@ -4,72 +4,168 @@
 
 {% block content %}
 <div class="container-fluid">
-    <div class="row">
-        <!-- Tarjetas de estadísticas -->
+    <!-- Panel superior con estadísticas -->
+    <div class="row mb-4">
         <div class="col-md-3 mb-4">
-            <div class="card">
+            <div class="card bg-primary text-white">
                 <div class="card-body">
-                    <h5 class="card-title">Cursos Asignados</h5>
-                    <h2 class="card-text text-primary">{{ stats.total_cursos }}</h2>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title mb-0">Cursos Asignados</h5>
+                            <h2 class="card-text">{{ stats.total_cursos }}</h2>
+                        </div>
+                        <i class="fas fa-book fa-2x"></i>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-md-3 mb-4">
-            <div class="card">
+            <div class="card bg-success text-white">
                 <div class="card-body">
-                    <h5 class="card-title">Estudiantes</h5>
-                    <h2 class="card-text text-success">{{ stats.total_estudiantes }}</h2>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title mb-0">Estudiantes</h5>
+                            <h2 class="card-text">{{ stats.total_estudiantes }}</h2>
+                        </div>
+                        <i class="fas fa-user-graduate fa-2x"></i>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-md-3 mb-4">
-            <div class="card">
+            <div class="card bg-warning text-dark">
                 <div class="card-body">
-                    <h5 class="card-title">Calificaciones Pendientes</h5>
-                    <h2 class="card-text text-warning">{{ stats.calificaciones_pendientes }}</h2>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title mb-0">Créditos Totales</h5>
+                            <h2 class="card-text">{{ stats.creditos_totales }}</h2>
+                        </div>
+                        <i class="fas fa-graduation-cap fa-2x"></i>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-md-3 mb-4">
-            <div class="card">
+            <div class="card bg-info text-white">
                 <div class="card-body">
-                    <h5 class="card-title">Asistencia</h5>
-                    <h2 class="card-text text-info">{{ stats.asistencia_pendiente }}</h2>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title mb-0">Cursos Activos</h5>
+                            <h2 class="card-text">{{ stats.cursos_activos }}</h2>
+                        </div>
+                        <i class="fas fa-check-circle fa-2x"></i>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Mis cursos -->
-    <div class="row">
+    <!-- Panel de entregas pendientes -->
+    <div class="row mb-4">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Mis Cursos</h4>
+                <div class="card-header bg-white">
+                    <h4 class="card-title mb-0"><i class="fas fa-file-upload me-2"></i>Entregas Pendientes</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
-                            <thead>
+                        <table class="table table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Curso</th>
+                                    <th>Asignatura</th>
+                                    <th>Estudiantes</th>
+                                    <th>Fecha Límite</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for entrega in entregas_pendientes %}
+                                <tr>
+                                    <td>{{ entrega.curso }}</td>
+                                    <td>{{ entrega.asignatura }}</td>
+                                    <td>
+                                        <span class="badge bg-primary">{{ entrega.estudiantes }}</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-{{ 'warning' if entrega.fecha_limite == '2025-06-15' else 'danger' }}">
+                                            {{ entrega.fecha_limite }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary" title="Ver detalles">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-success" title="Calificar">
+                                            <i class="fas fa-check"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Panel de cursos -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-white">
+                    <h4 class="card-title mb-0"><i class="fas fa-chalkboard-teacher me-2"></i>Mis Cursos</h4>
+                    <div class="card-tools">
+                        <button class="btn btn-sm btn-outline-primary" title="Nuevo curso">
+                            <i class="fas fa-plus"></i> Nuevo curso
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-light">
                                 <tr>
                                     <th>Nombre</th>
-                                    <th>Sección</th>
+                                    <th>Código</th>
+                                    <th>Créditos</th>
                                     <th>Estudiantes</th>
                                     <th>Estado</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for curso in cursos %}
                                 <tr>
-                                    <td>{{ curso.nombre }}</td>
-                                    <td>{{ curso.seccion }}</td>
-                                    <td>{{ curso.estudiantes.count() }}</td>
+                                    <td>{{ curso.name }}</td>
+                                    <td>{{ curso.code }}</td>
+                                    <td>{{ curso.credits }}</td>
                                     <td>
-                                        {% if curso.activo %}
+                                        <span class="badge bg-primary">{{ curso.get_student_count() }}</span>
+                                    </td>
+                                    <td>
+                                        {% if curso.is_active %}
                                         <span class="badge bg-success">Activo</span>
                                         {% else %}
                                         <span class="badge bg-secondary">Inactivo</span>
                                         {% endif %}
+                                    </td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm">
+                                            <button class="btn btn-outline-primary" title="Ver detalles">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-outline-success" title="Calificaciones">
+                                                <i class="fas fa-star"></i>
+                                            </button>
+                                            <button class="btn btn-outline-info" title="Asistencia">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <button class="btn btn-outline-warning" title="Editar">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                                 {% endfor %}

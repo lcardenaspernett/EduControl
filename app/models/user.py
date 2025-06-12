@@ -24,6 +24,11 @@ class User(UserMixin, db.Model):
     # Relationships - CORREGIDO
     role = db.relationship('Role', backref='user_roles', lazy='joined')  # Usar lazy='joined' para cargar el rol siempre
     
+    # Propiedad para obtener el nombre del rol
+    @property
+    def role_name(self):
+        return self.role.name if self.role else None
+    
     # Teacher-specific relationships
     courses_taught = db.relationship('Course', foreign_keys='Course.teacher_id', backref='course_teacher', lazy='dynamic', overlaps="course_teacher,courses_taught")
     subjects_taught = db.relationship('Subject', foreign_keys='Subject.teacher_id', backref='subject_teacher', lazy='dynamic', overlaps="subject_teacher,subjects_taught")
@@ -39,15 +44,22 @@ class User(UserMixin, db.Model):
         self.set_password(password)
         self.first_name = first_name
         self.last_name = last_name
-        self.role_id = role_id if role_id else 1  # Asignar el rol admin por defecto (ID 1)
         
         # Optional fields
         self.phone = kwargs.get('phone')
         self.is_active = kwargs.get('is_active', True)
         
         # Asegurar que el usuario tenga un rol
-        if not self.role_id:
-            self.role_id = 1  # Asignar el rol admin por defecto (ID 1)
+        if role_id:
+            self.role_id = role_id
+        else:
+            # Buscar el rol teacher por defecto
+            teacher_role = Role.query.filter_by(name='teacher').first()
+            if teacher_role:
+                self.role_id = teacher_role.id
+            else:
+                # Si no existe el rol teacher, usar admin
+                self.role_id = 1
 
     @property
     def is_admin(self):

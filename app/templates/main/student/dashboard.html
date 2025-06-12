@@ -59,23 +59,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for inscripcion in inscripciones %}
+                                {% for curso in cursos_inscritos %}
                                 <tr>
-                                    <td>{{ inscripcion.curso.nombre }}</td>
-                                    <td>{{ inscripcion.curso.profesor.first_name }} {{ inscripcion.curso.profesor.last_name }}</td>
+                                    <td>{{ curso.name }}</td>
+                                    <td>{{ curso.teacher.first_name }} {{ curso.teacher.last_name }}</td>
                                     <td>
-                                        {% if inscripcion.calificacion %}
-                                        {{ inscripcion.calificacion.nota }}
-                                        {% else %}
                                         <span class="text-muted">Sin calificar</span>
-                                        {% endif %}
                                     </td>
                                     <td>
-                                        {% if inscripcion.asistencia %}
-                                        {{ inscripcion.asistencia.porcentaje }}%
-                                        {% else %}
                                         <span class="text-muted">Sin datos</span>
-                                        {% endif %}
                                     </td>
                                 </tr>
                                 {% endfor %}

@@ -1,7 +1,7 @@
 # app/routes/main.py
 from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify
 from flask_login import login_required, current_user
-from app.models import User, db, Role
+from app.models import User, db, Role, Course
 import random
 import string
 from datetime import datetime
@@ -60,19 +60,39 @@ def teacher_dashboard():
         return redirect('/')
     
     # Obtener cursos del profesor
-    cursos = Course.query.filter_by(profesor_id=current_user.id).all()
+    cursos = Course.query.filter_by(teacher_id=current_user.id).all()
     
     # Obtener estadísticas
     stats = {
         'total_cursos': len(cursos),
-        'total_estudiantes': sum([c.estudiantes.count() for c in cursos]),
+        'total_estudiantes': sum([c.get_student_count() for c in cursos]),
         'calificaciones_pendientes': 0,  # Implementar lógica para contar calificaciones pendientes
-        'asistencia_pendiente': 0  # Implementar lógica para contar asistencia pendiente
+        'asistencia_pendiente': 0,  # Implementar lógica para contar asistencia pendiente
+        'cursos_activos': len([c for c in cursos if c.is_active]),
+        'cursos_inactivos': len([c for c in cursos if not c.is_active]),
+        'creditos_totales': sum([c.credits for c in cursos])
     }
+    
+    # Obtener entregas pendientes (simuladas)
+    entregas_pendientes = [
+        {
+            'curso': 'Matemáticas Avanzadas',
+            'asignatura': 'Álgebra Lineal',
+            'estudiantes': 15,
+            'fecha_limite': '2025-06-15'
+        },
+        {
+            'curso': 'Física General',
+            'asignatura': 'Termodinámica',
+            'estudiantes': 20,
+            'fecha_limite': '2025-06-20'
+        }
+    ]
     
     return render_template('main/teacher/dashboard.html', 
                          stats=stats,
-                         cursos=cursos)
+                         cursos=cursos,
+                         entregas_pendientes=entregas_pendientes)
 
 @main_bp.route('/student/dashboard')
 @login_required
@@ -82,20 +102,20 @@ def student_dashboard():
         flash('No tienes permisos para acceder a esta página.', 'error')
         return redirect('/')
     
-    # Obtener inscripciones del estudiante
-    inscripciones = Inscription.query.filter_by(student_id=current_user.id).all()
+    # Obtener cursos inscritos del estudiante
+    cursos_inscritos = current_user.enrolled_courses
     
     # Obtener estadísticas
     stats = {
-        'total_cursos': len(inscripciones),
-        'total_creditos': sum([i.curso.creditos for i in inscripciones]),
+        'total_cursos': len(cursos_inscritos),
+        'total_creditos': sum([c.credits for c in cursos_inscritos]),
         'promedio_general': 0,  # Implementar cálculo del promedio
         'porcentaje_asistencia': 0  # Implementar cálculo del porcentaje de asistencia
     }
     
     return render_template('main/student/dashboard.html', 
                          stats=stats,
-                         inscripciones=inscripciones)
+                         cursos_inscritos=cursos_inscritos)
 
 @main_bp.route('/profile')
 @login_required
