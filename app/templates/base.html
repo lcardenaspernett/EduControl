@@ -7,11 +7,153 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* Navbar personalizado con azul marino elegante */
+        /* Variables CSS para tema consistente */
+        :root {
+            --primary-color: #1e40af;
+            --primary-light: #3b82f6;
+            --secondary-color: #64748b;
+            --success-color: #22c55e;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --info-color: #3b82f6;
+            --sidebar-width: 280px;
+            --navbar-height: 70px;
+        }
+
+        /* Panel lateral SIEMPRE VISIBLE para admin/teacher */
+        .sidebar {
+            position: fixed;
+            top: var(--navbar-height);
+            left: 0;
+            width: var(--sidebar-width);
+            height: calc(100vh - var(--navbar-height));
+            background: linear-gradient(180deg, #1e293b, #334155);
+            color: white;
+            z-index: 1025;
+            overflow-y: auto;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        /* En móvil, el sidebar se oculta hacia la izquierda */
+        @media (max-width: 991px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.show {
+                transform: translateX(0);
+            }
+        }
+
+        .sidebar-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-header h5 {
+            margin: 0;
+            font-weight: 600;
+            color: white;
+        }
+
+        .sidebar-menu {
+            padding: 1rem 0;
+        }
+
+        .sidebar-menu .menu-item {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            position: relative;
+        }
+
+        .sidebar-menu .menu-item:hover,
+        .sidebar-menu .menu-item.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-left-color: var(--primary-light);
+            transform: translateX(5px);
+        }
+
+        .sidebar-menu .menu-item i {
+            width: 20px;
+            margin-right: 0.8rem;
+        }
+
+        .sidebar-menu .menu-category {
+            padding: 1rem 1.5rem 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Overlay solo para móvil */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1020;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        @media (max-width: 991px) {
+            .sidebar-overlay {
+                display: block;
+            }
+            
+            .sidebar-overlay.show {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        /* Botón toggle SOLO visible en móvil */
+        .sidebar-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 0.5rem 0.8rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        @media (max-width: 991px) {
+            .sidebar-toggle {
+                display: inline-block;
+            }
+        }
+
+        .sidebar-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Navbar mejorado */
         .navbar-custom {
-            background: #1e40af;
-            box-shadow: 0 2px 20px rgba(30, 64, 175, 0.3);
-            backdrop-filter: blur(10px);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            box-shadow: 0 4px 20px rgba(30, 64, 175, 0.25);
+            backdrop-filter: blur(15px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1030;
+            height: var(--navbar-height);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .navbar-custom .navbar-brand {
@@ -19,114 +161,317 @@
             font-size: 1.4rem;
             color: white !important;
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-custom .navbar-brand:hover {
+            transform: scale(1.05);
+            text-shadow: 0 4px 8px rgba(0,0,0,0.4);
         }
         
         .navbar-custom .nav-link {
             color: rgba(255, 255, 255, 0.9) !important;
             font-weight: 500;
             transition: all 0.3s ease;
+            border-radius: 8px;
+            margin: 0 4px;
+            padding: 8px 16px !important;
+            position: relative;
         }
         
         .navbar-custom .nav-link:hover {
             color: white !important;
-            transform: translateY(-1px);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .navbar-custom .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .navbar-custom .nav-link:hover::after {
+            width: 80%;
         }
         
         .navbar-custom .dropdown-menu {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
             border: none;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
             border-radius: 12px;
+            margin-top: 12px;
+            min-width: 220px;
+        }
+        
+        .navbar-custom .dropdown-item {
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            margin: 4px 8px;
+            padding: 10px 16px;
+        }
+        
+        .navbar-custom .dropdown-item:hover {
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.1), rgba(59, 130, 246, 0.1));
+            transform: translateX(8px);
+            color: var(--primary-color);
         }
         
         .navbar-custom .badge {
-            background: rgba(255, 255, 255, 0.2) !important;
+            background: rgba(255, 255, 255, 0.25) !important;
             color: white !important;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            padding: 4px 8px;
+        }
+
+        /* Body con padding superior */
+        body {
+            padding-top: var(--navbar-height);
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
-        /* Animación suave para el navbar */
-        .navbar-custom {
+        .skip-main {
+            padding-top: 0 !important;
+        }
+
+        /* MAIN CONTENT: Siempre ajustado al sidebar cuando corresponde */
+        .main-content {
+            min-height: calc(100vh - var(--navbar-height));
+            transition: margin-left 0.3s ease;
+        }
+
+        /* Para usuarios con sidebar (admin/teacher) en desktop */
+        .main-content.has-sidebar {
+            margin-left: var(--sidebar-width);
+        }
+
+        /* En móvil, el contenido no se ajusta */
+        @media (max-width: 991px) {
+            .main-content.has-sidebar {
+                margin-left: 0;
+            }
+        }
+        
+        /* Alertas con mejor diseño */
+        .alert {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid;
+            backdrop-filter: blur(10px);
+            animation: slideInDown 0.5s ease-out;
+        }
+        
+        .alert-success {
+            background: linear-gradient(135deg, rgba(220, 252, 231, 0.9), rgba(187, 247, 208, 0.9));
+            border-left-color: var(--success-color);
+            color: #166534;
+        }
+        
+        .alert-danger {
+            background: linear-gradient(135deg, rgba(254, 226, 226, 0.9), rgba(254, 202, 202, 0.9));
+            border-left-color: var(--danger-color);
+            color: #991b1b;
+        }
+        
+        .alert-info {
+            background: linear-gradient(135deg, rgba(219, 234, 254, 0.9), rgba(191, 219, 254, 0.9));
+            border-left-color: var(--info-color);
+            color: #1e40af;
+        }
+        
+        .alert-warning {
+            background: linear-gradient(135deg, rgba(254, 243, 199, 0.9), rgba(253, 230, 138, 0.9));
+            border-left-color: var(--warning-color);
+            color: #92400e;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0) !important;
+            border-top: 1px solid rgba(30, 64, 175, 0.1);
+            backdrop-filter: blur(10px);
+            transition: margin-left 0.3s ease;
+        }
+
+        /* Footer también se ajusta al sidebar */
+        footer.has-sidebar {
+            margin-left: var(--sidebar-width);
+        }
+
+        @media (max-width: 991px) {
+            footer.has-sidebar {
+                margin-left: 0;
+            }
+        }
+
+        /* Toast container */
+        .toast-container {
+            position: fixed;
+            top: calc(var(--navbar-height) + 20px);
+            right: 20px;
+            z-index: 1050;
+        }
+
+        .toast.custom-toast {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animaciones */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .pulse-on-hover:hover {
+            animation: pulse 0.6s ease-in-out;
+        }
+
+        /* Estados de carga */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Scroll personalizado para sidebar */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Cards con mejor espaciado */
+        .card {
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
         }
-        
-        .navbar-custom:hover {
-            box-shadow: 0 4px 30px rgba(30, 64, 175, 0.4);
+
+        /* Responsive adicional */
+        @media (max-width: 576px) {
+            .navbar-custom .navbar-brand {
+                font-size: 1.2rem;
+            }
+            
+            .sidebar-header h5 {
+                font-size: 1.1rem;
+            }
         }
     </style>
     
-    <!-- BLOQUE HEAD AGREGADO AQUÍ -->
     {% block head %}{% endblock %}
 </head>
 <body>
     <!-- Solo mostrar navbar si no es landing page -->
     {% if not skip_main %}
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-        <div class="container">
-            <a class="navbar-brand" href="/">
+        <div class="container-fluid">
+            <!-- Toggle sidebar SOLO para móvil (admin/teacher) -->
+            {% if current_user and current_user.is_authenticated and current_user.role and (current_user.role.name == 'admin' or current_user.role.name == 'teacher') %}
+            <button class="sidebar-toggle me-3" type="button" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+            {% endif %}
+
+            <a class="navbar-brand pulse-on-hover" href="{{ url_for('main.index') if url_for else '/' }}">
                 <i class="fas fa-graduation-cap me-2"></i>📚 EduControl
             </a>
             
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('main.index') }}">
+                        <a class="nav-link" href="{{ url_for('main.index') if url_for else '/' }}">
                             <i class="fas fa-home me-1"></i>Inicio
                         </a>
                     </li>
                     
-                    {% if current_user.is_authenticated %}
-                        <!-- Enlaces según el rol del usuario -->
-                        {% if current_user.role.name == 'admin' %}
+                    {% if current_user and current_user.is_authenticated %}
+                        <!-- Enlaces específicos por rol -->
+                        {% if current_user.role and current_user.role.name == 'admin' %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('main.admin_dashboard') }}">
-                                    <i class="fas fa-cog me-1"></i>Panel Admin
+                                <a class="nav-link" href="{{ url_for('main.admin_dashboard') if url_for else '#' }}">
+                                    <i class="fas fa-tachometer-alt me-1"></i>Dashboard
                                 </a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                    <i class="fas fa-users me-1"></i>Gestión
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#"><i class="fas fa-users me-2"></i>Usuarios</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="fas fa-book me-2"></i>Cursos</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="fas fa-chart-bar me-2"></i>Reportes</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item text-muted" href="#"><i class="fas fa-info-circle me-2"></i>Próximamente</a></li>
-                                </ul>
-                            </li>
-                        {% elif current_user.role.name == 'teacher' %}
+                        {% elif current_user.role and current_user.role.name == 'teacher' %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('main.teacher_dashboard') }}">
+                                <a class="nav-link" href="{{ url_for('main.teacher_dashboard') if url_for else '#' }}">
                                     <i class="fas fa-chalkboard-teacher me-1"></i>Mi Dashboard
                                 </a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                    <i class="fas fa-book me-1"></i>Mis Cursos
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#"><i class="fas fa-eye me-2"></i>Ver Cursos</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="fas fa-star me-2"></i>Calificaciones</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="fas fa-check me-2"></i>Asistencia</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item text-muted" href="#"><i class="fas fa-info-circle me-2"></i>Próximamente</a></li>
-                                </ul>
-                            </li>
-                        {% elif current_user.role.name == 'student' %}
+                        {% elif current_user.role and current_user.role.name == 'student' %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('main.student_dashboard') }}">
+                                <a class="nav-link" href="{{ url_for('main.student_dashboard') if url_for else '#' }}">
                                     <i class="fas fa-user-graduate me-1"></i>Mi Dashboard
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="#" title="Funcionalidad próximamente">
                                     <i class="fas fa-book-open me-1"></i>Mis Cursos
-                                    <small class="text-muted">(Próximamente)</small>
+                                    <small class="badge bg-secondary ms-1">Próximamente</small>
                                 </a>
                             </li>
                         {% endif %}
@@ -135,34 +480,46 @@
                 
                 <!-- Enlaces de usuario (derecha) -->
                 <ul class="navbar-nav">
-                    {% if current_user.is_authenticated %}
+                    <!-- Notificaciones -->
+                    {% if current_user and current_user.is_authenticated %}
+                    <li class="nav-item dropdown me-2">
+                        <a class="nav-link" href="#" title="Notificaciones">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge bg-danger">3</span>
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    {% if current_user and current_user.is_authenticated %}
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-user-circle me-1"></i>
-                                {% if current_user.username %}
-                                    {{ current_user.username }}
-                                {% else %}
-                                    Usuario
-                                {% endif %}
+                                {{ current_user.username if current_user.username else 'Usuario' }}
                                 {% if current_user.role %}
-                                    <span class="badge bg-light text-primary ms-1">{{ current_user.role.title() }}</span>
+                                    <span class="badge bg-light text-primary ms-1">{{ current_user.role.name.title() }}</span>
                                 {% endif %}
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                                 <li>
-                                    <a class="dropdown-item" href="{{ url_for('auth.profile') }}">
+                                    <a class="dropdown-item" href="{{ url_for('auth.profile') if url_for else '#' }}">
                                         <i class="fas fa-user me-2"></i>Mi Perfil
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="#" title="Funcionalidad próximamente">
+                                        <i class="fas fa-cog me-2"></i>Configuración
+                                        <small class="text-muted ms-1">(Próximamente)</small>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#" title="Funcionalidad próximamente">
                                         <i class="fas fa-key me-2"></i>Cambiar Contraseña
-                                        <small class="text-muted">(Próximamente)</small>
+                                        <small class="text-muted ms-1">(Próximamente)</small>
                                     </a>
                                 </li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
-                                    <a class="dropdown-item text-danger" href="{{ url_for('auth.logout') }}">
+                                    <a class="dropdown-item text-danger" href="{{ url_for('auth.logout') if url_for else '#' }}">
                                         <i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión
                                     </a>
                                 </li>
@@ -170,12 +527,12 @@
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('auth.login') }}">
+                            <a class="nav-link" href="{{ url_for('auth.login') if url_for else '#' }}">
                                 <i class="fas fa-sign-in-alt me-1"></i>Iniciar Sesión
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('auth.register') }}">
+                            <a class="nav-link" href="{{ url_for('auth.register') if url_for else '#' }}">
                                 <i class="fas fa-user-plus me-1"></i>Registrarse
                             </a>
                         </li>
@@ -184,59 +541,350 @@
             </div>
         </div>
     </nav>
-    
-    <!-- Mensajes Flash -->
-    <div class="container mt-3">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show" role="alert">
-                        {% if category == 'success' %}
-                            <i class="fas fa-check-circle me-2"></i>
-                        {% elif category == 'error' %}
-                            <i class="fas fa-exclamation-triangle me-2"></i>
-                        {% elif category == 'info' %}
-                            <i class="fas fa-info-circle me-2"></i>
-                        {% elif category == 'warning' %}
-                            <i class="fas fa-exclamation-circle me-2"></i>
-                        {% endif %}
-                        {{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    </div>
-                {% endfor %}
+
+    <!-- Sidebar para gestión (Admin/Teacher) - SIEMPRE VISIBLE EN DESKTOP -->
+    {% if current_user and current_user.is_authenticated and current_user.role and (current_user.role.name == 'admin' or current_user.role.name == 'teacher') %}
+    <div class="sidebar-overlay" onclick="closeSidebar()"></div>
+    <div class="sidebar" id="managementSidebar">
+        <div class="sidebar-header">
+            <h5>
+                <i class="fas fa-cogs me-2"></i>
+                {% if current_user.role.name == 'admin' %}Panel de Administración{% else %}Panel de Gestión{% endif %}
+            </h5>
+        </div>
+        <div class="sidebar-menu">
+            {% if current_user.role.name == 'admin' %}
+                <div class="menu-category">Sistema</div>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-users"></i>Gestión de Usuarios
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-user-shield"></i>Roles y Permisos
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-database"></i>Respaldo de Datos
+                </a>
+                
+                <div class="menu-category">Académico</div>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-book"></i>Gestión de Cursos
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-calendar-alt"></i>Periodos Académicos
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-building"></i>Aulas y Recursos
+                </a>
+                
+                <div class="menu-category">Reportes</div>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-chart-bar"></i>Estadísticas Generales
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-file-alt"></i>Reportes Académicos
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-download"></i>Exportar Datos
+                </a>
+            {% else %}
+                <div class="menu-category">Mis Cursos</div>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-eye"></i>Ver Mis Cursos
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-plus-circle"></i>Crear Curso
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-edit"></i>Editar Cursos
+                </a>
+                
+                <div class="menu-category">Evaluaciones</div>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-star"></i>Calificaciones
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-clipboard-check"></i>Examenes
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-tasks"></i>Tareas
+                </a>
+                
+                <div class="menu-category">Seguimiento</div>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-check"></i>Control de Asistencia
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-chart-line"></i>Progreso Estudiantes
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-comments"></i>Comunicación
+                </a>
             {% endif %}
-        {% endwith %}
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Contenido principal que se ajusta automáticamente -->
+    <div class="main-content{% if current_user and current_user.is_authenticated and current_user.role and (current_user.role.name == 'admin' or current_user.role.name == 'teacher') %} has-sidebar{% endif %}" id="mainContent">
+        <!-- Mensajes Flash -->
+        <div class="container mt-3">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show fade-in" role="alert">
+                            {% if category == 'success' %}
+                                <i class="fas fa-check-circle me-2"></i>
+                            {% elif category == 'error' %}
+                                <i class="fas fa-exclamation-triangle me-2"></i>
+                            {% elif category == 'info' %}
+                                <i class="fas fa-info-circle me-2"></i>
+                            {% elif category == 'warning' %}
+                                <i class="fas fa-exclamation-circle me-2"></i>
+                            {% endif %}
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        
+        <!-- Contenido principal -->
+        <main class="container mt-4">
+            {% block content %}
+            <!-- Contenido de ejemplo -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h4><i class="fas fa-tachometer-alt me-2"></i>Dashboard Principal</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>El contenido ahora comienza correctamente después del menú lateral. El sidebar está siempre visible en desktop para admin/teacher y se oculta en móvil.</p>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card bg-light">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-users fa-2x text-primary mb-3"></i>
+                                            <h5>Usuarios Activos</h5>
+                                            <h3 class="text-primary">1,234</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card bg-light">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-book fa-2x text-success mb-3"></i>
+                                            <h5>Cursos Activos</h5>
+                                            <h3 class="text-success">567</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card bg-light">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-chart-line fa-2x text-warning mb-3"></i>
+                                            <h5>Progreso General</h5>
+                                            <h3 class="text-warning">89%</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endblock %}
+        </main>
     </div>
     {% endif %}
     
-    <!-- Contenido principal -->
-    {% if not skip_main %}
-    <main class="container mt-4">
-        {% block content %}{% endblock %}
-    </main>
-    {% else %}
+    <!-- Contenido de ancho completo -->
+    {% if skip_main %}
         {% block full_width_content %}{% endblock %}
     {% endif %}
-    
-    <!-- Footer solo si no es landing page -->
-    {% if not skip_main %}
-    <footer class="bg-light text-center text-muted py-4 mt-5">
-        <div class="container">
-            <p>&copy; 2025 EduControl - Sistema de Gestión Educativa</p>
-            {% if current_user.is_authenticated %}
-                <small>Conectado como: <strong>{{ current_user.username }}</strong>
-                {% if current_user.role %}
-                    ({{ current_user.role.title() }})
-                {% endif %}
-                </small>
-            {% endif %}
+
+    <!-- Footer que también se ajusta -->
+    <footer class="py-4 mt-auto{% if current_user and current_user.is_authenticated and current_user.role and (current_user.role.name == 'admin' or current_user.role.name == 'teacher') %} has-sidebar{% endif %}">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0 text-muted">&copy; 2023 EduControl. Todos los derechos reservados.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0 text-muted">
+                        <a href="#" class="text-muted me-3">Términos de servicio</a>
+                        <a href="#" class="text-muted me-3">Privacidad</a>
+                        <a href="#" class="text-muted">Contacto</a>
+                    </p>
+                </div>
+            </div>
         </div>
     </footer>
-    {% endif %}
-    
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Función para alternar sidebar SOLO en móvil
+        function toggleSidebar() {
+            if (window.innerWidth < 992) {
+                const sidebar = document.getElementById('managementSidebar');
+                const overlay = document.querySelector('.sidebar-overlay');
+                
+                sidebar.classList.toggle('show');
+                overlay.classList.toggle('show');
+            }
+        }
+
+        // Función para cerrar sidebar
+        function closeSidebar() {
+            const sidebar = document.getElementById('managementSidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            
+            sidebar.classList.remove('show');
+            overlay.classList.remove('show');
+        }
+
+        // Auto-cerrar sidebar en móvil al cambiar tamaño de ventana
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 992) {
+                closeSidebar();
+            }
+        });
+
+        // Marcar enlace activo en sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            const menuItems = document.querySelectorAll('.sidebar-menu .menu-item');
+            
+            menuItems.forEach(item => {
+                if (item.getAttribute('href') === currentPath) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Auto-hide alerts después de 5 segundos
+        document.addEventListener('DOMContentLoaded', function() {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                setTimeout(() => {
+                    if (alert && alert.parentNode) {
+                        const bsAlert = new bootstrap.Alert(alert);
+                        bsAlert.close();
+                    }
+                }, 5000);
+            });
+        });
+
+        // Smooth scroll para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Tooltip initialization para elementos con título
+        document.addEventListener('DOMContentLoaded', function() {
+            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[title]'));
+            tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
+
+        // Loading state para formularios
+        document.addEventListener('DOMContentLoaded', function() {
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                form.addEventListener('submit', function() {
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                        const originalText = submitBtn.innerHTML;
+                        submitBtn.innerHTML = '<span class="loading-spinner me-2"></span>Procesando...';
+                        
+                        // Restaurar estado si hay error (después de 10 segundos)
+                        setTimeout(() => {
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = originalText;
+                        }, 10000);
+                    }
+                });
+            });
+        });
+
+        // Sistema de notificaciones toast
+        function showToast(message, type = 'info') {
+            const toastContainer = document.querySelector('.toast-container') || createToastContainer();
+            
+            const toastHtml = `
+                <div class="toast custom-toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <i class="fas fa-${getToastIcon(type)} me-2 text-${type}"></i>
+                        <strong class="me-auto">EduControl</strong>
+                        <small class="text-muted">ahora</small>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        ${message}
+                    </div>
+                </div>
+            `;
+            
+            toastContainer.insertAdjacentHTML('beforeend', toastHtml);
+            const toast = toastContainer.lastElementChild;
+            const bsToast = new bootstrap.Toast(toast);
+            bsToast.show();
+            
+            // Remover elemento después de que se oculte
+            toast.addEventListener('hidden.bs.toast', () => {
+                toast.remove();
+            });
+        }
+
+        function createToastContainer() {
+            const container = document.createElement('div');
+            container.className = 'toast-container';
+            document.body.appendChild(container);
+            return container;
+        }
+
+        function getToastIcon(type) {
+            const icons = {
+                'success': 'check-circle',
+                'error': 'exclamation-triangle',
+                'warning': 'exclamation-circle',
+                'info': 'info-circle'
+            };
+            return icons[type] || 'info-circle';
+        }
+
+        // Función global para mostrar confirmación
+        function confirmAction(message, callback) {
+            if (confirm(message)) {
+                callback();
+            }
+        }
+
+        // Prevenir envío múltiple de formularios
+        let formSubmitting = false;
+        document.addEventListener('submit', function(e) {
+            if (formSubmitting) {
+                e.preventDefault();
+                return false;
+            }
+            formSubmitting = true;
+            setTimeout(() => formSubmitting = false, 2000);
+        });
+    </script>
     
-    <!-- BLOQUE SCRIPTS AGREGADO AQUÍ -->
     {% block scripts %}{% endblock %}
 </body>
 </html>

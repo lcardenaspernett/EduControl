@@ -4,53 +4,73 @@
 
 {% block content %}
 <div class="container-fluid">
-    <div class="row">
-        <!-- Tarjetas de estadísticas -->
+    <!-- Tarjetas de estadísticas con mejor diseño -->
+    <div class="row mb-4">
         <div class="col-md-3 mb-4">
-            <div class="card">
+            <div class="card bg-primary text-white">
                 <div class="card-body">
-                    <h5 class="card-title">Total de Usuarios</h5>
-                    <h2 class="card-text text-primary">{{ stats.total_usuarios }}</h2>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title mb-0">Total de Usuarios</h5>
+                            <h2 class="card-text">{{ stats.total_usuarios }}</h2>
+                        </div>
+                        <i class="fas fa-users fa-2x"></i>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-md-3 mb-4">
-            <div class="card">
+            <div class="card bg-success text-white">
                 <div class="card-body">
-                    <h5 class="card-title">Estudiantes</h5>
-                    <h2 class="card-text text-success">{{ stats.total_estudiantes }}</h2>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title mb-0">Estudiantes</h5>
+                            <h2 class="card-text">{{ stats.total_estudiantes }}</h2>
+                        </div>
+                        <i class="fas fa-user-graduate fa-2x"></i>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-md-3 mb-4">
-            <div class="card">
+            <div class="card bg-warning text-dark">
                 <div class="card-body">
-                    <h5 class="card-title">Profesores</h5>
-                    <h2 class="card-text text-warning">{{ stats.total_profesores }}</h2>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title mb-0">Profesores</h5>
+                            <h2 class="card-text">{{ stats.total_profesores }}</h2>
+                        </div>
+                        <i class="fas fa-chalkboard-teacher fa-2x"></i>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-md-3 mb-4">
-            <div class="card">
+            <div class="card bg-danger text-white">
                 <div class="card-body">
-                    <h5 class="card-title">Administradores</h5>
-                    <h2 class="card-text text-danger">{{ stats.total_admins }}</h2>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title mb-0">Administradores</h5>
+                            <h2 class="card-text">{{ stats.total_admins }}</h2>
+                        </div>
+                        <i class="fas fa-cog fa-2x"></i>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Últimos usuarios registrados -->
+    <!-- Sección de usuarios recientes -->
     <div class="row">
         <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Últimos Usuarios Registrados</h4>
+            <div class="card shadow">
+                <div class="card-header bg-white">
+                    <h4 class="card-title mb-0">Últimos Usuarios Registrados</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
-                            <thead>
+                        <table class="table table-hover">
+                            <thead class="table-light">
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Email</th>
@@ -63,8 +83,12 @@
                                 <tr>
                                     <td>{{ user.first_name }} {{ user.last_name }}</td>
                                     <td>{{ user.email }}</td>
-                                    <td>{{ user.role.name }}</td>
-                                    <td>{{ user.fecha_registro.strftime('%Y-%m-%d') }}</td>
+                                    <td>
+                                        <span class="badge bg-{{ 'danger' if user.role.name == 'admin' else 'success' if user.role.name == 'teacher' else 'primary' }}">
+                                            {{ user.role.name.title() }}
+                                        </span>
+                                    </td>
+                                    <td>{{ user.created_at.strftime('%Y-%m-%d') }}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

@@ -1,7 +1,7 @@
 # app/routes/main.py
 from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify
 from flask_login import login_required, current_user
-from app.models import User, db
+from app.models import User, db, Role
 import random
 import string
 from datetime import datetime
@@ -29,18 +29,18 @@ def index():
 @login_required
 def admin_dashboard():
     """Dashboard del administrador"""
-    if not current_user.role.name == 'admin':
+    if current_user.role.name != 'admin':
         flash('No tienes permisos para acceder a esta página.', 'error')
         return redirect('/')
     
     # Obtener estadísticas
     total_usuarios = User.query.count()
-    total_estudiantes = User.query.filter_by(role='student').count()
-    total_profesores = User.query.filter_by(role='teacher').count()
-    total_admins = User.query.filter_by(role='admin').count()
+    total_estudiantes = User.query.join(Role).filter(Role.name == 'student').count()
+    total_profesores = User.query.join(Role).filter(Role.name == 'teacher').count()
+    total_admins = User.query.join(Role).filter(Role.name == 'admin').count()
     
     # Obtener usuarios recientes
-    usuarios_recientes = User.query.order_by(User.fecha_registro.desc()).limit(5).all()
+    usuarios_recientes = User.query.order_by(User.created_at.desc()).limit(5).all()
     
     return render_template('main/admin/dashboard.html', 
                          stats={
@@ -55,7 +55,7 @@ def admin_dashboard():
 @login_required
 def teacher_dashboard():
     """Dashboard del profesor"""
-    if not current_user.role.name == 'teacher':
+    if current_user.role.name != 'teacher':
         flash('No tienes permisos para acceder a esta página.', 'error')
         return redirect('/')
     
@@ -78,7 +78,7 @@ def teacher_dashboard():
 @login_required
 def student_dashboard():
     """Dashboard del estudiante"""
-    if not current_user.role.name == 'student':
+    if current_user.role.name != 'student':
         flash('No tienes permisos para acceder a esta página.', 'error')
         return redirect('/')
     

@@ -38,5 +38,9 @@ class Role(db.Model):
             return False
         return self.name.lower() == role_name.lower()
     
+    def title(self):
+        """Devolver el nombre del rol con formato de título"""
+        return self.name.title()
+    
     def __repr__(self):
         return f'<Role {self.name}>'
