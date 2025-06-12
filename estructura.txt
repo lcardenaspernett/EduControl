@@ -1,0 +1,2721 @@
+Listado de rutas de carpetas
+El n£mero de serie del volumen es D42F-456C
+C:.
+³   .env
+³   app.py
+³   config.py
+³   estructura.txt
+³   requirements.txt
+³   test_blueprints.py
+³   
+ÃÄÄÄapp
+³   ³   requirements.txt
+³   ³   __init__.py
+³   ³   __init__.py.backup
+³   ³   
+³   ÃÄÄÄblueprints
+³   ³   ³   __init__.py
+³   ³   ³   
+³   ³   ÃÄÄÄadmin
+³   ³   ³   ³   admin.py
+³   ³   ³   ³   routes.py
+³   ³   ³   ³   user.py
+³   ³   ³   ³   __init__.py
+³   ³   ³   ³   
+³   ³   ³   ÀÄÄÄ__pycache__
+³   ³   ³           routes.cpython-312.pyc
+³   ³   ³           user.cpython-312.pyc
+³   ³   ³           __init__.cpython-312.pyc
+³   ³   ³           
+³   ³   ÃÄÄÄapi
+³   ³   ³   ³   __init__.py
+³   ³   ³   ³   
+³   ³   ³   ÃÄÄÄv1
+³   ³   ³   ³   ³   routes.py
+³   ³   ³   ³   ³   __init__.py
+³   ³   ³   ³   ³   
+³   ³   ³   ³   ÀÄÄÄ__pycache__
+³   ³   ³   ³           routes.cpython-312.pyc
+³   ³   ³   ³           __init__.cpython-312.pyc
+³   ³   ³   ³           
+³   ³   ³   ÀÄÄÄ__pycache__
+³   ³   ³           __init__.cpython-312.pyc
+³   ³   ³           
+³   ³   ÃÄÄÄauth
+³   ³   ³   ³   auth.py
+³   ³   ³   ³   routes.py
+³   ³   ³   ³   __init__.py
+³   ³   ³   ³   
+³   ³   ³   ÀÄÄÄ__pycache__
+³   ³   ³           routes.cpython-312.pyc
+³   ³   ³           __init__.cpython-312.pyc
+³   ³   ³           
+³   ³   ÃÄÄÄmain
+³   ³   ³   ³   main.py
+³   ³   ³   ³   routes.py
+³   ³   ³   ³   __init__.py
+³   ³   ³   ³   
+³   ³   ³   ÀÄÄÄ__pycache__
+³   ³   ³           routes.cpython-312.pyc
+³   ³   ³           __init__.cpython-312.pyc
+³   ³   ³           
+³   ³   ÃÄÄÄstudent
+³   ³   ³   ³   course.py
+³   ³   ³   ³   routes.py
+³   ³   ³   ³   __init__.py
+³   ³   ³   ³   
+³   ³   ³   ÀÄÄÄ__pycache__
+³   ³   ³           routes.cpython-312.pyc
+³   ³   ³           __init__.cpython-312.pyc
+³   ³   ³           
+³   ³   ÃÄÄÄteacher
+³   ³   ³   ³   routes.py
+³   ³   ³   ³   __init__.py
+³   ³   ³   ³   
+³   ³   ³   ÀÄÄÄ__pycache__
+³   ³   ³           routes.cpython-312.pyc
+³   ³   ³           __init__.cpython-312.pyc
+³   ³   ³           
+³   ³   ÀÄÄÄ__pycache__
+³   ³           __init__.cpython-312.pyc
+³   ³           
+³   ÃÄÄÄdecorators
+³   ³   ³   auth_decorators.py
+³   ³   ³   __init__.py
+³   ³   ³   
+³   ³   ÀÄÄÄ__pycache__
+³   ³           auth_decorators.cpython-312.pyc
+³   ³           __init__.cpython-312.pyc
+³   ³           
+³   ÃÄÄÄforms
+³   ³       auth_forms.py
+³   ³       __init__.py
+³   ³       
+³   ÃÄÄÄmodels
+³   ³   ³   assignment.py
+³   ³   ³   attendance.py
+³   ³   ³   configuration.py
+³   ³   ³   course.py
+³   ³   ³   database.py
+³   ³   ³   grade.py
+³   ³   ³   models.py
+³   ³   ³   role.py
+³   ³   ³   student.py
+³   ³   ³   subject.py
+³   ³   ³   submission.py
+³   ³   ³   teacher.py
+³   ³   ³   user.py
+³   ³   ³   __init__.py
+³   ³   ³   
+³   ³   ÀÄÄÄ__pycache__
+³   ³           assignment.cpython-312.pyc
+³   ³           attendance.cpython-312.pyc
+³   ³           configuration.cpython-312.pyc
+³   ³           course.cpython-312.pyc
+³   ³           database.cpython-312.pyc
+³   ³           grade.cpython-312.pyc
+³   ³           models.cpython-312.pyc
+³   ³           role.cpython-312.pyc
+³   ³           student.cpython-312.pyc
+³   ³           subject.cpython-312.pyc
+³   ³           submission.cpython-312.pyc
+³   ³           teacher.cpython-312.pyc
+³   ³           user.cpython-312.pyc
+³   ³           __init__.cpython-312.pyc
+³   ³           
+³   ÃÄÄÄroutes
+³   ³       config.py
+³   ³       __init__.py
+³   ³       
+³   ÃÄÄÄstatic
+³   ³   ÃÄÄÄcss
+³   ³   ÃÄÄÄimg
+³   ³   ÀÄÄÄjs
+³   ÃÄÄÄtemplates
+³   ³   ³   base.html
+³   ³   ³   
+³   ³   ÃÄÄÄadmin
+³   ³   ³   ³   create_user.html
+³   ³   ³   ³   dashboard.html
+³   ³   ³   ³   list_users.html
+³   ³   ³   ³   
+³   ³   ³   ÃÄÄÄcourses
+³   ³   ³   ³       list.html
+³   ³   ³   ³       
+³   ³   ³   ÀÄÄÄusers
+³   ³   ³           list.html
+³   ³   ³           
+³   ³   ÃÄÄÄauth
+³   ³   ³       change_password.html
+³   ³   ³       login.html
+³   ³   ³       profile.html
+³   ³   ³       
+³   ³   ÃÄÄÄcomponents
+³   ³   ÃÄÄÄerrors
+³   ³   ³       403.html
+³   ³   ³       404.html
+³   ³   ³       500.html
+³   ³   ³       
+³   ³   ÃÄÄÄmain
+³   ³   ³       index.html
+³   ³   ³       
+³   ³   ÃÄÄÄstudent
+³   ³   ³       dashboard.html
+³   ³   ³       
+³   ³   ÀÄÄÄteacher
+³   ³           dashboard.htm
+³   ³           
+³   ÃÄÄÄutils
+³   ³       __init__.py
+³   ³       
+³   ÀÄÄÄ__pycache__
+³           __init__.cpython-312.pyc
+³           
+ÃÄÄÄinstance
+³       educontrol.db
+³       
+ÃÄÄÄmigrations
+³   ³   alembic.ini
+³   ³   env.py
+³   ³   README
+³   ³   script.py.mako
+³   ³   
+³   ÀÄÄÄversions
+³           c29af671e1b9_add_fecha_creacion_to_cursos_table.py
+³           
+ÃÄÄÄtests
+ÀÄÄÄvenv
+    ³   pyvenv.cfg
+    ³   
+    ÃÄÄÄInclude
+    ³   ÀÄÄÄsite
+    ³       ÀÄÄÄpython3.12
+    ³           ÀÄÄÄgreenlet
+    ³                   greenlet.h
+    ³                   
+    ÃÄÄÄLib
+    ³   ÀÄÄÄsite-packages
+    ³       ³   typing_extensions.py
+    ³       ³   
+    ³       ÃÄÄÄalembic
+    ³       ³   ³   command.py
+    ³       ³   ³   config.py
+    ³       ³   ³   context.py
+    ³       ³   ³   context.pyi
+    ³       ³   ³   environment.py
+    ³       ³   ³   migration.py
+    ³       ³   ³   op.py
+    ³       ³   ³   op.pyi
+    ³       ³   ³   py.typed
+    ³       ³   ³   __init__.py
+    ³       ³   ³   __main__.py
+    ³       ³   ³   
+    ³       ³   ÃÄÄÄautogenerate
+    ³       ³   ³   ³   api.py
+    ³       ³   ³   ³   compare.py
+    ³       ³   ³   ³   render.py
+    ³       ³   ³   ³   rewriter.py
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÀÄÄÄ__pycache__
+    ³       ³   ³           api.cpython-312.pyc
+    ³       ³   ³           compare.cpython-312.pyc
+    ³       ³   ³           render.cpython-312.pyc
+    ³       ³   ³           rewriter.cpython-312.pyc
+    ³       ³   ³           __init__.cpython-312.pyc
+    ³       ³   ³           
+    ³       ³   ÃÄÄÄddl
+    ³       ³   ³   ³   base.py
+    ³       ³   ³   ³   impl.py
+    ³       ³   ³   ³   mssql.py
+    ³       ³   ³   ³   mysql.py
+    ³       ³   ³   ³   oracle.py
+    ³       ³   ³   ³   postgresql.py
+    ³       ³   ³   ³   sqlite.py
+    ³       ³   ³   ³   _autogen.py
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÀÄÄÄ__pycache__
+    ³       ³   ³           base.cpython-312.pyc
+    ³       ³   ³           impl.cpython-312.pyc
+    ³       ³   ³           mssql.cpython-312.pyc
+    ³       ³   ³           mysql.cpython-312.pyc
+    ³       ³   ³           oracle.cpython-312.pyc
+    ³       ³   ³           postgresql.cpython-312.pyc
+    ³       ³   ³           sqlite.cpython-312.pyc
+    ³       ³   ³           _autogen.cpython-312.pyc
+    ³       ³   ³           __init__.cpython-312.pyc
+    ³       ³   ³           
+    ³       ³   ÃÄÄÄoperations
+    ³       ³   ³   ³   base.py
+    ³       ³   ³   ³   batch.py
+    ³       ³   ³   ³   ops.py
+    ³       ³   ³   ³   schemaobj.py
+    ³       ³   ³   ³   toimpl.py
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÀÄÄÄ__pycache__
+    ³       ³   ³           base.cpython-312.pyc
+    ³       ³   ³           batch.cpython-312.pyc
+    ³       ³   ³           ops.cpython-312.pyc
+    ³       ³   ³           schemaobj.cpython-312.pyc
+    ³       ³   ³           toimpl.cpython-312.pyc
+    ³       ³   ³           __init__.cpython-312.pyc
+    ³       ³   ³           
+    ³       ³   ÃÄÄÄruntime
+    ³       ³   ³   ³   environment.py
+    ³       ³   ³   ³   migration.py
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÀÄÄÄ__pycache__
+    ³       ³   ³           environment.cpython-312.pyc
+    ³       ³   ³           migration.cpython-312.pyc
+    ³       ³   ³           __init__.cpython-312.pyc
+    ³       ³   ³           
+    ³       ³   ÃÄÄÄscript
+    ³       ³   ³   ³   base.py
+    ³       ³   ³   ³   revision.py
+    ³       ³   ³   ³   write_hooks.py
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÀÄÄÄ__pycache__
+    ³       ³   ³           base.cpython-312.pyc
+    ³       ³   ³           revision.cpython-312.pyc
+    ³       ³   ³           write_hooks.cpython-312.pyc
+    ³       ³   ³           __init__.cpython-312.pyc
+    ³       ³   ³           
+    ³       ³   ÃÄÄÄtemplates
+    ³       ³   ³   ÃÄÄÄasync
+    ³       ³   ³   ³       alembic.ini.mako
+    ³       ³   ³   ³       env.py
+    ³       ³   ³   ³       README
+    ³       ³   ³   ³       script.py.mako
+    ³       ³   ³   ³       
+    ³       ³   ³   ÃÄÄÄgeneric
+    ³       ³   ³   ³       alembic.ini.mako
+    ³       ³   ³   ³       env.py
+    ³       ³   ³   ³       README
+    ³       ³   ³   ³       script.py.mako
+    ³       ³   ³   ³       
+    ³       ³   ³   ÃÄÄÄmultidb
+    ³       ³   ³   ³       alembic.ini.mako
+    ³       ³   ³   ³       env.py
+    ³       ³   ³   ³       README
+    ³       ³   ³   ³       script.py.mako
+    ³       ³   ³   ³       
+    ³       ³   ³   ÀÄÄÄpyproject
+    ³       ³   ³           alembic.ini.mako
+    ³       ³   ³           env.py
+    ³       ³   ³           pyproject.toml.mako
+    ³       ³   ³           README
+    ³       ³   ³           script.py.mako
+    ³       ³   ³           
+    ³       ³   ÃÄÄÄtesting
+    ³       ³   ³   ³   assertions.py
+    ³       ³   ³   ³   env.py
+    ³       ³   ³   ³   fixtures.py
+    ³       ³   ³   ³   requirements.py
+    ³       ³   ³   ³   schemacompare.py
+    ³       ³   ³   ³   util.py
+    ³       ³   ³   ³   warnings.py
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÃÄÄÄplugin
+    ³       ³   ³   ³       bootstrap.py
+    ³       ³   ³   ³       __init__.py
+    ³       ³   ³   ³       
+    ³       ³   ³   ÀÄÄÄsuite
+    ³       ³   ³           test_autogen_comments.py
+    ³       ³   ³           test_autogen_computed.py
+    ³       ³   ³           test_autogen_diffs.py
+    ³       ³   ³           test_autogen_fks.py
+    ³       ³   ³           test_autogen_identity.py
+    ³       ³   ³           test_environment.py
+    ³       ³   ³           test_op.py
+    ³       ³   ³           _autogen_fixtures.py
+    ³       ³   ³           __init__.py
+    ³       ³   ³           
+    ³       ³   ÃÄÄÄutil
+    ³       ³   ³   ³   compat.py
+    ³       ³   ³   ³   editor.py
+    ³       ³   ³   ³   exc.py
+    ³       ³   ³   ³   langhelpers.py
+    ³       ³   ³   ³   messaging.py
+    ³       ³   ³   ³   pyfiles.py
+    ³       ³   ³   ³   sqla_compat.py
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÀÄÄÄ__pycache__
+    ³       ³   ³           compat.cpython-312.pyc
+    ³       ³   ³           editor.cpython-312.pyc
+    ³       ³   ³           exc.cpython-312.pyc
+    ³       ³   ³           langhelpers.cpython-312.pyc
+    ³       ³   ³           messaging.cpython-312.pyc
+    ³       ³   ³           pyfiles.cpython-312.pyc
+    ³       ³   ³           sqla_compat.cpython-312.pyc
+    ³       ³   ³           __init__.cpython-312.pyc
+    ³       ³   ³           
+    ³       ³   ÀÄÄÄ__pycache__
+    ³       ³           command.cpython-312.pyc
+    ³       ³           config.cpython-312.pyc
+    ³       ³           context.cpython-312.pyc
+    ³       ³           op.cpython-312.pyc
+    ³       ³           __init__.cpython-312.pyc
+    ³       ³           
+    ³       ÃÄÄÄalembic-1.16.1.dist-info
+    ³       ³   ³   entry_points.txt
+    ³       ³   ³   INSTALLER
+    ³       ³   ³   METADATA
+    ³       ³   ³   RECORD
+    ³       ³   ³   top_level.txt
+    ³       ³   ³   WHEEL
+    ³       ³   ³   
+    ³       ³   ÀÄÄÄlicenses
+    ³       ³           LICENSE
+    ³       ³           
+    ³       ÃÄÄÄblinker
+    ³       ³   ³   base.py
+    ³       ³   ³   py.typed
+    ³       ³   ³   _utilities.py
+    ³       ³   ³   __init__.py
+    ³       ³   ³   
+    ³       ³   ÀÄÄÄ__pycache__
+    ³       ³           base.cpython-312.pyc
+    ³       ³           _utilities.cpython-312.pyc
+    ³       ³           __init__.cpython-312.pyc
+    ³       ³           
+    ³       ÃÄÄÄblinker-1.9.0.dist-info
+    ³       ³       INSTALLER
+    ³       ³       LICENSE.txt
+    ³       ³       METADATA
+    ³       ³       RECORD
+    ³       ³       WHEEL
+    ³       ³       
+    ³       ÃÄÄÄclick
+    ³       ³   ³   core.py
+    ³       ³   ³   decorators.py
+    ³       ³   ³   exceptions.py
+    ³       ³   ³   formatting.py
+    ³       ³   ³   globals.py
+    ³       ³   ³   parser.py
+    ³       ³   ³   py.typed
+    ³       ³   ³   shell_completion.py
+    ³       ³   ³   termui.py
+    ³       ³   ³   testing.py
+    ³       ³   ³   types.py
+    ³       ³   ³   utils.py
+    ³       ³   ³   _compat.py
+    ³       ³   ³   _termui_impl.py
+    ³       ³   ³   _textwrap.py
+    ³       ³   ³   _winconsole.py
+    ³       ³   ³   __init__.py
+    ³       ³   ³   
+    ³       ³   ÀÄÄÄ__pycache__
+    ³       ³           core.cpython-312.pyc
+    ³       ³           decorators.cpython-312.pyc
+    ³       ³           exceptions.cpython-312.pyc
+    ³       ³           formatting.cpython-312.pyc
+    ³       ³           globals.cpython-312.pyc
+    ³       ³           parser.cpython-312.pyc
+    ³       ³           termui.cpython-312.pyc
+    ³       ³           testing.cpython-312.pyc
+    ³       ³           types.cpython-312.pyc
+    ³       ³           utils.cpython-312.pyc
+    ³       ³           _compat.cpython-312.pyc
+    ³       ³           _winconsole.cpython-312.pyc
+    ³       ³           __init__.cpython-312.pyc
+    ³       ³           
+    ³       ÃÄÄÄclick-8.2.1.dist-info
+    ³       ³   ³   INSTALLER
+    ³       ³   ³   METADATA
+    ³       ³   ³   RECORD
+    ³       ³   ³   WHEEL
+    ³       ³   ³   
+    ³       ³   ÀÄÄÄlicenses
+    ³       ³           LICENSE.txt
+    ³       ³           
+    ³       ÃÄÄÄcolorama
+    ³       ³   ³   ansi.py
+    ³       ³   ³   ansitowin32.py
+    ³       ³   ³   initialise.py
+    ³       ³   ³   win32.py
+    ³       ³   ³   winterm.py
+    ³       ³   ³   __init__.py
+    ³       ³   ³   
+    ³       ³   ÃÄÄÄtests
+    ³       ³   ³       ansitowin32_test.py
+    ³       ³   ³       ansi_test.py
+    ³       ³   ³       initialise_test.py
+    ³       ³   ³       isatty_test.py
+    ³       ³   ³       utils.py
+    ³       ³   ³       winterm_test.py
+    ³       ³   ³       __init__.py
+    ³       ³   ³       
+    ³       ³   ÀÄÄÄ__pycache__
+    ³       ³           ansi.cpython-312.pyc
+    ³       ³           ansitowin32.cpython-312.pyc
+    ³       ³           initialise.cpython-312.pyc
+    ³       ³           win32.cpython-312.pyc
+    ³       ³           winterm.cpython-312.pyc
+    ³       ³           __init__.cpython-312.pyc
+    ³       ³           
+    ³       ÃÄÄÄcolorama-0.4.6.dist-info
+    ³       ³   ³   INSTALLER
+    ³       ³   ³   METADATA
+    ³       ³   ³   RECORD
+    ³       ³   ³   WHEEL
+    ³       ³   ³   
+    ³       ³   ÀÄÄÄlicenses
+    ³       ³           LICENSE.txt
+    ³       ³           
+    ³       ÃÄÄÄdns
+    ³       ³   ³   asyncbackend.py
+    ³       ³   ³   asyncquery.py
+    ³       ³   ³   asyncresolver.py
+    ³       ³   ³   dnssec.py
+    ³       ³   ³   dnssectypes.py
+    ³       ³   ³   e164.py
+    ³       ³   ³   edns.py
+    ³       ³   ³   entropy.py
+    ³       ³   ³   enum.py
+    ³       ³   ³   exception.py
+    ³       ³   ³   flags.py
+    ³       ³   ³   grange.py
+    ³       ³   ³   immutable.py
+    ³       ³   ³   inet.py
+    ³       ³   ³   ipv4.py
+    ³       ³   ³   ipv6.py
+    ³       ³   ³   message.py
+    ³       ³   ³   name.py
+    ³       ³   ³   namedict.py
+    ³       ³   ³   nameserver.py
+    ³       ³   ³   node.py
+    ³       ³   ³   opcode.py
+    ³       ³   ³   py.typed
+    ³       ³   ³   query.py
+    ³       ³   ³   rcode.py
+    ³       ³   ³   rdata.py
+    ³       ³   ³   rdataclass.py
+    ³       ³   ³   rdataset.py
+    ³       ³   ³   rdatatype.py
+    ³       ³   ³   renderer.py
+    ³       ³   ³   resolver.py
+    ³       ³   ³   reversename.py
+    ³       ³   ³   rrset.py
+    ³       ³   ³   serial.py
+    ³       ³   ³   set.py
+    ³       ³   ³   tokenizer.py
+    ³       ³   ³   transaction.py
+    ³       ³   ³   tsig.py
+    ³       ³   ³   tsigkeyring.py
+    ³       ³   ³   ttl.py
+    ³       ³   ³   update.py
+    ³       ³   ³   version.py
+    ³       ³   ³   versioned.py
+    ³       ³   ³   win32util.py
+    ³       ³   ³   wire.py
+    ³       ³   ³   xfr.py
+    ³       ³   ³   zone.py
+    ³       ³   ³   zonefile.py
+    ³       ³   ³   zonetypes.py
+    ³       ³   ³   _asyncbackend.py
+    ³       ³   ³   _asyncio_backend.py
+    ³       ³   ³   _ddr.py
+    ³       ³   ³   _features.py
+    ³       ³   ³   _immutable_ctx.py
+    ³       ³   ³   _trio_backend.py
+    ³       ³   ³   __init__.py
+    ³       ³   ³   
+    ³       ³   ÃÄÄÄdnssecalgs
+    ³       ³   ³       base.py
+    ³       ³   ³       cryptography.py
+    ³       ³   ³       dsa.py
+    ³       ³   ³       ecdsa.py
+    ³       ³   ³       eddsa.py
+    ³       ³   ³       rsa.py
+    ³       ³   ³       __init__.py
+    ³       ³   ³       
+    ³       ³   ÃÄÄÄquic
+    ³       ³   ³       _asyncio.py
+    ³       ³   ³       _common.py
+    ³       ³   ³       _sync.py
+    ³       ³   ³       _trio.py
+    ³       ³   ³       __init__.py
+    ³       ³   ³       
+    ³       ³   ÀÄÄÄrdtypes
+    ³       ³       ³   dnskeybase.py
+    ³       ³       ³   dsbase.py
+    ³       ³       ³   euibase.py
+    ³       ³       ³   mxbase.py
+    ³       ³       ³   nsbase.py
+    ³       ³       ³   svcbbase.py
+    ³       ³       ³   tlsabase.py
+    ³       ³       ³   txtbase.py
+    ³       ³       ³   util.py
+    ³       ³       ³   __init__.py
+    ³       ³       ³   
+    ³       ³       ÃÄÄÄANY
+    ³       ³       ³       AFSDB.py
+    ³       ³       ³       AMTRELAY.py
+    ³       ³       ³       AVC.py
+    ³       ³       ³       CAA.py
+    ³       ³       ³       CDNSKEY.py
+    ³       ³       ³       CDS.py
+    ³       ³       ³       CERT.py
+    ³       ³       ³       CNAME.py
+    ³       ³       ³       CSYNC.py
+    ³       ³       ³       DLV.py
+    ³       ³       ³       DNAME.py
+    ³       ³       ³       DNSKEY.py
+    ³       ³       ³       DS.py
+    ³       ³       ³       EUI48.py
+    ³       ³       ³       EUI64.py
+    ³       ³       ³       GPOS.py
+    ³       ³       ³       HINFO.py
+    ³       ³       ³       HIP.py
+    ³       ³       ³       ISDN.py
+    ³       ³       ³       L32.py
+    ³       ³       ³       L64.py
+    ³       ³       ³       LOC.py
+    ³       ³       ³       LP.py
+    ³       ³       ³       MX.py
+    ³       ³       ³       NID.py
+    ³       ³       ³       NINFO.py
+    ³       ³       ³       NS.py
+    ³       ³       ³       NSEC.py
+    ³       ³       ³       NSEC3.py
+    ³       ³       ³       NSEC3PARAM.py
+    ³       ³       ³       OPENPGPKEY.py
+    ³       ³       ³       OPT.py
+    ³       ³       ³       PTR.py
+    ³       ³       ³       RESINFO.py
+    ³       ³       ³       RP.py
+    ³       ³       ³       RRSIG.py
+    ³       ³       ³       RT.py
+    ³       ³       ³       SMIMEA.py
+    ³       ³       ³       SOA.py
+    ³       ³       ³       SPF.py
+    ³       ³       ³       SSHFP.py
+    ³       ³       ³       TKEY.py
+    ³       ³       ³       TLSA.py
+    ³       ³       ³       TSIG.py
+    ³       ³       ³       TXT.py
+    ³       ³       ³       URI.py
+    ³       ³       ³       WALLET.py
+    ³       ³       ³       X25.py
+    ³       ³       ³       ZONEMD.py
+    ³       ³       ³       __init__.py
+    ³       ³       ³       
+    ³       ³       ÃÄÄÄCH
+    ³       ³       ³       A.py
+    ³       ³       ³       __init__.py
+    ³       ³       ³       
+    ³       ³       ÀÄÄÄIN
+    ³       ³               A.py
+    ³       ³               AAAA.py
+    ³       ³               APL.py
+    ³       ³               DHCID.py
+    ³       ³               HTTPS.py
+    ³       ³               IPSECKEY.py
+    ³       ³               KX.py
+    ³       ³               NAPTR.py
+    ³       ³               NSAP.py
+    ³       ³               NSAP_PTR.py
+    ³       ³               PX.py
+    ³       ³               SRV.py
+    ³       ³               SVCB.py
+    ³       ³               WKS.py
+    ³       ³               __init__.py
+    ³       ³               
+    ³       ÃÄÄÄdnspython-2.7.0.dist-info
+    ³       ³   ³   INSTALLER
+    ³       ³   ³   METADATA
+    ³       ³   ³   RECORD
+    ³       ³   ³   WHEEL
+    ³       ³   ³   
+    ³       ³   ÀÄÄÄlicenses
+    ³       ³           LICENSE
+    ³       ³           
+    ³       ÃÄÄÄdotenv
+    ³       ³   ³   cli.py
+    ³       ³   ³   ipython.py
+    ³       ³   ³   main.py
+    ³       ³   ³   parser.py
+    ³       ³   ³   py.typed
+    ³       ³   ³   variables.py
+    ³       ³   ³   version.py
+    ³       ³   ³   __init__.py
+    ³       ³   ³   __main__.py
+    ³       ³   ³   
+    ³       ³   ÀÄÄÄ__pycache__
+    ³       ³           main.cpython-312.pyc
+    ³       ³           parser.cpython-312.pyc
+    ³       ³           variables.cpython-312.pyc
+    ³       ³           __init__.cpython-312.pyc
+    ³       ³           
+    ³       ÃÄÄÄemail_validator
+    ³       ³       deliverability.py
+    ³       ³       exceptions_types.py
+    ³       ³       py.typed
+    ³       ³       rfc_constants.py
+    ³       ³       syntax.py
+    ³       ³       validate_email.py
+    ³       ³       version.py
+    ³       ³       __init__.py
+    ³       ³       __main__.py
+    ³       ³       
+    ³       ÃÄÄÄemail_validator-2.2.0.dist-info
+    ³       ³       entry_points.txt
+    ³       ³       INSTALLER
+    ³       ³       LICENSE
+    ³       ³       METADATA
+    ³       ³       RECORD
+    ³       ³       REQUESTED
+    ³       ³       top_level.txt
+    ³       ³       WHEEL
+    ³       ³       
+    ³       ÃÄÄÄflask
+    ³       ³   ³   app.py
+    ³       ³   ³   blueprints.py
+    ³       ³   ³   cli.py
+    ³       ³   ³   config.py
+    ³       ³   ³   ctx.py
+    ³       ³   ³   debughelpers.py
+    ³       ³   ³   globals.py
+    ³       ³   ³   helpers.py
+    ³       ³   ³   logging.py
+    ³       ³   ³   py.typed
+    ³       ³   ³   scaffold.py
+    ³       ³   ³   sessions.py
+    ³       ³   ³   signals.py
+    ³       ³   ³   templating.py
+    ³       ³   ³   testing.py
+    ³       ³   ³   typing.py
+    ³       ³   ³   views.py
+    ³       ³   ³   wrappers.py
+    ³       ³   ³   __init__.py
+    ³       ³   ³   __main__.py
+    ³       ³   ³   
+    ³       ³   ÃÄÄÄjson
+    ³       ³   ³   ³   provider.py
+    ³       ³   ³   ³   tag.py
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÀÄÄÄ__pycache__
+    ³       ³   ³           provider.cpython-312.pyc
+    ³       ³   ³           tag.cpython-312.pyc
+    ³       ³   ³           __init__.cpython-312.pyc
+    ³       ³   ³           
+    ³       ³   ÀÄÄÄ__pycache__
+    ³       ³           app.cpython-312.pyc
+    ³       ³           blueprints.cpython-312.pyc
+    ³       ³           cli.cpython-312.pyc
+    ³       ³           config.cpython-312.pyc
+    ³       ³           ctx.cpython-312.pyc
+    ³       ³           globals.cpython-312.pyc
+    ³       ³           helpers.cpython-312.pyc
+    ³       ³           logging.cpython-312.pyc
+    ³       ³           scaffold.cpython-312.pyc
+    ³       ³           sessions.cpython-312.pyc
+    ³       ³           signals.cpython-312.pyc
+    ³       ³           templating.cpython-312.pyc
+    ³       ³           testing.cpython-312.pyc
+    ³       ³           typing.cpython-312.pyc
+    ³       ³           wrappers.cpython-312.pyc
+    ³       ³           __init__.cpython-312.pyc
+    ³       ³           
+    ³       ÃÄÄÄflask-2.3.3.dist-info
+    ³       ³       entry_points.txt
+    ³       ³       INSTALLER
+    ³       ³       LICENSE.rst
+    ³       ³       METADATA
+    ³       ³       RECORD
+    ³       ³       REQUESTED
+    ³       ³       WHEEL
+    ³       ³       
+    ³       ÃÄÄÄflask_login
+    ³       ³   ³   config.py
+    ³       ³   ³   login_manager.py
+    ³       ³   ³   mixins.py
+    ³       ³   ³   signals.py
+    ³       ³   ³   test_client.py
+    ³       ³   ³   utils.py
+    ³       ³   ³   __about__.py
+    ³       ³   ³   __init__.py
+    ³       ³   ³   
+    ³       ³   ÀÄÄÄ__pycache__
+    ³       ³           config.cpython-312.pyc
+    ³       ³           login_manager.cpython-312.pyc
+    ³       ³           mixins.cpython-312.pyc
+    ³       ³           signals.cpython-312.pyc
+    ³       ³           test_client.cpython-312.pyc
+    ³       ³           utils.cpython-312.pyc
+    ³       ³           __about__.cpython-312.pyc
+    ³       ³           __init__.cpython-312.pyc
+    ³       ³           
+    ³       ÃÄÄÄFlask_Login-0.6.3.dist-info
+    ³       ³       INSTALLER
+    ³       ³       LICENSE
+    ³       ³       METADATA
+    ³       ³       RECORD
+    ³       ³       REQUESTED
+    ³       ³       top_level.txt
+    ³       ³       WHEEL
+    ³       ³       
+    ³       ÃÄÄÄflask_migrate
+    ³       ³   ³   cli.py
+    ³       ³   ³   __init__.py
+    ³       ³   ³   
+    ³       ³   ÃÄÄÄtemplates
+    ³       ³   ³   ÃÄÄÄaioflask
+    ³       ³   ³   ³       alembic.ini.mako
+    ³       ³   ³   ³       env.py
+    ³       ³   ³   ³       README
+    ³       ³   ³   ³       script.py.mako
+    ³       ³   ³   ³       
+    ³       ³   ³   ÃÄÄÄaioflask-multidb
+    ³       ³   ³   ³       alembic.ini.mako
+    ³       ³   ³   ³       env.py
+    ³       ³   ³   ³       README
+    ³       ³   ³   ³       script.py.mako
+    ³       ³   ³   ³       
+    ³       ³   ³   ÃÄÄÄflask
+    ³       ³   ³   ³       alembic.ini.mako
+    ³       ³   ³   ³       env.py
+    ³       ³   ³   ³       README
+    ³       ³   ³   ³       script.py.mako
+    ³       ³   ³   ³       
+    ³       ³   ³   ÀÄÄÄflask-multidb
+    ³       ³   ³           alembic.ini.mako
+    ³       ³   ³           env.py
+    ³       ³   ³           README
+    ³       ³   ³           script.py.mako
+    ³       ³   ³           
+    ³       ³   ÀÄÄÄ__pycache__
+    ³       ³           cli.cpython-312.pyc
+    ³       ³           __init__.cpython-312.pyc
+    ³       ³           
+    ³       ÃÄÄÄFlask_Migrate-4.0.5.dist-info
+    ³       ³       INSTALLER
+    ³       ³       LICENSE
+    ³       ³       METADATA
+    ³       ³       RECORD
+    ³       ³       REQUESTED
+    ³       ³       top_level.txt
+    ³       ³       WHEEL
+    ³       ³       
+    ³       ÃÄÄÄflask_sqlalchemy
+    ³       ³   ³   cli.py
+    ³       ³   ³   extension.py
+    ³       ³   ³   model.py
+    ³       ³   ³   pagination.py
+    ³       ³   ³   py.typed
+    ³       ³   ³   query.py
+    ³       ³   ³   record_queries.py
+    ³       ³   ³   session.py
+    ³       ³   ³   table.py
+    ³       ³   ³   track_modifications.py
+    ³       ³   ³   __init__.py
+    ³       ³   ³   
+    ³       ³   ÀÄÄÄ__pycache__
+    ³       ³           cli.cpython-312.pyc
+    ³       ³           extension.cpython-312.pyc
+    ³       ³           model.cpython-312.pyc
+    ³       ³           pagination.cpython-312.pyc
+    ³       ³           query.cpython-312.pyc
+    ³       ³           session.cpython-312.pyc
+    ³       ³           table.cpython-312.pyc
+    ³       ³           __init__.cpython-312.pyc
+    ³       ³           
+    ³       ÃÄÄÄflask_sqlalchemy-3.0.5.dist-info
+    ³       ³       INSTALLER
+    ³       ³       LICENSE.rst
+    ³       ³       METADATA
+    ³       ³       RECORD
+    ³       ³       REQUESTED
+    ³       ³       WHEEL
+    ³       ³       
+    ³       ÃÄÄÄflask_wtf
+    ³       ³   ³   csrf.py
+    ³       ³   ³   file.py
+    ³       ³   ³   form.py
+    ³       ³   ³   i18n.py
+    ³       ³   ³   _compat.py
+    ³       ³   ³   __init__.py
+    ³       ³   ³   
+    ³       ³   ÀÄÄÄrecaptcha
+    ³       ³           fields.py
+    ³       ³           validators.py
+    ³       ³           widgets.py
+    ³       ³           __init__.py
+    ³       ³           
+    ³       ÃÄÄÄFlask_WTF-1.1.1.dist-info
+    ³       ³       INSTALLER
+    ³       ³       LICENSE.rst
+    ³       ³       METADATA
+    ³       ³       RECORD
+    ³       ³       REQUESTED
+    ³       ³       top_level.txt
+    ³       ³       WHEEL
+    ³       ³       
+    ³       ÃÄÄÄgreenlet
+    ³       ³   ³   CObjects.cpp
+    ³       ³   ³   greenlet.cpp
+    ³       ³   ³   greenlet.h
+    ³       ³   ³   greenlet_allocator.hpp
+    ³       ³   ³   greenlet_compiler_compat.hpp
+    ³       ³   ³   greenlet_cpython_compat.hpp
+    ³       ³   ³   greenlet_exceptions.hpp
+    ³       ³   ³   greenlet_internal.hpp
+    ³       ³   ³   greenlet_msvc_compat.hpp
+    ³       ³   ³   greenlet_refs.hpp
+    ³       ³   ³   greenlet_slp_switch.hpp
+    ³       ³   ³   greenlet_thread_support.hpp
+    ³       ³   ³   PyGreenlet.cpp
+    ³       ³   ³   PyGreenlet.hpp
+    ³       ³   ³   PyGreenletUnswitchable.cpp
+    ³       ³   ³   PyModule.cpp
+    ³       ³   ³   slp_platformselect.h
+    ³       ³   ³   TBrokenGreenlet.cpp
+    ³       ³   ³   TExceptionState.cpp
+    ³       ³   ³   TGreenlet.cpp
+    ³       ³   ³   TGreenlet.hpp
+    ³       ³   ³   TGreenletGlobals.cpp
+    ³       ³   ³   TMainGreenlet.cpp
+    ³       ³   ³   TPythonState.cpp
+    ³       ³   ³   TStackState.cpp
+    ³       ³   ³   TThreadState.hpp
+    ³       ³   ³   TThreadStateCreator.hpp
+    ³       ³   ³   TThreadStateDestroy.cpp
+    ³       ³   ³   TUserGreenlet.cpp
+    ³       ³   ³   _greenlet.cp312-win_amd64.pyd
+    ³       ³   ³   __init__.py
+    ³       ³   ³   
+    ³       ³   ÃÄÄÄplatform
+    ³       ³   ³       setup_switch_x64_masm.cmd
+    ³       ³   ³       switch_aarch64_gcc.h
+    ³       ³   ³       switch_alpha_unix.h
+    ³       ³   ³       switch_amd64_unix.h
+    ³       ³   ³       switch_arm32_gcc.h
+    ³       ³   ³       switch_arm32_ios.h
+    ³       ³   ³       switch_arm64_masm.asm
+    ³       ³   ³       switch_arm64_masm.obj
+    ³       ³   ³       switch_arm64_msvc.h
+    ³       ³   ³       switch_csky_gcc.h
+    ³       ³   ³       switch_loongarch64_linux.h
+    ³       ³   ³       switch_m68k_gcc.h
+    ³       ³   ³       switch_mips_unix.h
+    ³       ³   ³       switch_ppc64_aix.h
+    ³       ³   ³       switch_ppc64_linux.h
+    ³       ³   ³       switch_ppc_aix.h
+    ³       ³   ³       switch_ppc_linux.h
+    ³       ³   ³       switch_ppc_macosx.h
+    ³       ³   ³       switch_ppc_unix.h
+    ³       ³   ³       switch_riscv_unix.h
+    ³       ³   ³       switch_s390_unix.h
+    ³       ³   ³       switch_sh_gcc.h
+    ³       ³   ³       switch_sparc_sun_gcc.h
+    ³       ³   ³       switch_x32_unix.h
+    ³       ³   ³       switch_x64_masm.asm
+    ³       ³   ³       switch_x64_masm.obj
+    ³       ³   ³       switch_x64_msvc.h
+    ³       ³   ³       switch_x86_msvc.h
+    ³       ³   ³       switch_x86_unix.h
+    ³       ³   ³       __init__.py
+    ³       ³   ³       
+    ³       ³   ÃÄÄÄtests
+    ³       ³   ³       fail_clearing_run_switches.py
+    ³       ³   ³       fail_cpp_exception.py
+    ³       ³   ³       fail_initialstub_already_started.py
+    ³       ³   ³       fail_slp_switch.py
+    ³       ³   ³       fail_switch_three_greenlets.py
+    ³       ³   ³       fail_switch_three_greenlets2.py
+    ³       ³   ³       fail_switch_two_greenlets.py
+    ³       ³   ³       leakcheck.py
+    ³       ³   ³       test_contextvars.py
+    ³       ³   ³       test_cpp.py
+    ³       ³   ³       test_extension_interface.py
+    ³       ³   ³       test_gc.py
+    ³       ³   ³       test_generator.py
+    ³       ³   ³       test_generator_nested.py
+    ³       ³   ³       test_greenlet.py
+    ³       ³   ³       test_greenlet_trash.py
+    ³       ³   ³       test_leaks.py
+    ³       ³   ³       test_stack_saved.py
+    ³       ³   ³       test_throw.py
+    ³       ³   ³       test_tracing.py
+    ³       ³   ³       test_version.py
+    ³       ³   ³       test_weakref.py
+    ³       ³   ³       _test_extension.c
+    ³       ³   ³       _test_extension.cp312-win_amd64.pyd
+    ³       ³   ³       _test_extension_cpp.cp312-win_amd64.pyd
+    ³       ³   ³       _test_extension_cpp.cpp
+    ³       ³   ³       __init__.py
+    ³       ³   ³       
+    ³       ³   ÀÄÄÄ__pycache__
+    ³       ³           __init__.cpython-312.pyc
+    ³       ³           
+    ³       ÃÄÄÄgreenlet-3.2.3.dist-info
+    ³       ³   ³   INSTALLER
+    ³       ³   ³   METADATA
+    ³       ³   ³   RECORD
+    ³       ³   ³   top_level.txt
+    ³       ³   ³   WHEEL
+    ³       ³   ³   
+    ³       ³   ÀÄÄÄlicenses
+    ³       ³           LICENSE
+    ³       ³           LICENSE.PSF
+    ³       ³           
+    ³       ÃÄÄÄidna
+    ³       ³       codec.py
+    ³       ³       compat.py
+    ³       ³       core.py
+    ³       ³       idnadata.py
+    ³       ³       intranges.py
+    ³       ³       package_data.py
+    ³       ³       py.typed
+    ³       ³       uts46data.py
+    ³       ³       __init__.py
+    ³       ³       
+    ³       ÃÄÄÄidna-3.10.dist-info
+    ³       ³       INSTALLER
+    ³       ³       LICENSE.md
+    ³       ³       METADATA
+    ³       ³       RECORD
+    ³       ³       WHEEL
+    ³       ³       
+    ³       ÃÄÄÄitsdangerous
+    ³       ³   ³   encoding.py
+    ³       ³   ³   exc.py
+    ³       ³   ³   py.typed
+    ³       ³   ³   serializer.py
+    ³       ³   ³   signer.py
+    ³       ³   ³   timed.py
+    ³       ³   ³   url_safe.py
+    ³       ³   ³   _json.py
+    ³       ³   ³   __init__.py
+    ³       ³   ³   
+    ³       ³   ÀÄÄÄ__pycache__
+    ³       ³           encoding.cpython-312.pyc
+    ³       ³           exc.cpython-312.pyc
+    ³       ³           serializer.cpython-312.pyc
+    ³       ³           signer.cpython-312.pyc
+    ³       ³           timed.cpython-312.pyc
+    ³       ³           url_safe.cpython-312.pyc
+    ³       ³           _json.cpython-312.pyc
+    ³       ³           __init__.cpython-312.pyc
+    ³       ³           
+    ³       ÃÄÄÄitsdangerous-2.2.0.dist-info
+    ³       ³       INSTALLER
+    ³       ³       LICENSE.txt
+    ³       ³       METADATA
+    ³       ³       RECORD
+    ³       ³       WHEEL
+    ³       ³       
+    ³       ÃÄÄÄjinja2
+    ³       ³   ³   async_utils.py
+    ³       ³   ³   bccache.py
+    ³       ³   ³   compiler.py
+    ³       ³   ³   constants.py
+    ³       ³   ³   debug.py
+    ³       ³   ³   defaults.py
+    ³       ³   ³   environment.py
+    ³       ³   ³   exceptions.py
+    ³       ³   ³   ext.py
+    ³       ³   ³   filters.py
+    ³       ³   ³   idtracking.py
+    ³       ³   ³   lexer.py
+    ³       ³   ³   loaders.py
+    ³       ³   ³   meta.py
+    ³       ³   ³   nativetypes.py
+    ³       ³   ³   nodes.py
+    ³       ³   ³   optimizer.py
+    ³       ³   ³   parser.py
+    ³       ³   ³   py.typed
+    ³       ³   ³   runtime.py
+    ³       ³   ³   sandbox.py
+    ³       ³   ³   tests.py
+    ³       ³   ³   utils.py
+    ³       ³   ³   visitor.py
+    ³       ³   ³   _identifier.py
+    ³       ³   ³   __init__.py
+    ³       ³   ³   
+    ³       ³   ÀÄÄÄ__pycache__
+    ³       ³           async_utils.cpython-312.pyc
+    ³       ³           bccache.cpython-312.pyc
+    ³       ³           compiler.cpython-312.pyc
+    ³       ³           defaults.cpython-312.pyc
+    ³       ³           environment.cpython-312.pyc
+    ³       ³           exceptions.cpython-312.pyc
+    ³       ³           filters.cpython-312.pyc
+    ³       ³           idtracking.cpython-312.pyc
+    ³       ³           lexer.cpython-312.pyc
+    ³       ³           loaders.cpython-312.pyc
+    ³       ³           nodes.cpython-312.pyc
+    ³       ³           optimizer.cpython-312.pyc
+    ³       ³           parser.cpython-312.pyc
+    ³       ³           runtime.cpython-312.pyc
+    ³       ³           tests.cpython-312.pyc
+    ³       ³           utils.cpython-312.pyc
+    ³       ³           visitor.cpython-312.pyc
+    ³       ³           _identifier.cpython-312.pyc
+    ³       ³           __init__.cpython-312.pyc
+    ³       ³           
+    ³       ÃÄÄÄjinja2-3.1.6.dist-info
+    ³       ³   ³   entry_points.txt
+    ³       ³   ³   INSTALLER
+    ³       ³   ³   METADATA
+    ³       ³   ³   RECORD
+    ³       ³   ³   WHEEL
+    ³       ³   ³   
+    ³       ³   ÀÄÄÄlicenses
+    ³       ³           LICENSE.txt
+    ³       ³           
+    ³       ÃÄÄÄjwt
+    ³       ³   ³   algorithms.py
+    ³       ³   ³   api_jwk.py
+    ³       ³   ³   api_jws.py
+    ³       ³   ³   api_jwt.py
+    ³       ³   ³   exceptions.py
+    ³       ³   ³   help.py
+    ³       ³   ³   jwks_client.py
+    ³       ³   ³   jwk_set_cache.py
+    ³       ³   ³   py.typed
+    ³       ³   ³   types.py
+    ³       ³   ³   utils.py
+    ³       ³   ³   warnings.py
+    ³       ³   ³   __init__.py
+    ³       ³   ³   
+    ³       ³   ÀÄÄÄ__pycache__
+    ³       ³           algorithms.cpython-312.pyc
+    ³       ³           api_jwk.cpython-312.pyc
+    ³       ³           api_jws.cpython-312.pyc
+    ³       ³           api_jwt.cpython-312.pyc
+    ³       ³           exceptions.cpython-312.pyc
+    ³       ³           jwks_client.cpython-312.pyc
+    ³       ³           jwk_set_cache.cpython-312.pyc
+    ³       ³           types.cpython-312.pyc
+    ³       ³           utils.cpython-312.pyc
+    ³       ³           warnings.cpython-312.pyc
+    ³       ³           __init__.cpython-312.pyc
+    ³       ³           
+    ³       ÃÄÄÄmako
+    ³       ³   ³   ast.py
+    ³       ³   ³   cache.py
+    ³       ³   ³   cmd.py
+    ³       ³   ³   codegen.py
+    ³       ³   ³   compat.py
+    ³       ³   ³   exceptions.py
+    ³       ³   ³   filters.py
+    ³       ³   ³   lexer.py
+    ³       ³   ³   lookup.py
+    ³       ³   ³   parsetree.py
+    ³       ³   ³   pygen.py
+    ³       ³   ³   pyparser.py
+    ³       ³   ³   runtime.py
+    ³       ³   ³   template.py
+    ³       ³   ³   util.py
+    ³       ³   ³   _ast_util.py
+    ³       ³   ³   __init__.py
+    ³       ³   ³   
+    ³       ³   ÃÄÄÄext
+    ³       ³   ³   ³   autohandler.py
+    ³       ³   ³   ³   babelplugin.py
+    ³       ³   ³   ³   beaker_cache.py
+    ³       ³   ³   ³   extract.py
+    ³       ³   ³   ³   linguaplugin.py
+    ³       ³   ³   ³   preprocessors.py
+    ³       ³   ³   ³   pygmentplugin.py
+    ³       ³   ³   ³   turbogears.py
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÀÄÄÄ__pycache__
+    ³       ³   ³           pygmentplugin.cpython-312.pyc
+    ³       ³   ³           __init__.cpython-312.pyc
+    ³       ³   ³           
+    ³       ³   ÃÄÄÄtesting
+    ³       ³   ³       assertions.py
+    ³       ³   ³       config.py
+    ³       ³   ³       exclusions.py
+    ³       ³   ³       fixtures.py
+    ³       ³   ³       helpers.py
+    ³       ³   ³       _config.py
+    ³       ³   ³       __init__.py
+    ³       ³   ³       
+    ³       ³   ÀÄÄÄ__pycache__
+    ³       ³           ast.cpython-312.pyc
+    ³       ³           cache.cpython-312.pyc
+    ³       ³           codegen.cpython-312.pyc
+    ³       ³           compat.cpython-312.pyc
+    ³       ³           exceptions.cpython-312.pyc
+    ³       ³           filters.cpython-312.pyc
+    ³       ³           lexer.cpython-312.pyc
+    ³       ³           parsetree.cpython-312.pyc
+    ³       ³           pygen.cpython-312.pyc
+    ³       ³           pyparser.cpython-312.pyc
+    ³       ³           runtime.cpython-312.pyc
+    ³       ³           template.cpython-312.pyc
+    ³       ³           util.cpython-312.pyc
+    ³       ³           _ast_util.cpython-312.pyc
+    ³       ³           __init__.cpython-312.pyc
+    ³       ³           
+    ³       ÃÄÄÄmako-1.3.10.dist-info
+    ³       ³   ³   entry_points.txt
+    ³       ³   ³   INSTALLER
+    ³       ³   ³   METADATA
+    ³       ³   ³   RECORD
+    ³       ³   ³   top_level.txt
+    ³       ³   ³   WHEEL
+    ³       ³   ³   
+    ³       ³   ÀÄÄÄlicenses
+    ³       ³           LICENSE
+    ³       ³           
+    ³       ÃÄÄÄmarkupsafe
+    ³       ³   ³   py.typed
+    ³       ³   ³   _native.py
+    ³       ³   ³   _speedups.c
+    ³       ³   ³   _speedups.cp312-win_amd64.pyd
+    ³       ³   ³   _speedups.pyi
+    ³       ³   ³   __init__.py
+    ³       ³   ³   
+    ³       ³   ÀÄÄÄ__pycache__
+    ³       ³           __init__.cpython-312.pyc
+    ³       ³           
+    ³       ÃÄÄÄMarkupSafe-3.0.2.dist-info
+    ³       ³       INSTALLER
+    ³       ³       LICENSE.txt
+    ³       ³       METADATA
+    ³       ³       RECORD
+    ³       ³       top_level.txt
+    ³       ³       WHEEL
+    ³       ³       
+    ³       ÃÄÄÄpip
+    ³       ³   ³   py.typed
+    ³       ³   ³   __init__.py
+    ³       ³   ³   __main__.py
+    ³       ³   ³   __pip-runner__.py
+    ³       ³   ³   
+    ³       ³   ÃÄÄÄ_internal
+    ³       ³   ³   ³   build_env.py
+    ³       ³   ³   ³   cache.py
+    ³       ³   ³   ³   configuration.py
+    ³       ³   ³   ³   exceptions.py
+    ³       ³   ³   ³   main.py
+    ³       ³   ³   ³   pyproject.py
+    ³       ³   ³   ³   self_outdated_check.py
+    ³       ³   ³   ³   wheel_builder.py
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÃÄÄÄcli
+    ³       ³   ³   ³       autocompletion.py
+    ³       ³   ³   ³       base_command.py
+    ³       ³   ³   ³       cmdoptions.py
+    ³       ³   ³   ³       command_context.py
+    ³       ³   ³   ³       main.py
+    ³       ³   ³   ³       main_parser.py
+    ³       ³   ³   ³       parser.py
+    ³       ³   ³   ³       progress_bars.py
+    ³       ³   ³   ³       req_command.py
+    ³       ³   ³   ³       spinners.py
+    ³       ³   ³   ³       status_codes.py
+    ³       ³   ³   ³       __init__.py
+    ³       ³   ³   ³       
+    ³       ³   ³   ÃÄÄÄcommands
+    ³       ³   ³   ³       cache.py
+    ³       ³   ³   ³       check.py
+    ³       ³   ³   ³       completion.py
+    ³       ³   ³   ³       configuration.py
+    ³       ³   ³   ³       debug.py
+    ³       ³   ³   ³       download.py
+    ³       ³   ³   ³       freeze.py
+    ³       ³   ³   ³       hash.py
+    ³       ³   ³   ³       help.py
+    ³       ³   ³   ³       index.py
+    ³       ³   ³   ³       inspect.py
+    ³       ³   ³   ³       install.py
+    ³       ³   ³   ³       list.py
+    ³       ³   ³   ³       search.py
+    ³       ³   ³   ³       show.py
+    ³       ³   ³   ³       uninstall.py
+    ³       ³   ³   ³       wheel.py
+    ³       ³   ³   ³       __init__.py
+    ³       ³   ³   ³       
+    ³       ³   ³   ÃÄÄÄdistributions
+    ³       ³   ³   ³       base.py
+    ³       ³   ³   ³       installed.py
+    ³       ³   ³   ³       sdist.py
+    ³       ³   ³   ³       wheel.py
+    ³       ³   ³   ³       __init__.py
+    ³       ³   ³   ³       
+    ³       ³   ³   ÃÄÄÄindex
+    ³       ³   ³   ³       collector.py
+    ³       ³   ³   ³       package_finder.py
+    ³       ³   ³   ³       sources.py
+    ³       ³   ³   ³       __init__.py
+    ³       ³   ³   ³       
+    ³       ³   ³   ÃÄÄÄlocations
+    ³       ³   ³   ³       base.py
+    ³       ³   ³   ³       _distutils.py
+    ³       ³   ³   ³       _sysconfig.py
+    ³       ³   ³   ³       __init__.py
+    ³       ³   ³   ³       
+    ³       ³   ³   ÃÄÄÄmetadata
+    ³       ³   ³   ³   ³   base.py
+    ³       ³   ³   ³   ³   pkg_resources.py
+    ³       ³   ³   ³   ³   _json.py
+    ³       ³   ³   ³   ³   __init__.py
+    ³       ³   ³   ³   ³   
+    ³       ³   ³   ³   ÀÄÄÄimportlib
+    ³       ³   ³   ³           _compat.py
+    ³       ³   ³   ³           _dists.py
+    ³       ³   ³   ³           _envs.py
+    ³       ³   ³   ³           __init__.py
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄmodels
+    ³       ³   ³   ³       candidate.py
+    ³       ³   ³   ³       direct_url.py
+    ³       ³   ³   ³       format_control.py
+    ³       ³   ³   ³       index.py
+    ³       ³   ³   ³       installation_report.py
+    ³       ³   ³   ³       link.py
+    ³       ³   ³   ³       scheme.py
+    ³       ³   ³   ³       search_scope.py
+    ³       ³   ³   ³       selection_prefs.py
+    ³       ³   ³   ³       target_python.py
+    ³       ³   ³   ³       wheel.py
+    ³       ³   ³   ³       __init__.py
+    ³       ³   ³   ³       
+    ³       ³   ³   ÃÄÄÄnetwork
+    ³       ³   ³   ³       auth.py
+    ³       ³   ³   ³       cache.py
+    ³       ³   ³   ³       download.py
+    ³       ³   ³   ³       lazy_wheel.py
+    ³       ³   ³   ³       session.py
+    ³       ³   ³   ³       utils.py
+    ³       ³   ³   ³       xmlrpc.py
+    ³       ³   ³   ³       __init__.py
+    ³       ³   ³   ³       
+    ³       ³   ³   ÃÄÄÄoperations
+    ³       ³   ³   ³   ³   check.py
+    ³       ³   ³   ³   ³   freeze.py
+    ³       ³   ³   ³   ³   prepare.py
+    ³       ³   ³   ³   ³   __init__.py
+    ³       ³   ³   ³   ³   
+    ³       ³   ³   ³   ÃÄÄÄbuild
+    ³       ³   ³   ³   ³       build_tracker.py
+    ³       ³   ³   ³   ³       metadata.py
+    ³       ³   ³   ³   ³       metadata_editable.py
+    ³       ³   ³   ³   ³       metadata_legacy.py
+    ³       ³   ³   ³   ³       wheel.py
+    ³       ³   ³   ³   ³       wheel_editable.py
+    ³       ³   ³   ³   ³       wheel_legacy.py
+    ³       ³   ³   ³   ³       __init__.py
+    ³       ³   ³   ³   ³       
+    ³       ³   ³   ³   ÀÄÄÄinstall
+    ³       ³   ³   ³           editable_legacy.py
+    ³       ³   ³   ³           wheel.py
+    ³       ³   ³   ³           __init__.py
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄreq
+    ³       ³   ³   ³       constructors.py
+    ³       ³   ³   ³       req_file.py
+    ³       ³   ³   ³       req_install.py
+    ³       ³   ³   ³       req_set.py
+    ³       ³   ³   ³       req_uninstall.py
+    ³       ³   ³   ³       __init__.py
+    ³       ³   ³   ³       
+    ³       ³   ³   ÃÄÄÄresolution
+    ³       ³   ³   ³   ³   base.py
+    ³       ³   ³   ³   ³   __init__.py
+    ³       ³   ³   ³   ³   
+    ³       ³   ³   ³   ÃÄÄÄlegacy
+    ³       ³   ³   ³   ³       resolver.py
+    ³       ³   ³   ³   ³       __init__.py
+    ³       ³   ³   ³   ³       
+    ³       ³   ³   ³   ÀÄÄÄresolvelib
+    ³       ³   ³   ³           base.py
+    ³       ³   ³   ³           candidates.py
+    ³       ³   ³   ³           factory.py
+    ³       ³   ³   ³           found_candidates.py
+    ³       ³   ³   ³           provider.py
+    ³       ³   ³   ³           reporter.py
+    ³       ³   ³   ³           requirements.py
+    ³       ³   ³   ³           resolver.py
+    ³       ³   ³   ³           __init__.py
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄutils
+    ³       ³   ³   ³       appdirs.py
+    ³       ³   ³   ³       compat.py
+    ³       ³   ³   ³       compatibility_tags.py
+    ³       ³   ³   ³       datetime.py
+    ³       ³   ³   ³       deprecation.py
+    ³       ³   ³   ³       direct_url_helpers.py
+    ³       ³   ³   ³       egg_link.py
+    ³       ³   ³   ³       encoding.py
+    ³       ³   ³   ³       entrypoints.py
+    ³       ³   ³   ³       filesystem.py
+    ³       ³   ³   ³       filetypes.py
+    ³       ³   ³   ³       glibc.py
+    ³       ³   ³   ³       hashes.py
+    ³       ³   ³   ³       logging.py
+    ³       ³   ³   ³       misc.py
+    ³       ³   ³   ³       models.py
+    ³       ³   ³   ³       packaging.py
+    ³       ³   ³   ³       setuptools_build.py
+    ³       ³   ³   ³       subprocess.py
+    ³       ³   ³   ³       temp_dir.py
+    ³       ³   ³   ³       unpacking.py
+    ³       ³   ³   ³       urls.py
+    ³       ³   ³   ³       virtualenv.py
+    ³       ³   ³   ³       wheel.py
+    ³       ³   ³   ³       _jaraco_text.py
+    ³       ³   ³   ³       _log.py
+    ³       ³   ³   ³       __init__.py
+    ³       ³   ³   ³       
+    ³       ³   ³   ÀÄÄÄvcs
+    ³       ³   ³           bazaar.py
+    ³       ³   ³           git.py
+    ³       ³   ³           mercurial.py
+    ³       ³   ³           subversion.py
+    ³       ³   ³           versioncontrol.py
+    ³       ³   ³           __init__.py
+    ³       ³   ³           
+    ³       ³   ÀÄÄÄ_vendor
+    ³       ³       ³   six.py
+    ³       ³       ³   typing_extensions.py
+    ³       ³       ³   vendor.txt
+    ³       ³       ³   __init__.py
+    ³       ³       ³   
+    ³       ³       ÃÄÄÄcachecontrol
+    ³       ³       ³   ³   adapter.py
+    ³       ³       ³   ³   cache.py
+    ³       ³       ³   ³   controller.py
+    ³       ³       ³   ³   filewrapper.py
+    ³       ³       ³   ³   heuristics.py
+    ³       ³       ³   ³   py.typed
+    ³       ³       ³   ³   serialize.py
+    ³       ³       ³   ³   wrapper.py
+    ³       ³       ³   ³   _cmd.py
+    ³       ³       ³   ³   __init__.py
+    ³       ³       ³   ³   
+    ³       ³       ³   ÀÄÄÄcaches
+    ³       ³       ³           file_cache.py
+    ³       ³       ³           redis_cache.py
+    ³       ³       ³           __init__.py
+    ³       ³       ³           
+    ³       ³       ÃÄÄÄcertifi
+    ³       ³       ³       cacert.pem
+    ³       ³       ³       core.py
+    ³       ³       ³       py.typed
+    ³       ³       ³       __init__.py
+    ³       ³       ³       __main__.py
+    ³       ³       ³       
+    ³       ³       ÃÄÄÄchardet
+    ³       ³       ³   ³   big5freq.py
+    ³       ³       ³   ³   big5prober.py
+    ³       ³       ³   ³   chardistribution.py
+    ³       ³       ³   ³   charsetgroupprober.py
+    ³       ³       ³   ³   charsetprober.py
+    ³       ³       ³   ³   codingstatemachine.py
+    ³       ³       ³   ³   codingstatemachinedict.py
+    ³       ³       ³   ³   cp949prober.py
+    ³       ³       ³   ³   enums.py
+    ³       ³       ³   ³   escprober.py
+    ³       ³       ³   ³   escsm.py
+    ³       ³       ³   ³   eucjpprober.py
+    ³       ³       ³   ³   euckrfreq.py
+    ³       ³       ³   ³   euckrprober.py
+    ³       ³       ³   ³   euctwfreq.py
+    ³       ³       ³   ³   euctwprober.py
+    ³       ³       ³   ³   gb2312freq.py
+    ³       ³       ³   ³   gb2312prober.py
+    ³       ³       ³   ³   hebrewprober.py
+    ³       ³       ³   ³   jisfreq.py
+    ³       ³       ³   ³   johabfreq.py
+    ³       ³       ³   ³   johabprober.py
+    ³       ³       ³   ³   jpcntx.py
+    ³       ³       ³   ³   langbulgarianmodel.py
+    ³       ³       ³   ³   langgreekmodel.py
+    ³       ³       ³   ³   langhebrewmodel.py
+    ³       ³       ³   ³   langhungarianmodel.py
+    ³       ³       ³   ³   langrussianmodel.py
+    ³       ³       ³   ³   langthaimodel.py
+    ³       ³       ³   ³   langturkishmodel.py
+    ³       ³       ³   ³   latin1prober.py
+    ³       ³       ³   ³   macromanprober.py
+    ³       ³       ³   ³   mbcharsetprober.py
+    ³       ³       ³   ³   mbcsgroupprober.py
+    ³       ³       ³   ³   mbcssm.py
+    ³       ³       ³   ³   py.typed
+    ³       ³       ³   ³   resultdict.py
+    ³       ³       ³   ³   sbcharsetprober.py
+    ³       ³       ³   ³   sbcsgroupprober.py
+    ³       ³       ³   ³   sjisprober.py
+    ³       ³       ³   ³   universaldetector.py
+    ³       ³       ³   ³   utf1632prober.py
+    ³       ³       ³   ³   utf8prober.py
+    ³       ³       ³   ³   version.py
+    ³       ³       ³   ³   __init__.py
+    ³       ³       ³   ³   
+    ³       ³       ³   ÃÄÄÄcli
+    ³       ³       ³   ³       chardetect.py
+    ³       ³       ³   ³       __init__.py
+    ³       ³       ³   ³       
+    ³       ³       ³   ÀÄÄÄmetadata
+    ³       ³       ³           languages.py
+    ³       ³       ³           __init__.py
+    ³       ³       ³           
+    ³       ³       ÃÄÄÄcolorama
+    ³       ³       ³   ³   ansi.py
+    ³       ³       ³   ³   ansitowin32.py
+    ³       ³       ³   ³   initialise.py
+    ³       ³       ³   ³   win32.py
+    ³       ³       ³   ³   winterm.py
+    ³       ³       ³   ³   __init__.py
+    ³       ³       ³   ³   
+    ³       ³       ³   ÀÄÄÄtests
+    ³       ³       ³           ansitowin32_test.py
+    ³       ³       ³           ansi_test.py
+    ³       ³       ³           initialise_test.py
+    ³       ³       ³           isatty_test.py
+    ³       ³       ³           utils.py
+    ³       ³       ³           winterm_test.py
+    ³       ³       ³           __init__.py
+    ³       ³       ³           
+    ³       ³       ÃÄÄÄdistlib
+    ³       ³       ³       compat.py
+    ³       ³       ³       database.py
+    ³       ³       ³       index.py
+    ³       ³       ³       locators.py
+    ³       ³       ³       manifest.py
+    ³       ³       ³       markers.py
+    ³       ³       ³       metadata.py
+    ³       ³       ³       resources.py
+    ³       ³       ³       scripts.py
+    ³       ³       ³       t32.exe
+    ³       ³       ³       t64-arm.exe
+    ³       ³       ³       t64.exe
+    ³       ³       ³       util.py
+    ³       ³       ³       version.py
+    ³       ³       ³       w32.exe
+    ³       ³       ³       w64-arm.exe
+    ³       ³       ³       w64.exe
+    ³       ³       ³       wheel.py
+    ³       ³       ³       __init__.py
+    ³       ³       ³       
+    ³       ³       ÃÄÄÄdistro
+    ³       ³       ³       distro.py
+    ³       ³       ³       py.typed
+    ³       ³       ³       __init__.py
+    ³       ³       ³       __main__.py
+    ³       ³       ³       
+    ³       ³       ÃÄÄÄidna
+    ³       ³       ³       codec.py
+    ³       ³       ³       compat.py
+    ³       ³       ³       core.py
+    ³       ³       ³       idnadata.py
+    ³       ³       ³       intranges.py
+    ³       ³       ³       package_data.py
+    ³       ³       ³       py.typed
+    ³       ³       ³       uts46data.py
+    ³       ³       ³       __init__.py
+    ³       ³       ³       
+    ³       ³       ÃÄÄÄmsgpack
+    ³       ³       ³       exceptions.py
+    ³       ³       ³       ext.py
+    ³       ³       ³       fallback.py
+    ³       ³       ³       __init__.py
+    ³       ³       ³       
+    ³       ³       ÃÄÄÄpackaging
+    ³       ³       ³       markers.py
+    ³       ³       ³       py.typed
+    ³       ³       ³       requirements.py
+    ³       ³       ³       specifiers.py
+    ³       ³       ³       tags.py
+    ³       ³       ³       utils.py
+    ³       ³       ³       version.py
+    ³       ³       ³       _manylinux.py
+    ³       ³       ³       _musllinux.py
+    ³       ³       ³       _structures.py
+    ³       ³       ³       __about__.py
+    ³       ³       ³       __init__.py
+    ³       ³       ³       
+    ³       ³       ÃÄÄÄpkg_resources
+    ³       ³       ³       __init__.py
+    ³       ³       ³       
+    ³       ³       ÃÄÄÄplatformdirs
+    ³       ³       ³       android.py
+    ³       ³       ³       api.py
+    ³       ³       ³       macos.py
+    ³       ³       ³       py.typed
+    ³       ³       ³       unix.py
+    ³       ³       ³       version.py
+    ³       ³       ³       windows.py
+    ³       ³       ³       __init__.py
+    ³       ³       ³       __main__.py
+    ³       ³       ³       
+    ³       ³       ÃÄÄÄpygments
+    ³       ³       ³   ³   cmdline.py
+    ³       ³       ³   ³   console.py
+    ³       ³       ³   ³   filter.py
+    ³       ³       ³   ³   formatter.py
+    ³       ³       ³   ³   lexer.py
+    ³       ³       ³   ³   modeline.py
+    ³       ³       ³   ³   plugin.py
+    ³       ³       ³   ³   regexopt.py
+    ³       ³       ³   ³   scanner.py
+    ³       ³       ³   ³   sphinxext.py
+    ³       ³       ³   ³   style.py
+    ³       ³       ³   ³   token.py
+    ³       ³       ³   ³   unistring.py
+    ³       ³       ³   ³   util.py
+    ³       ³       ³   ³   __init__.py
+    ³       ³       ³   ³   __main__.py
+    ³       ³       ³   ³   
+    ³       ³       ³   ÃÄÄÄfilters
+    ³       ³       ³   ³       __init__.py
+    ³       ³       ³   ³       
+    ³       ³       ³   ÃÄÄÄformatters
+    ³       ³       ³   ³       bbcode.py
+    ³       ³       ³   ³       groff.py
+    ³       ³       ³   ³       html.py
+    ³       ³       ³   ³       img.py
+    ³       ³       ³   ³       irc.py
+    ³       ³       ³   ³       latex.py
+    ³       ³       ³   ³       other.py
+    ³       ³       ³   ³       pangomarkup.py
+    ³       ³       ³   ³       rtf.py
+    ³       ³       ³   ³       svg.py
+    ³       ³       ³   ³       terminal.py
+    ³       ³       ³   ³       terminal256.py
+    ³       ³       ³   ³       _mapping.py
+    ³       ³       ³   ³       __init__.py
+    ³       ³       ³   ³       
+    ³       ³       ³   ÃÄÄÄlexers
+    ³       ³       ³   ³       python.py
+    ³       ³       ³   ³       _mapping.py
+    ³       ³       ³   ³       __init__.py
+    ³       ³       ³   ³       
+    ³       ³       ³   ÀÄÄÄstyles
+    ³       ³       ³           __init__.py
+    ³       ³       ³           
+    ³       ³       ÃÄÄÄpyparsing
+    ³       ³       ³   ³   actions.py
+    ³       ³       ³   ³   common.py
+    ³       ³       ³   ³   core.py
+    ³       ³       ³   ³   exceptions.py
+    ³       ³       ³   ³   helpers.py
+    ³       ³       ³   ³   py.typed
+    ³       ³       ³   ³   results.py
+    ³       ³       ³   ³   testing.py
+    ³       ³       ³   ³   unicode.py
+    ³       ³       ³   ³   util.py
+    ³       ³       ³   ³   __init__.py
+    ³       ³       ³   ³   
+    ³       ³       ³   ÀÄÄÄdiagram
+    ³       ³       ³           __init__.py
+    ³       ³       ³           
+    ³       ³       ÃÄÄÄpyproject_hooks
+    ³       ³       ³   ³   _compat.py
+    ³       ³       ³   ³   _impl.py
+    ³       ³       ³   ³   __init__.py
+    ³       ³       ³   ³   
+    ³       ³       ³   ÀÄÄÄ_in_process
+    ³       ³       ³           _in_process.py
+    ³       ³       ³           __init__.py
+    ³       ³       ³           
+    ³       ³       ÃÄÄÄrequests
+    ³       ³       ³       adapters.py
+    ³       ³       ³       api.py
+    ³       ³       ³       auth.py
+    ³       ³       ³       certs.py
+    ³       ³       ³       compat.py
+    ³       ³       ³       cookies.py
+    ³       ³       ³       exceptions.py
+    ³       ³       ³       help.py
+    ³       ³       ³       hooks.py
+    ³       ³       ³       models.py
+    ³       ³       ³       packages.py
+    ³       ³       ³       sessions.py
+    ³       ³       ³       status_codes.py
+    ³       ³       ³       structures.py
+    ³       ³       ³       utils.py
+    ³       ³       ³       _internal_utils.py
+    ³       ³       ³       __init__.py
+    ³       ³       ³       __version__.py
+    ³       ³       ³       
+    ³       ³       ÃÄÄÄresolvelib
+    ³       ³       ³   ³   providers.py
+    ³       ³       ³   ³   py.typed
+    ³       ³       ³   ³   reporters.py
+    ³       ³       ³   ³   resolvers.py
+    ³       ³       ³   ³   structs.py
+    ³       ³       ³   ³   __init__.py
+    ³       ³       ³   ³   
+    ³       ³       ³   ÀÄÄÄcompat
+    ³       ³       ³           collections_abc.py
+    ³       ³       ³           __init__.py
+    ³       ³       ³           
+    ³       ³       ÃÄÄÄrich
+    ³       ³       ³       abc.py
+    ³       ³       ³       align.py
+    ³       ³       ³       ansi.py
+    ³       ³       ³       bar.py
+    ³       ³       ³       box.py
+    ³       ³       ³       cells.py
+    ³       ³       ³       color.py
+    ³       ³       ³       color_triplet.py
+    ³       ³       ³       columns.py
+    ³       ³       ³       console.py
+    ³       ³       ³       constrain.py
+    ³       ³       ³       containers.py
+    ³       ³       ³       control.py
+    ³       ³       ³       default_styles.py
+    ³       ³       ³       diagnose.py
+    ³       ³       ³       emoji.py
+    ³       ³       ³       errors.py
+    ³       ³       ³       filesize.py
+    ³       ³       ³       file_proxy.py
+    ³       ³       ³       highlighter.py
+    ³       ³       ³       json.py
+    ³       ³       ³       jupyter.py
+    ³       ³       ³       layout.py
+    ³       ³       ³       live.py
+    ³       ³       ³       live_render.py
+    ³       ³       ³       logging.py
+    ³       ³       ³       markup.py
+    ³       ³       ³       measure.py
+    ³       ³       ³       padding.py
+    ³       ³       ³       pager.py
+    ³       ³       ³       palette.py
+    ³       ³       ³       panel.py
+    ³       ³       ³       pretty.py
+    ³       ³       ³       progress.py
+    ³       ³       ³       progress_bar.py
+    ³       ³       ³       prompt.py
+    ³       ³       ³       protocol.py
+    ³       ³       ³       py.typed
+    ³       ³       ³       region.py
+    ³       ³       ³       repr.py
+    ³       ³       ³       rule.py
+    ³       ³       ³       scope.py
+    ³       ³       ³       screen.py
+    ³       ³       ³       segment.py
+    ³       ³       ³       spinner.py
+    ³       ³       ³       status.py
+    ³       ³       ³       style.py
+    ³       ³       ³       styled.py
+    ³       ³       ³       syntax.py
+    ³       ³       ³       table.py
+    ³       ³       ³       terminal_theme.py
+    ³       ³       ³       text.py
+    ³       ³       ³       theme.py
+    ³       ³       ³       themes.py
+    ³       ³       ³       traceback.py
+    ³       ³       ³       tree.py
+    ³       ³       ³       _cell_widths.py
+    ³       ³       ³       _emoji_codes.py
+    ³       ³       ³       _emoji_replace.py
+    ³       ³       ³       _export_format.py
+    ³       ³       ³       _extension.py
+    ³       ³       ³       _fileno.py
+    ³       ³       ³       _inspect.py
+    ³       ³       ³       _log_render.py
+    ³       ³       ³       _loop.py
+    ³       ³       ³       _null_file.py
+    ³       ³       ³       _palettes.py
+    ³       ³       ³       _pick.py
+    ³       ³       ³       _ratio.py
+    ³       ³       ³       _spinners.py
+    ³       ³       ³       _stack.py
+    ³       ³       ³       _timer.py
+    ³       ³       ³       _win32_console.py
+    ³       ³       ³       _windows.py
+    ³       ³       ³       _windows_renderer.py
+    ³       ³       ³       _wrap.py
+    ³       ³       ³       __init__.py
+    ³       ³       ³       __main__.py
+    ³       ³       ³       
+    ³       ³       ÃÄÄÄtenacity
+    ³       ³       ³       after.py
+    ³       ³       ³       before.py
+    ³       ³       ³       before_sleep.py
+    ³       ³       ³       nap.py
+    ³       ³       ³       py.typed
+    ³       ³       ³       retry.py
+    ³       ³       ³       stop.py
+    ³       ³       ³       tornadoweb.py
+    ³       ³       ³       wait.py
+    ³       ³       ³       _asyncio.py
+    ³       ³       ³       _utils.py
+    ³       ³       ³       __init__.py
+    ³       ³       ³       
+    ³       ³       ÃÄÄÄtomli
+    ³       ³       ³       py.typed
+    ³       ³       ³       _parser.py
+    ³       ³       ³       _re.py
+    ³       ³       ³       _types.py
+    ³       ³       ³       __init__.py
+    ³       ³       ³       
+    ³       ³       ÃÄÄÄtruststore
+    ³       ³       ³       py.typed
+    ³       ³       ³       _api.py
+    ³       ³       ³       _macos.py
+    ³       ³       ³       _openssl.py
+    ³       ³       ³       _ssl_constants.py
+    ³       ³       ³       _windows.py
+    ³       ³       ³       __init__.py
+    ³       ³       ³       
+    ³       ³       ÃÄÄÄurllib3
+    ³       ³       ³   ³   connection.py
+    ³       ³       ³   ³   connectionpool.py
+    ³       ³       ³   ³   exceptions.py
+    ³       ³       ³   ³   fields.py
+    ³       ³       ³   ³   filepost.py
+    ³       ³       ³   ³   poolmanager.py
+    ³       ³       ³   ³   request.py
+    ³       ³       ³   ³   response.py
+    ³       ³       ³   ³   _collections.py
+    ³       ³       ³   ³   _version.py
+    ³       ³       ³   ³   __init__.py
+    ³       ³       ³   ³   
+    ³       ³       ³   ÃÄÄÄcontrib
+    ³       ³       ³   ³   ³   appengine.py
+    ³       ³       ³   ³   ³   ntlmpool.py
+    ³       ³       ³   ³   ³   pyopenssl.py
+    ³       ³       ³   ³   ³   securetransport.py
+    ³       ³       ³   ³   ³   socks.py
+    ³       ³       ³   ³   ³   _appengine_environ.py
+    ³       ³       ³   ³   ³   __init__.py
+    ³       ³       ³   ³   ³   
+    ³       ³       ³   ³   ÀÄÄÄ_securetransport
+    ³       ³       ³   ³           bindings.py
+    ³       ³       ³   ³           low_level.py
+    ³       ³       ³   ³           __init__.py
+    ³       ³       ³   ³           
+    ³       ³       ³   ÃÄÄÄpackages
+    ³       ³       ³   ³   ³   six.py
+    ³       ³       ³   ³   ³   __init__.py
+    ³       ³       ³   ³   ³   
+    ³       ³       ³   ³   ÀÄÄÄbackports
+    ³       ³       ³   ³           makefile.py
+    ³       ³       ³   ³           weakref_finalize.py
+    ³       ³       ³   ³           __init__.py
+    ³       ³       ³   ³           
+    ³       ³       ³   ÀÄÄÄutil
+    ³       ³       ³           connection.py
+    ³       ³       ³           proxy.py
+    ³       ³       ³           queue.py
+    ³       ³       ³           request.py
+    ³       ³       ³           response.py
+    ³       ³       ³           retry.py
+    ³       ³       ³           ssltransport.py
+    ³       ³       ³           ssl_.py
+    ³       ³       ³           ssl_match_hostname.py
+    ³       ³       ³           timeout.py
+    ³       ³       ³           url.py
+    ³       ³       ³           wait.py
+    ³       ³       ³           __init__.py
+    ³       ³       ³           
+    ³       ³       ÀÄÄÄwebencodings
+    ³       ³               labels.py
+    ³       ³               mklabels.py
+    ³       ³               tests.py
+    ³       ³               x_user_defined.py
+    ³       ³               __init__.py
+    ³       ³               
+    ³       ÃÄÄÄpip-24.0.dist-info
+    ³       ³       AUTHORS.txt
+    ³       ³       entry_points.txt
+    ³       ³       INSTALLER
+    ³       ³       LICENSE.txt
+    ³       ³       METADATA
+    ³       ³       RECORD
+    ³       ³       REQUESTED
+    ³       ³       top_level.txt
+    ³       ³       WHEEL
+    ³       ³       
+    ³       ÃÄÄÄPyJWT-2.10.1.dist-info
+    ³       ³       AUTHORS.rst
+    ³       ³       INSTALLER
+    ³       ³       LICENSE
+    ³       ³       METADATA
+    ³       ³       RECORD
+    ³       ³       REQUESTED
+    ³       ³       top_level.txt
+    ³       ³       WHEEL
+    ³       ³       
+    ³       ÃÄÄÄpython_dotenv-1.0.0.dist-info
+    ³       ³       entry_points.txt
+    ³       ³       INSTALLER
+    ³       ³       LICENSE
+    ³       ³       METADATA
+    ³       ³       RECORD
+    ³       ³       REQUESTED
+    ³       ³       top_level.txt
+    ³       ³       WHEEL
+    ³       ³       
+    ³       ÃÄÄÄsqlalchemy
+    ³       ³   ³   events.py
+    ³       ³   ³   exc.py
+    ³       ³   ³   inspection.py
+    ³       ³   ³   log.py
+    ³       ³   ³   py.typed
+    ³       ³   ³   schema.py
+    ³       ³   ³   types.py
+    ³       ³   ³   __init__.py
+    ³       ³   ³   
+    ³       ³   ÃÄÄÄconnectors
+    ³       ³   ³       aioodbc.py
+    ³       ³   ³       asyncio.py
+    ³       ³   ³       pyodbc.py
+    ³       ³   ³       __init__.py
+    ³       ³   ³       
+    ³       ³   ÃÄÄÄcyextension
+    ³       ³   ³   ³   collections.cp312-win_amd64.pyd
+    ³       ³   ³   ³   collections.pyx
+    ³       ³   ³   ³   immutabledict.cp312-win_amd64.pyd
+    ³       ³   ³   ³   immutabledict.pxd
+    ³       ³   ³   ³   immutabledict.pyx
+    ³       ³   ³   ³   processors.cp312-win_amd64.pyd
+    ³       ³   ³   ³   processors.pyx
+    ³       ³   ³   ³   resultproxy.cp312-win_amd64.pyd
+    ³       ³   ³   ³   resultproxy.pyx
+    ³       ³   ³   ³   util.cp312-win_amd64.pyd
+    ³       ³   ³   ³   util.pyx
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÀÄÄÄ__pycache__
+    ³       ³   ³           __init__.cpython-312.pyc
+    ³       ³   ³           
+    ³       ³   ÃÄÄÄdialects
+    ³       ³   ³   ³   type_migration_guidelines.txt
+    ³       ³   ³   ³   _typing.py
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÃÄÄÄmssql
+    ³       ³   ³   ³       aioodbc.py
+    ³       ³   ³   ³       base.py
+    ³       ³   ³   ³       information_schema.py
+    ³       ³   ³   ³       json.py
+    ³       ³   ³   ³       provision.py
+    ³       ³   ³   ³       pymssql.py
+    ³       ³   ³   ³       pyodbc.py
+    ³       ³   ³   ³       __init__.py
+    ³       ³   ³   ³       
+    ³       ³   ³   ÃÄÄÄmysql
+    ³       ³   ³   ³       aiomysql.py
+    ³       ³   ³   ³       asyncmy.py
+    ³       ³   ³   ³       base.py
+    ³       ³   ³   ³       cymysql.py
+    ³       ³   ³   ³       dml.py
+    ³       ³   ³   ³       enumerated.py
+    ³       ³   ³   ³       expression.py
+    ³       ³   ³   ³       json.py
+    ³       ³   ³   ³       mariadb.py
+    ³       ³   ³   ³       mariadbconnector.py
+    ³       ³   ³   ³       mysqlconnector.py
+    ³       ³   ³   ³       mysqldb.py
+    ³       ³   ³   ³       provision.py
+    ³       ³   ³   ³       pymysql.py
+    ³       ³   ³   ³       pyodbc.py
+    ³       ³   ³   ³       reflection.py
+    ³       ³   ³   ³       reserved_words.py
+    ³       ³   ³   ³       types.py
+    ³       ³   ³   ³       __init__.py
+    ³       ³   ³   ³       
+    ³       ³   ³   ÃÄÄÄoracle
+    ³       ³   ³   ³       base.py
+    ³       ³   ³   ³       cx_oracle.py
+    ³       ³   ³   ³       dictionary.py
+    ³       ³   ³   ³       oracledb.py
+    ³       ³   ³   ³       provision.py
+    ³       ³   ³   ³       types.py
+    ³       ³   ³   ³       vector.py
+    ³       ³   ³   ³       __init__.py
+    ³       ³   ³   ³       
+    ³       ³   ³   ÃÄÄÄpostgresql
+    ³       ³   ³   ³   ³   array.py
+    ³       ³   ³   ³   ³   asyncpg.py
+    ³       ³   ³   ³   ³   base.py
+    ³       ³   ³   ³   ³   dml.py
+    ³       ³   ³   ³   ³   ext.py
+    ³       ³   ³   ³   ³   hstore.py
+    ³       ³   ³   ³   ³   json.py
+    ³       ³   ³   ³   ³   named_types.py
+    ³       ³   ³   ³   ³   operators.py
+    ³       ³   ³   ³   ³   pg8000.py
+    ³       ³   ³   ³   ³   pg_catalog.py
+    ³       ³   ³   ³   ³   provision.py
+    ³       ³   ³   ³   ³   psycopg.py
+    ³       ³   ³   ³   ³   psycopg2.py
+    ³       ³   ³   ³   ³   psycopg2cffi.py
+    ³       ³   ³   ³   ³   ranges.py
+    ³       ³   ³   ³   ³   types.py
+    ³       ³   ³   ³   ³   _psycopg_common.py
+    ³       ³   ³   ³   ³   __init__.py
+    ³       ³   ³   ³   ³   
+    ³       ³   ³   ³   ÀÄÄÄ__pycache__
+    ³       ³   ³   ³           array.cpython-312.pyc
+    ³       ³   ³   ³           asyncpg.cpython-312.pyc
+    ³       ³   ³   ³           base.cpython-312.pyc
+    ³       ³   ³   ³           dml.cpython-312.pyc
+    ³       ³   ³   ³           ext.cpython-312.pyc
+    ³       ³   ³   ³           hstore.cpython-312.pyc
+    ³       ³   ³   ³           json.cpython-312.pyc
+    ³       ³   ³   ³           named_types.cpython-312.pyc
+    ³       ³   ³   ³           operators.cpython-312.pyc
+    ³       ³   ³   ³           pg8000.cpython-312.pyc
+    ³       ³   ³   ³           pg_catalog.cpython-312.pyc
+    ³       ³   ³   ³           psycopg.cpython-312.pyc
+    ³       ³   ³   ³           psycopg2.cpython-312.pyc
+    ³       ³   ³   ³           psycopg2cffi.cpython-312.pyc
+    ³       ³   ³   ³           ranges.cpython-312.pyc
+    ³       ³   ³   ³           types.cpython-312.pyc
+    ³       ³   ³   ³           _psycopg_common.cpython-312.pyc
+    ³       ³   ³   ³           __init__.cpython-312.pyc
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄsqlite
+    ³       ³   ³   ³   ³   aiosqlite.py
+    ³       ³   ³   ³   ³   base.py
+    ³       ³   ³   ³   ³   dml.py
+    ³       ³   ³   ³   ³   json.py
+    ³       ³   ³   ³   ³   provision.py
+    ³       ³   ³   ³   ³   pysqlcipher.py
+    ³       ³   ³   ³   ³   pysqlite.py
+    ³       ³   ³   ³   ³   __init__.py
+    ³       ³   ³   ³   ³   
+    ³       ³   ³   ³   ÀÄÄÄ__pycache__
+    ³       ³   ³   ³           aiosqlite.cpython-312.pyc
+    ³       ³   ³   ³           base.cpython-312.pyc
+    ³       ³   ³   ³           dml.cpython-312.pyc
+    ³       ³   ³   ³           json.cpython-312.pyc
+    ³       ³   ³   ³           pysqlcipher.cpython-312.pyc
+    ³       ³   ³   ³           pysqlite.cpython-312.pyc
+    ³       ³   ³   ³           __init__.cpython-312.pyc
+    ³       ³   ³   ³           
+    ³       ³   ³   ÀÄÄÄ__pycache__
+    ³       ³   ³           _typing.cpython-312.pyc
+    ³       ³   ³           __init__.cpython-312.pyc
+    ³       ³   ³           
+    ³       ³   ÃÄÄÄengine
+    ³       ³   ³   ³   base.py
+    ³       ³   ³   ³   characteristics.py
+    ³       ³   ³   ³   create.py
+    ³       ³   ³   ³   cursor.py
+    ³       ³   ³   ³   default.py
+    ³       ³   ³   ³   events.py
+    ³       ³   ³   ³   interfaces.py
+    ³       ³   ³   ³   mock.py
+    ³       ³   ³   ³   processors.py
+    ³       ³   ³   ³   reflection.py
+    ³       ³   ³   ³   result.py
+    ³       ³   ³   ³   row.py
+    ³       ³   ³   ³   strategies.py
+    ³       ³   ³   ³   url.py
+    ³       ³   ³   ³   util.py
+    ³       ³   ³   ³   _py_processors.py
+    ³       ³   ³   ³   _py_row.py
+    ³       ³   ³   ³   _py_util.py
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÀÄÄÄ__pycache__
+    ³       ³   ³           base.cpython-312.pyc
+    ³       ³   ³           characteristics.cpython-312.pyc
+    ³       ³   ³           create.cpython-312.pyc
+    ³       ³   ³           cursor.cpython-312.pyc
+    ³       ³   ³           default.cpython-312.pyc
+    ³       ³   ³           events.cpython-312.pyc
+    ³       ³   ³           interfaces.cpython-312.pyc
+    ³       ³   ³           mock.cpython-312.pyc
+    ³       ³   ³           processors.cpython-312.pyc
+    ³       ³   ³           reflection.cpython-312.pyc
+    ³       ³   ³           result.cpython-312.pyc
+    ³       ³   ³           row.cpython-312.pyc
+    ³       ³   ³           strategies.cpython-312.pyc
+    ³       ³   ³           url.cpython-312.pyc
+    ³       ³   ³           util.cpython-312.pyc
+    ³       ³   ³           _py_processors.cpython-312.pyc
+    ³       ³   ³           __init__.cpython-312.pyc
+    ³       ³   ³           
+    ³       ³   ÃÄÄÄevent
+    ³       ³   ³   ³   api.py
+    ³       ³   ³   ³   attr.py
+    ³       ³   ³   ³   base.py
+    ³       ³   ³   ³   legacy.py
+    ³       ³   ³   ³   registry.py
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÀÄÄÄ__pycache__
+    ³       ³   ³           api.cpython-312.pyc
+    ³       ³   ³           attr.cpython-312.pyc
+    ³       ³   ³           base.cpython-312.pyc
+    ³       ³   ³           legacy.cpython-312.pyc
+    ³       ³   ³           registry.cpython-312.pyc
+    ³       ³   ³           __init__.cpython-312.pyc
+    ³       ³   ³           
+    ³       ³   ÃÄÄÄext
+    ³       ³   ³   ³   associationproxy.py
+    ³       ³   ³   ³   automap.py
+    ³       ³   ³   ³   baked.py
+    ³       ³   ³   ³   compiler.py
+    ³       ³   ³   ³   horizontal_shard.py
+    ³       ³   ³   ³   hybrid.py
+    ³       ³   ³   ³   indexable.py
+    ³       ³   ³   ³   instrumentation.py
+    ³       ³   ³   ³   mutable.py
+    ³       ³   ³   ³   orderinglist.py
+    ³       ³   ³   ³   serializer.py
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÃÄÄÄasyncio
+    ³       ³   ³   ³       base.py
+    ³       ³   ³   ³       engine.py
+    ³       ³   ³   ³       exc.py
+    ³       ³   ³   ³       result.py
+    ³       ³   ³   ³       scoping.py
+    ³       ³   ³   ³       session.py
+    ³       ³   ³   ³       __init__.py
+    ³       ³   ³   ³       
+    ³       ³   ³   ÃÄÄÄdeclarative
+    ³       ³   ³   ³       extensions.py
+    ³       ³   ³   ³       __init__.py
+    ³       ³   ³   ³       
+    ³       ³   ³   ÃÄÄÄmypy
+    ³       ³   ³   ³       apply.py
+    ³       ³   ³   ³       decl_class.py
+    ³       ³   ³   ³       infer.py
+    ³       ³   ³   ³       names.py
+    ³       ³   ³   ³       plugin.py
+    ³       ³   ³   ³       util.py
+    ³       ³   ³   ³       __init__.py
+    ³       ³   ³   ³       
+    ³       ³   ³   ÀÄÄÄ__pycache__
+    ³       ³   ³           compiler.cpython-312.pyc
+    ³       ³   ³           __init__.cpython-312.pyc
+    ³       ³   ³           
+    ³       ³   ÃÄÄÄfuture
+    ³       ³   ³   ³   engine.py
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÀÄÄÄ__pycache__
+    ³       ³   ³           engine.cpython-312.pyc
+    ³       ³   ³           __init__.cpython-312.pyc
+    ³       ³   ³           
+    ³       ³   ÃÄÄÄorm
+    ³       ³   ³   ³   attributes.py
+    ³       ³   ³   ³   base.py
+    ³       ³   ³   ³   bulk_persistence.py
+    ³       ³   ³   ³   clsregistry.py
+    ³       ³   ³   ³   collections.py
+    ³       ³   ³   ³   context.py
+    ³       ³   ³   ³   decl_api.py
+    ³       ³   ³   ³   decl_base.py
+    ³       ³   ³   ³   dependency.py
+    ³       ³   ³   ³   descriptor_props.py
+    ³       ³   ³   ³   dynamic.py
+    ³       ³   ³   ³   evaluator.py
+    ³       ³   ³   ³   events.py
+    ³       ³   ³   ³   exc.py
+    ³       ³   ³   ³   identity.py
+    ³       ³   ³   ³   instrumentation.py
+    ³       ³   ³   ³   interfaces.py
+    ³       ³   ³   ³   loading.py
+    ³       ³   ³   ³   mapped_collection.py
+    ³       ³   ³   ³   mapper.py
+    ³       ³   ³   ³   path_registry.py
+    ³       ³   ³   ³   persistence.py
+    ³       ³   ³   ³   properties.py
+    ³       ³   ³   ³   query.py
+    ³       ³   ³   ³   relationships.py
+    ³       ³   ³   ³   scoping.py
+    ³       ³   ³   ³   session.py
+    ³       ³   ³   ³   state.py
+    ³       ³   ³   ³   state_changes.py
+    ³       ³   ³   ³   strategies.py
+    ³       ³   ³   ³   strategy_options.py
+    ³       ³   ³   ³   sync.py
+    ³       ³   ³   ³   unitofwork.py
+    ³       ³   ³   ³   util.py
+    ³       ³   ³   ³   writeonly.py
+    ³       ³   ³   ³   _orm_constructors.py
+    ³       ³   ³   ³   _typing.py
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÀÄÄÄ__pycache__
+    ³       ³   ³           attributes.cpython-312.pyc
+    ³       ³   ³           base.cpython-312.pyc
+    ³       ³   ³           bulk_persistence.cpython-312.pyc
+    ³       ³   ³           clsregistry.cpython-312.pyc
+    ³       ³   ³           collections.cpython-312.pyc
+    ³       ³   ³           context.cpython-312.pyc
+    ³       ³   ³           decl_api.cpython-312.pyc
+    ³       ³   ³           decl_base.cpython-312.pyc
+    ³       ³   ³           dependency.cpython-312.pyc
+    ³       ³   ³           descriptor_props.cpython-312.pyc
+    ³       ³   ³           dynamic.cpython-312.pyc
+    ³       ³   ³           evaluator.cpython-312.pyc
+    ³       ³   ³           events.cpython-312.pyc
+    ³       ³   ³           exc.cpython-312.pyc
+    ³       ³   ³           identity.cpython-312.pyc
+    ³       ³   ³           instrumentation.cpython-312.pyc
+    ³       ³   ³           interfaces.cpython-312.pyc
+    ³       ³   ³           loading.cpython-312.pyc
+    ³       ³   ³           mapped_collection.cpython-312.pyc
+    ³       ³   ³           mapper.cpython-312.pyc
+    ³       ³   ³           path_registry.cpython-312.pyc
+    ³       ³   ³           persistence.cpython-312.pyc
+    ³       ³   ³           properties.cpython-312.pyc
+    ³       ³   ³           query.cpython-312.pyc
+    ³       ³   ³           relationships.cpython-312.pyc
+    ³       ³   ³           scoping.cpython-312.pyc
+    ³       ³   ³           session.cpython-312.pyc
+    ³       ³   ³           state.cpython-312.pyc
+    ³       ³   ³           state_changes.cpython-312.pyc
+    ³       ³   ³           strategies.cpython-312.pyc
+    ³       ³   ³           strategy_options.cpython-312.pyc
+    ³       ³   ³           sync.cpython-312.pyc
+    ³       ³   ³           unitofwork.cpython-312.pyc
+    ³       ³   ³           util.cpython-312.pyc
+    ³       ³   ³           writeonly.cpython-312.pyc
+    ³       ³   ³           _orm_constructors.cpython-312.pyc
+    ³       ³   ³           _typing.cpython-312.pyc
+    ³       ³   ³           __init__.cpython-312.pyc
+    ³       ³   ³           
+    ³       ³   ÃÄÄÄpool
+    ³       ³   ³   ³   base.py
+    ³       ³   ³   ³   events.py
+    ³       ³   ³   ³   impl.py
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÀÄÄÄ__pycache__
+    ³       ³   ³           base.cpython-312.pyc
+    ³       ³   ³           events.cpython-312.pyc
+    ³       ³   ³           impl.cpython-312.pyc
+    ³       ³   ³           __init__.cpython-312.pyc
+    ³       ³   ³           
+    ³       ³   ÃÄÄÄsql
+    ³       ³   ³   ³   annotation.py
+    ³       ³   ³   ³   base.py
+    ³       ³   ³   ³   cache_key.py
+    ³       ³   ³   ³   coercions.py
+    ³       ³   ³   ³   compiler.py
+    ³       ³   ³   ³   crud.py
+    ³       ³   ³   ³   ddl.py
+    ³       ³   ³   ³   default_comparator.py
+    ³       ³   ³   ³   dml.py
+    ³       ³   ³   ³   elements.py
+    ³       ³   ³   ³   events.py
+    ³       ³   ³   ³   expression.py
+    ³       ³   ³   ³   functions.py
+    ³       ³   ³   ³   lambdas.py
+    ³       ³   ³   ³   naming.py
+    ³       ³   ³   ³   operators.py
+    ³       ³   ³   ³   roles.py
+    ³       ³   ³   ³   schema.py
+    ³       ³   ³   ³   selectable.py
+    ³       ³   ³   ³   sqltypes.py
+    ³       ³   ³   ³   traversals.py
+    ³       ³   ³   ³   type_api.py
+    ³       ³   ³   ³   util.py
+    ³       ³   ³   ³   visitors.py
+    ³       ³   ³   ³   _dml_constructors.py
+    ³       ³   ³   ³   _elements_constructors.py
+    ³       ³   ³   ³   _orm_types.py
+    ³       ³   ³   ³   _py_util.py
+    ³       ³   ³   ³   _selectable_constructors.py
+    ³       ³   ³   ³   _typing.py
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÀÄÄÄ__pycache__
+    ³       ³   ³           annotation.cpython-312.pyc
+    ³       ³   ³           base.cpython-312.pyc
+    ³       ³   ³           cache_key.cpython-312.pyc
+    ³       ³   ³           coercions.cpython-312.pyc
+    ³       ³   ³           compiler.cpython-312.pyc
+    ³       ³   ³           crud.cpython-312.pyc
+    ³       ³   ³           ddl.cpython-312.pyc
+    ³       ³   ³           default_comparator.cpython-312.pyc
+    ³       ³   ³           dml.cpython-312.pyc
+    ³       ³   ³           elements.cpython-312.pyc
+    ³       ³   ³           events.cpython-312.pyc
+    ³       ³   ³           expression.cpython-312.pyc
+    ³       ³   ³           functions.cpython-312.pyc
+    ³       ³   ³           lambdas.cpython-312.pyc
+    ³       ³   ³           naming.cpython-312.pyc
+    ³       ³   ³           operators.cpython-312.pyc
+    ³       ³   ³           roles.cpython-312.pyc
+    ³       ³   ³           schema.cpython-312.pyc
+    ³       ³   ³           selectable.cpython-312.pyc
+    ³       ³   ³           sqltypes.cpython-312.pyc
+    ³       ³   ³           traversals.cpython-312.pyc
+    ³       ³   ³           type_api.cpython-312.pyc
+    ³       ³   ³           util.cpython-312.pyc
+    ³       ³   ³           visitors.cpython-312.pyc
+    ³       ³   ³           _dml_constructors.cpython-312.pyc
+    ³       ³   ³           _elements_constructors.cpython-312.pyc
+    ³       ³   ³           _orm_types.cpython-312.pyc
+    ³       ³   ³           _selectable_constructors.cpython-312.pyc
+    ³       ³   ³           _typing.cpython-312.pyc
+    ³       ³   ³           __init__.cpython-312.pyc
+    ³       ³   ³           
+    ³       ³   ÃÄÄÄtesting
+    ³       ³   ³   ³   assertions.py
+    ³       ³   ³   ³   assertsql.py
+    ³       ³   ³   ³   asyncio.py
+    ³       ³   ³   ³   config.py
+    ³       ³   ³   ³   engines.py
+    ³       ³   ³   ³   entities.py
+    ³       ³   ³   ³   exclusions.py
+    ³       ³   ³   ³   pickleable.py
+    ³       ³   ³   ³   profiling.py
+    ³       ³   ³   ³   provision.py
+    ³       ³   ³   ³   requirements.py
+    ³       ³   ³   ³   schema.py
+    ³       ³   ³   ³   util.py
+    ³       ³   ³   ³   warnings.py
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÃÄÄÄfixtures
+    ³       ³   ³   ³       base.py
+    ³       ³   ³   ³       mypy.py
+    ³       ³   ³   ³       orm.py
+    ³       ³   ³   ³       sql.py
+    ³       ³   ³   ³       __init__.py
+    ³       ³   ³   ³       
+    ³       ³   ³   ÃÄÄÄplugin
+    ³       ³   ³   ³       bootstrap.py
+    ³       ³   ³   ³       plugin_base.py
+    ³       ³   ³   ³       pytestplugin.py
+    ³       ³   ³   ³       __init__.py
+    ³       ³   ³   ³       
+    ³       ³   ³   ÀÄÄÄsuite
+    ³       ³   ³           test_cte.py
+    ³       ³   ³           test_ddl.py
+    ³       ³   ³           test_deprecations.py
+    ³       ³   ³           test_dialect.py
+    ³       ³   ³           test_insert.py
+    ³       ³   ³           test_reflection.py
+    ³       ³   ³           test_results.py
+    ³       ³   ³           test_rowcount.py
+    ³       ³   ³           test_select.py
+    ³       ³   ³           test_sequence.py
+    ³       ³   ³           test_types.py
+    ³       ³   ³           test_unicode_ddl.py
+    ³       ³   ³           test_update_delete.py
+    ³       ³   ³           __init__.py
+    ³       ³   ³           
+    ³       ³   ÃÄÄÄutil
+    ³       ³   ³   ³   compat.py
+    ³       ³   ³   ³   concurrency.py
+    ³       ³   ³   ³   deprecations.py
+    ³       ³   ³   ³   langhelpers.py
+    ³       ³   ³   ³   preloaded.py
+    ³       ³   ³   ³   queue.py
+    ³       ³   ³   ³   tool_support.py
+    ³       ³   ³   ³   topological.py
+    ³       ³   ³   ³   typing.py
+    ³       ³   ³   ³   _collections.py
+    ³       ³   ³   ³   _concurrency_py3k.py
+    ³       ³   ³   ³   _has_cy.py
+    ³       ³   ³   ³   _py_collections.py
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÀÄÄÄ__pycache__
+    ³       ³   ³           compat.cpython-312.pyc
+    ³       ³   ³           concurrency.cpython-312.pyc
+    ³       ³   ³           deprecations.cpython-312.pyc
+    ³       ³   ³           langhelpers.cpython-312.pyc
+    ³       ³   ³           preloaded.cpython-312.pyc
+    ³       ³   ³           queue.cpython-312.pyc
+    ³       ³   ³           topological.cpython-312.pyc
+    ³       ³   ³           typing.cpython-312.pyc
+    ³       ³   ³           _collections.cpython-312.pyc
+    ³       ³   ³           _concurrency_py3k.cpython-312.pyc
+    ³       ³   ³           _has_cy.cpython-312.pyc
+    ³       ³   ³           __init__.cpython-312.pyc
+    ³       ³   ³           
+    ³       ³   ÀÄÄÄ__pycache__
+    ³       ³           exc.cpython-312.pyc
+    ³       ³           inspection.cpython-312.pyc
+    ³       ³           log.cpython-312.pyc
+    ³       ³           schema.cpython-312.pyc
+    ³       ³           types.cpython-312.pyc
+    ³       ³           __init__.cpython-312.pyc
+    ³       ³           
+    ³       ÃÄÄÄsqlalchemy-2.0.41.dist-info
+    ³       ³   ³   INSTALLER
+    ³       ³   ³   METADATA
+    ³       ³   ³   RECORD
+    ³       ³   ³   top_level.txt
+    ³       ³   ³   WHEEL
+    ³       ³   ³   
+    ³       ³   ÀÄÄÄlicenses
+    ³       ³           LICENSE
+    ³       ³           
+    ³       ÃÄÄÄtyping_extensions-4.14.0.dist-info
+    ³       ³   ³   INSTALLER
+    ³       ³   ³   METADATA
+    ³       ³   ³   RECORD
+    ³       ³   ³   WHEEL
+    ³       ³   ³   
+    ³       ³   ÀÄÄÄlicenses
+    ³       ³           LICENSE
+    ³       ³           
+    ³       ÃÄÄÄwerkzeug
+    ³       ³   ³   exceptions.py
+    ³       ³   ³   formparser.py
+    ³       ³   ³   http.py
+    ³       ³   ³   local.py
+    ³       ³   ³   py.typed
+    ³       ³   ³   security.py
+    ³       ³   ³   serving.py
+    ³       ³   ³   test.py
+    ³       ³   ³   testapp.py
+    ³       ³   ³   urls.py
+    ³       ³   ³   user_agent.py
+    ³       ³   ³   utils.py
+    ³       ³   ³   wsgi.py
+    ³       ³   ³   _internal.py
+    ³       ³   ³   _reloader.py
+    ³       ³   ³   __init__.py
+    ³       ³   ³   
+    ³       ³   ÃÄÄÄdatastructures
+    ³       ³   ³   ³   accept.py
+    ³       ³   ³   ³   accept.pyi
+    ³       ³   ³   ³   auth.py
+    ³       ³   ³   ³   cache_control.py
+    ³       ³   ³   ³   cache_control.pyi
+    ³       ³   ³   ³   csp.py
+    ³       ³   ³   ³   csp.pyi
+    ³       ³   ³   ³   etag.py
+    ³       ³   ³   ³   etag.pyi
+    ³       ³   ³   ³   file_storage.py
+    ³       ³   ³   ³   file_storage.pyi
+    ³       ³   ³   ³   headers.py
+    ³       ³   ³   ³   headers.pyi
+    ³       ³   ³   ³   mixins.py
+    ³       ³   ³   ³   mixins.pyi
+    ³       ³   ³   ³   range.py
+    ³       ³   ³   ³   range.pyi
+    ³       ³   ³   ³   structures.py
+    ³       ³   ³   ³   structures.pyi
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÀÄÄÄ__pycache__
+    ³       ³   ³           accept.cpython-312.pyc
+    ³       ³   ³           auth.cpython-312.pyc
+    ³       ³   ³           cache_control.cpython-312.pyc
+    ³       ³   ³           csp.cpython-312.pyc
+    ³       ³   ³           etag.cpython-312.pyc
+    ³       ³   ³           file_storage.cpython-312.pyc
+    ³       ³   ³           headers.cpython-312.pyc
+    ³       ³   ³           mixins.cpython-312.pyc
+    ³       ³   ³           range.cpython-312.pyc
+    ³       ³   ³           structures.cpython-312.pyc
+    ³       ³   ³           __init__.cpython-312.pyc
+    ³       ³   ³           
+    ³       ³   ÃÄÄÄdebug
+    ³       ³   ³   ³   console.py
+    ³       ³   ³   ³   repr.py
+    ³       ³   ³   ³   tbtools.py
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÃÄÄÄshared
+    ³       ³   ³   ³       console.png
+    ³       ³   ³   ³       debugger.js
+    ³       ³   ³   ³       ICON_LICENSE.md
+    ³       ³   ³   ³       less.png
+    ³       ³   ³   ³       more.png
+    ³       ³   ³   ³       style.css
+    ³       ³   ³   ³       
+    ³       ³   ³   ÀÄÄÄ__pycache__
+    ³       ³   ³           console.cpython-312.pyc
+    ³       ³   ³           repr.cpython-312.pyc
+    ³       ³   ³           tbtools.cpython-312.pyc
+    ³       ³   ³           __init__.cpython-312.pyc
+    ³       ³   ³           
+    ³       ³   ÃÄÄÄmiddleware
+    ³       ³   ³       dispatcher.py
+    ³       ³   ³       http_proxy.py
+    ³       ³   ³       lint.py
+    ³       ³   ³       profiler.py
+    ³       ³   ³       proxy_fix.py
+    ³       ³   ³       shared_data.py
+    ³       ³   ³       __init__.py
+    ³       ³   ³       
+    ³       ³   ÃÄÄÄrouting
+    ³       ³   ³   ³   converters.py
+    ³       ³   ³   ³   exceptions.py
+    ³       ³   ³   ³   map.py
+    ³       ³   ³   ³   matcher.py
+    ³       ³   ³   ³   rules.py
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÀÄÄÄ__pycache__
+    ³       ³   ³           converters.cpython-312.pyc
+    ³       ³   ³           exceptions.cpython-312.pyc
+    ³       ³   ³           map.cpython-312.pyc
+    ³       ³   ³           matcher.cpython-312.pyc
+    ³       ³   ³           rules.cpython-312.pyc
+    ³       ³   ³           __init__.cpython-312.pyc
+    ³       ³   ³           
+    ³       ³   ÃÄÄÄsansio
+    ³       ³   ³   ³   http.py
+    ³       ³   ³   ³   multipart.py
+    ³       ³   ³   ³   request.py
+    ³       ³   ³   ³   response.py
+    ³       ³   ³   ³   utils.py
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÀÄÄÄ__pycache__
+    ³       ³   ³           http.cpython-312.pyc
+    ³       ³   ³           multipart.cpython-312.pyc
+    ³       ³   ³           request.cpython-312.pyc
+    ³       ³   ³           response.cpython-312.pyc
+    ³       ³   ³           utils.cpython-312.pyc
+    ³       ³   ³           __init__.cpython-312.pyc
+    ³       ³   ³           
+    ³       ³   ÃÄÄÄwrappers
+    ³       ³   ³   ³   request.py
+    ³       ³   ³   ³   response.py
+    ³       ³   ³   ³   __init__.py
+    ³       ³   ³   ³   
+    ³       ³   ³   ÀÄÄÄ__pycache__
+    ³       ³   ³           request.cpython-312.pyc
+    ³       ³   ³           response.cpython-312.pyc
+    ³       ³   ³           __init__.cpython-312.pyc
+    ³       ³   ³           
+    ³       ³   ÀÄÄÄ__pycache__
+    ³       ³           exceptions.cpython-312.pyc
+    ³       ³           formparser.cpython-312.pyc
+    ³       ³           http.cpython-312.pyc
+    ³       ³           local.cpython-312.pyc
+    ³       ³           security.cpython-312.pyc
+    ³       ³           serving.cpython-312.pyc
+    ³       ³           test.cpython-312.pyc
+    ³       ³           urls.cpython-312.pyc
+    ³       ³           user_agent.cpython-312.pyc
+    ³       ³           utils.cpython-312.pyc
+    ³       ³           wsgi.cpython-312.pyc
+    ³       ³           _internal.cpython-312.pyc
+    ³       ³           _reloader.cpython-312.pyc
+    ³       ³           __init__.cpython-312.pyc
+    ³       ³           
+    ³       ÃÄÄÄwerkzeug-2.3.7.dist-info
+    ³       ³       INSTALLER
+    ³       ³       LICENSE.rst
+    ³       ³       METADATA
+    ³       ³       RECORD
+    ³       ³       REQUESTED
+    ³       ³       WHEEL
+    ³       ³       
+    ³       ÃÄÄÄwtforms
+    ³       ³   ³   form.py
+    ³       ³   ³   i18n.py
+    ³       ³   ³   meta.py
+    ³       ³   ³   utils.py
+    ³       ³   ³   validators.py
+    ³       ³   ³   __init__.py
+    ³       ³   ³   
+    ³       ³   ÃÄÄÄcsrf
+    ³       ³   ³       core.py
+    ³       ³   ³       session.py
+    ³       ³   ³       __init__.py
+    ³       ³   ³       
+    ³       ³   ÃÄÄÄfields
+    ³       ³   ³       choices.py
+    ³       ³   ³       core.py
+    ³       ³   ³       datetime.py
+    ³       ³   ³       form.py
+    ³       ³   ³       list.py
+    ³       ³   ³       numeric.py
+    ³       ³   ³       simple.py
+    ³       ³   ³       __init__.py
+    ³       ³   ³       
+    ³       ³   ÃÄÄÄlocale
+    ³       ³   ³   ³   README.md
+    ³       ³   ³   ³   wtforms.pot
+    ³       ³   ³   ³   
+    ³       ³   ³   ÃÄÄÄar
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄbg
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄca
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄcs_CZ
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄcy
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄde
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄde_CH
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄel
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄen
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄes
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄet
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄfa
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄfi
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄfr
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄhe
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄhu
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄit
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄja
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄko
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄnb
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄnl
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄpl
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄpt
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄru
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄsk
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄsv
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄtr
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄuk
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÃÄÄÄzh
+    ³       ³   ³   ³   ÀÄÄÄLC_MESSAGES
+    ³       ³   ³   ³           wtforms.mo
+    ³       ³   ³   ³           wtforms.po
+    ³       ³   ³   ³           
+    ³       ³   ³   ÀÄÄÄzh_TW
+    ³       ³   ³       ÀÄÄÄLC_MESSAGES
+    ³       ³   ³               wtforms.mo
+    ³       ³   ³               wtforms.po
+    ³       ³   ³               
+    ³       ³   ÀÄÄÄwidgets
+    ³       ³           core.py
+    ³       ³           __init__.py
+    ³       ³           
+    ³       ÃÄÄÄWTForms-3.0.1.dist-info
+    ³       ³       INSTALLER
+    ³       ³       LICENSE.rst
+    ³       ³       METADATA
+    ³       ³       RECORD
+    ³       ³       REQUESTED
+    ³       ³       top_level.txt
+    ³       ³       WHEEL
+    ³       ³       
+    ³       ÀÄÄÄ__pycache__
+    ³               typing_extensions.cpython-312.pyc
+    ³               
+    ÀÄÄÄScripts
+            activate
+            activate.bat
+            Activate.ps1
+            alembic.exe
+            deactivate.bat
+            dotenv.exe
+            email_validator.exe
+            flask.exe
+            mako-render.exe
+            pip.exe
+            pip3.12.exe
+            pip3.exe
+            python.exe
+            pythonw.exe
+            

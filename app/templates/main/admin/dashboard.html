@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard de Administrador - EduControl{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Tarjetas de estadísticas -->
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total de Usuarios</h5>
+                    <h2 class="card-text text-primary">{{ stats.total_usuarios }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Estudiantes</h5>
+                    <h2 class="card-text text-success">{{ stats.total_estudiantes }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Profesores</h5>
+                    <h2 class="card-text text-warning">{{ stats.total_profesores }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Administradores</h5>
+                    <h2 class="card-text text-danger">{{ stats.total_admins }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Últimos usuarios registrados -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Últimos Usuarios Registrados</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Rol</th>
+                                    <th>Fecha de Registro</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for user in usuarios_recientes %}
+                                <tr>
+                                    <td>{{ user.first_name }} {{ user.last_name }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>{{ user.role.name }}</td>
+                                    <td>{{ user.fecha_registro.strftime('%Y-%m-%d') }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

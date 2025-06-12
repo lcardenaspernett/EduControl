@@ -1,0 +1,385 @@
+{% extends "base.html" %}
+
+{% block title %}Iniciar Sesión - EduControl{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-wrapper">
+        <div class="login-card">
+            <!-- Logo y título -->
+            <div class="login-header">
+                <div class="logo-section">
+                    <div class="logo-icon">📚</div>
+                    <h1 class="brand-name">EduControl</h1>
+                </div>
+                <p class="login-subtitle">Sistema de Gestión Educativa</p>
+            </div>
+
+            <!-- Mensajes flash -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ 'danger' if category == 'error' else category }}">
+                            <span class="alert-icon">{{ '⚠️' if category == 'error' else 'ℹ️' }}</span>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <!-- Formulario de login -->
+            <form method="POST" novalidate class="login-form">
+                {{ form.hidden_tag() }}
+                
+                <!-- Campo Usuario -->
+                <div class="form-group">
+                    {{ form.username.label(class="form-label") }}
+                    <div class="input-wrapper">
+                        <span class="input-icon">👤</span>
+                        {{ form.username(class="form-input", placeholder="Ingresa tu usuario") }}
+                    </div>
+                    {% if form.username.errors %}
+                        <div class="form-error">
+                            {% for error in form.username.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Campo Contraseña -->
+                <div class="form-group">
+                    {{ form.password.label(class="form-label") }}
+                    <div class="input-wrapper">
+                        <span class="input-icon">🔒</span>
+                        {{ form.password(class="form-input", placeholder="Ingresa tu contraseña", id="password") }}
+                        <button class="password-toggle" type="button" id="togglePassword">
+                            <span id="eyeIcon">👁️</span>
+                        </button>
+                    </div>
+                    {% if form.password.errors %}
+                        <div class="form-error">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Recordarme -->
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        {{ form.remember_me(class="checkbox-input") }}
+                        <span class="checkbox-custom"></span>
+                        {{ form.remember_me.label.text }}
+                    </label>
+                </div>
+
+                <!-- Botón de login -->
+                <div class="form-group">
+                    {{ form.submit(class="login-button") }}
+                </div>
+            </form>
+
+            <!-- Footer del formulario -->
+            <div class="login-footer">
+                <p class="help-text">
+                    <span class="help-icon">🛡️</span>
+                    ¿Problemas para acceder? Contacta al administrador
+                </p>
+            </div>
+        </div>
+
+        <!-- Información adicional -->
+        <div class="info-card">
+            <p class="info-text">
+                <span class="info-icon">ℹ️</span>
+                Solo usuarios registrados por el administrador pueden acceder
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript para mostrar/ocultar contraseña -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordField = document.getElementById('password');
+    const eyeIcon = document.getElementById('eyeIcon');
+
+    if (togglePassword && passwordField && eyeIcon) {
+        togglePassword.addEventListener('click', function() {
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+            
+            if (type === 'text') {
+                eyeIcon.textContent = '🙈';
+            } else {
+                eyeIcon.textContent = '👁️';
+            }
+        });
+    }
+});
+</script>
+
+<style>
+:root {
+    --color-primario: #1e293b;
+    --color-secundario: #0ea5e9;
+    --degradado-inicio: #0f172a;
+    --degradado-fin: #1e293b;
+    --degradado-hero-inicio: #8E2DE2;
+    --degradado-hero-fin: #4A00E0;
+    --texto-blanco: #ffffff;
+    --texto-blanco-opacidad: rgba(255, 255, 255, 0.9);
+    --borde-radius: 12px;
+    --fuente-base: 'Segoe UI', sans-serif;
+    --sombra-suave: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --sombra-media: 0 8px 25px rgba(0, 0, 0, 0.15);
+    --transicion: 0.3s ease;
+}
+
+body {
+    margin: 0;
+    font-family: var(--fuente-base);
+    background: linear-gradient(135deg, var(--degradado-hero-inicio), var(--degradado-hero-fin));
+    min-height: 100vh;
+}
+
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+.login-wrapper {
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: var(--sombra-media);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.logo-icon {
+    background: linear-gradient(135deg, var(--color-secundario), #0284c7);
+    color: var(--texto-blanco);
+    font-weight: 800;
+    padding: 0.8rem 1rem;
+    margin-right: 0.8rem;
+    border-radius: 15px;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+}
+
+.brand-name {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primario);
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.login-subtitle {
+    color: #666;
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 500;
+}
+
+.alert {
+    padding: 1rem;
+    border-radius: var(--borde-radius);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.alert-danger {
+    background: rgba(239, 68, 68, 0.1);
+    color: #dc2626;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.alert-info {
+    background: rgba(59, 130, 246, 0.1);
+    color: #2563eb;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.login-form {
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    color: var(--color-primario);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    font-size: 1.1rem;
+    z-index: 2;
+}
+
+.form-input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    border: 2px solid #e5e7eb;
+    border-radius: var(--borde-radius);
+    font-size: 1rem;
+    transition: var(--transicion);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--color-secundario);
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+    background: rgba(255, 255, 255, 1);
+}
+
+.password-toggle {
+    position: absolute;
+    right: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    z-index: 2;
+    padding: 0.2rem;
+}
+
+.form-error {
+    color: #dc2626;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+}
+
+.checkbox-group {
+    margin-bottom: 2rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.checkbox-input {
+    margin-right: 0.5rem;
+}
+
+.login-button {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, var(--degradado-hero-inicio), var(--degradado-hero-fin));
+    color: var(--texto-blanco);
+    border: none;
+    border-radius: var(--borde-radius);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transicion);
+    box-shadow: 0 4px 15px rgba(142, 45, 226, 0.3);
+}
+
+.login-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(142, 45, 226, 0.4);
+}
+
+.login-button:active {
+    transform: translateY(0);
+}
+
+.login-footer {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.help-text {
+    color: #666;
+    font-size: 0.85rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 1rem;
+    margin-top: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.info-text {
+    color: var(--texto-blanco);
+    font-size: 0.85rem;
+    margin: 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .login-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .brand-name {
+        font-size: 1.8rem;
+    }
+    
+    .logo-icon {
+        font-size: 1.3rem;
+        padding: 0.6rem 0.8rem;
+    }
+}
+</style>
+{% endblock %}

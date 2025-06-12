@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}EduControl{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Navbar personalizado con azul marino elegante */
+        .navbar-custom {
+            background: #1e40af;
+            box-shadow: 0 2px 20px rgba(30, 64, 175, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .navbar-custom .navbar-brand {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: white !important;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .navbar-custom .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-custom .nav-link:hover {
+            color: white !important;
+            transform: translateY(-1px);
+        }
+        
+        .navbar-custom .dropdown-menu {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: none;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+        }
+        
+        .navbar-custom .badge {
+            background: rgba(255, 255, 255, 0.2) !important;
+            color: white !important;
+        }
+        
+        /* Animación suave para el navbar */
+        .navbar-custom {
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-custom:hover {
+            box-shadow: 0 4px 30px rgba(30, 64, 175, 0.4);
+        }
+    </style>
+    
+    <!-- BLOQUE HEAD AGREGADO AQUÍ -->
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <!-- Solo mostrar navbar si no es landing page -->
+    {% if not skip_main %}
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-graduation-cap me-2"></i>📚 EduControl
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.index') }}">
+                            <i class="fas fa-home me-1"></i>Inicio
+                        </a>
+                    </li>
+                    
+                    {% if current_user.is_authenticated %}
+                        <!-- Enlaces según el rol del usuario -->
+                        {% if current_user.role.name == 'admin' %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('main.admin_dashboard') }}">
+                                    <i class="fas fa-cog me-1"></i>Panel Admin
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                    <i class="fas fa-users me-1"></i>Gestión
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-users me-2"></i>Usuarios</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-book me-2"></i>Cursos</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-chart-bar me-2"></i>Reportes</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-muted" href="#"><i class="fas fa-info-circle me-2"></i>Próximamente</a></li>
+                                </ul>
+                            </li>
+                        {% elif current_user.role.name == 'teacher' %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('main.teacher_dashboard') }}">
+                                    <i class="fas fa-chalkboard-teacher me-1"></i>Mi Dashboard
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                    <i class="fas fa-book me-1"></i>Mis Cursos
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-eye me-2"></i>Ver Cursos</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-star me-2"></i>Calificaciones</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-check me-2"></i>Asistencia</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-muted" href="#"><i class="fas fa-info-circle me-2"></i>Próximamente</a></li>
+                                </ul>
+                            </li>
+                        {% elif current_user.role.name == 'student' %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('main.student_dashboard') }}">
+                                    <i class="fas fa-user-graduate me-1"></i>Mi Dashboard
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="fas fa-book-open me-1"></i>Mis Cursos
+                                    <small class="text-muted">(Próximamente)</small>
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                </ul>
+                
+                <!-- Enlaces de usuario (derecha) -->
+                <ul class="navbar-nav">
+                    {% if current_user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-user-circle me-1"></i>
+                                {% if current_user.username %}
+                                    {{ current_user.username }}
+                                {% else %}
+                                    Usuario
+                                {% endif %}
+                                {% if current_user.role %}
+                                    <span class="badge bg-light text-primary ms-1">{{ current_user.role.title() }}</span>
+                                {% endif %}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <a class="dropdown-item" href="{{ url_for('auth.profile') }}">
+                                        <i class="fas fa-user me-2"></i>Mi Perfil
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fas fa-key me-2"></i>Cambiar Contraseña
+                                        <small class="text-muted">(Próximamente)</small>
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item text-danger" href="{{ url_for('auth.logout') }}">
+                                        <i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('auth.login') }}">
+                                <i class="fas fa-sign-in-alt me-1"></i>Iniciar Sesión
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('auth.register') }}">
+                                <i class="fas fa-user-plus me-1"></i>Registrarse
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Mensajes Flash -->
+    <div class="container mt-3">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show" role="alert">
+                        {% if category == 'success' %}
+                            <i class="fas fa-check-circle me-2"></i>
+                        {% elif category == 'error' %}
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                        {% elif category == 'info' %}
+                            <i class="fas fa-info-circle me-2"></i>
+                        {% elif category == 'warning' %}
+                            <i class="fas fa-exclamation-circle me-2"></i>
+                        {% endif %}
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    {% endif %}
+    
+    <!-- Contenido principal -->
+    {% if not skip_main %}
+    <main class="container mt-4">
+        {% block content %}{% endblock %}
+    </main>
+    {% else %}
+        {% block full_width_content %}{% endblock %}
+    {% endif %}
+    
+    <!-- Footer solo si no es landing page -->
+    {% if not skip_main %}
+    <footer class="bg-light text-center text-muted py-4 mt-5">
+        <div class="container">
+            <p>&copy; 2025 EduControl - Sistema de Gestión Educativa</p>
+            {% if current_user.is_authenticated %}
+                <small>Conectado como: <strong>{{ current_user.username }}</strong>
+                {% if current_user.role %}
+                    ({{ current_user.role.title() }})
+                {% endif %}
+                </small>
+            {% endif %}
+        </div>
+    </footer>
+    {% endif %}
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- BLOQUE SCRIPTS AGREGADO AQUÍ -->
+    {% block scripts %}{% endblock %}
+</body>
+</html>

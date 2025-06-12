@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}Acceso Prohibido - EduControl{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-body text-center p-5">
+                    <!-- Icono de Error -->
+                    <div class="mb-4">
+                        <i class="fas fa-ban text-warning" style="font-size: 5rem;"></i>
+                    </div>
+                    
+                    <!-- Título del Error -->
+                    <h1 class="display-4 text-danger mb-3">403</h1>
+                    <h2 class="h4 text-dark mb-4">Acceso Prohibido</h2>
+                    
+                    <!-- Mensaje de Error -->
+                    <div class="alert alert-warning" role="alert">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <strong>¡Ups!</strong> No tienes permisos para acceder a esta página.
+                    </div>
+                    
+                    <!-- Descripción -->
+                    <p class="text-muted mb-4">
+                        Esta sección está restringida y requiere permisos especiales. 
+                        Si crees que esto es un error, contacta al administrador del sistema.
+                    </p>
+                    
+                    <!-- Información del Usuario -->
+                    {% if current_user.is_authenticated %}
+                    <div class="alert alert-info mb-4">
+                        <i class="fas fa-user me-2"></i>
+                        <strong>Usuario actual:</strong> {{ current_user.nombre }} {{ current_user.apellido }}
+                        <br>
+                        <small class="text-muted">Rol: {{ current_user.rol.title() }}</small>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Botones de Acción -->
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <a href="{{ url_for('main.index') }}" class="btn btn-primary btn-lg me-md-2">
+                            <i class="fas fa-home me-2"></i>
+                            Ir al Inicio
+                        </a>
+                        
+                        {% if current_user.is_authenticated %}
+                            <!-- Redirigir según el rol del usuario -->
+                            {% if current_user.rol == 'admin' %}
+                                <a href="{{ url_for('main.admin_dashboard') }}" class="btn btn-outline-primary btn-lg">
+                                    <i class="fas fa-tachometer-alt me-2"></i>
+                                    Mi Dashboard
+                                </a>
+                            {% elif current_user.rol == 'profesor' %}
+                                <a href="{{ url_for('main.teacher_dashboard') }}" class="btn btn-outline-primary btn-lg">
+                                    <i class="fas fa-chalkboard-teacher me-2"></i>
+                                    Mi Dashboard
+                                </a>
+                            {% elif current_user.rol == 'estudiante' %}
+                                <a href="{{ url_for('main.student_dashboard') }}" class="btn btn-outline-primary btn-lg">
+                                    <i class="fas fa-graduation-cap me-2"></i>
+                                    Mi Dashboard
+                                </a>
+                            {% endif %}
+                        {% else %}
+                            <a href="{{ url_for('auth.login') }}" class="btn btn-outline-primary btn-lg">
+                                <i class="fas fa-sign-in-alt me-2"></i>
+                                Iniciar Sesión
+                            </a>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Información de Contacto -->
+                    <div class="mt-4 pt-4 border-top">
+                        <p class="text-muted mb-2">
+                            <i class="fas fa-question-circle me-2"></i>
+                            ¿Necesitas ayuda?
+                        </p>
+                        <a href="{{ url_for('main.contact') }}" class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-envelope me-2"></i>
+                            Contactar Soporte
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Animación CSS -->
+<style>
+    .card {
+        animation: slideIn 0.5s ease-out;
+    }
+    
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .fas.fa-ban {
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+</style>
+{% endblock %}

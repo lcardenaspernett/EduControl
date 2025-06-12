@@ -1,0 +1,525 @@
+{% extends "base.html" %}
+{% set skip_main = true %}
+
+{% block head %}
+{{ super() }}
+<!-- Estilos específicos para la landing page -->
+<style>
+  /* Variables de color actualizadas */
+  :root {
+    --hero-gradient: linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%);
+    --feature-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    --color-secundario: #4A00E0;
+    --color-azul-hover: #3B82F6; /* Azul familia del púrpura */
+    --texto-blanco: #ffffff;
+    --texto-blanco-opacidad: rgba(255, 255, 255, 0.9);
+  }
+
+  /* Hero Section - Actualizado con gradiente morado */
+  .hero {
+    background: var(--hero-gradient);
+    color: white;
+    text-align: center;
+    padding: 5rem 0 6rem;
+    position: relative;
+    overflow: hidden;
+    margin-top: 80px; /* Espacio para el header fijo */
+  }
+
+  .hero h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  }
+
+  .hero p {
+    font-size: 1.4rem;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.95;
+    line-height: 1.6;
+  }
+
+  /* Header con botones de autenticación - FIJO */
+  .landing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background: linear-gradient(135deg, #1e293b, #334155);
+    color: var(--texto-blanco);
+    flex-wrap: wrap;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed; /* Hacer fijo */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Asegurar que esté por encima de otros elementos */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque */
+  }
+
+  .landing-logo {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.6rem;
+    letter-spacing: -0.5px;
+  }
+
+  .landing-logo-icon {
+    background: linear-gradient(135deg, var(--color-secundario), #0284c7);
+    color: var(--texto-blanco);
+    font-weight: 800;
+    padding: 0.6rem 0.8rem;
+    margin-right: 0.8rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+  }
+
+  .auth-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .auth-buttons .login {
+    text-decoration: none;
+    color: var(--texto-blanco);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    padding: 0.8rem 2rem;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--color-secundario), #3B82F6);
+    box-shadow: 0 4px 15px rgba(74, 0, 224, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+  }
+
+  .auth-buttons .login::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .auth-buttons .login:hover::before {
+    left: 100%;
+  }
+
+  .auth-buttons .login:hover {
+    background: linear-gradient(135deg, #3B82F6, var(--color-secundario));
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(74, 0, 224, 0.4);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  /* Features Section - Optimizada para 2 filas de 4 */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Exactamente 4 columnas */
+    gap: 1.5rem; /* Reducido el espacio entre tarjetas */
+    padding: 4rem 2rem; /* Reducido el padding */
+    background: linear-gradient(to bottom, #f8fafc, #ffffff);
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .feature-card {
+    background: white;
+    padding: 1.8rem 1.5rem; /* Reducido el padding interno */
+    border-radius: 16px; /* Reducido el border-radius */
+    text-align: center;
+    box-shadow: var(--feature-shadow);
+    transition: all 0.4s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+    height: fit-content; /* Altura automática */
+  }
+
+  /* Borde morado arriba */
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #8E2DE2, #4A00E0);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  /* Borde azul alrededor de toda la caja */
+  .feature-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid transparent;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--color-azul-hover), #60A5FA) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: subtract;
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask-composite: subtract;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .feature-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .feature-card:hover::after {
+    opacity: 1;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-10px) scale(1.02); /* Reducido el efecto hover */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    border-color: transparent; /* Quitar el border original en hover */
+  }
+
+  .feature-icon {
+    font-size: 3rem; /* Reducido el tamaño del icono */
+    margin-bottom: 1rem; /* Reducido el margin */
+    display: block;
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 1;
+  }
+
+  .feature-card:hover .feature-icon {
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  .feature-title {
+    font-size: 1.3rem; /* Reducido el tamaño del título */
+    font-weight: 700;
+    color: #1e40af;
+    margin-bottom: 0.8rem; /* Reducido el margin */
+    transition: color 0.3s ease;
+    position: relative;
+    z-index: 1;
+  }
+
+  .feature-card:hover .feature-title {
+    color: var(--color-secundario);
+  }
+
+  .feature-description {
+    color: #64748b;
+    line-height: 1.6; /* Reducido el line-height */
+    font-size: 0.9rem; /* Reducido el tamaño del texto */
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Animaciones escalonadas para las tarjetas */
+  .feature-card {
+    animation: slideInUp 0.8s ease-out both;
+  }
+
+  .feature-card:nth-child(1) { animation-delay: 0.1s; }
+  .feature-card:nth-child(2) { animation-delay: 0.2s; }
+  .feature-card:nth-child(3) { animation-delay: 0.3s; }
+  .feature-card:nth-child(4) { animation-delay: 0.4s; }
+  .feature-card:nth-child(5) { animation-delay: 0.5s; }
+  .feature-card:nth-child(6) { animation-delay: 0.6s; }
+  .feature-card:nth-child(7) { animation-delay: 0.7s; }
+  .feature-card:nth-child(8) { animation-delay: 0.8s; }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(60px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Footer personalizado para landing */
+  .landing-footer {
+    background: linear-gradient(135deg, #1e293b, #334155);
+    color: white;
+    text-align: center;
+    padding: 4rem 0 2rem;
+    margin-top: 0;
+  }
+
+  .footer-logo-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .footer-logo-icon {
+    background: linear-gradient(135deg, var(--color-secundario), #0284c7);
+    color: var(--texto-blanco);
+    font-weight: 800;
+    padding: 0.5rem 0.7rem;
+    margin-right: 0.8rem;
+    border-radius: 10px;
+    font-size: 1rem;
+  }
+
+  .footer-description {
+    opacity: 0.8;
+    margin-bottom: 1rem;
+  }
+
+  .footer-copyright {
+    opacity: 0.6;
+    font-size: 0.9rem;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1200px) {
+    .features {
+      grid-template-columns: repeat(3, 1fr); /* 3 columnas en pantallas medianas */
+    }
+  }
+
+  @media (max-width: 968px) {
+    .features {
+      grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+      gap: 1.2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      margin-top: 70px; /* Menos espacio en móvil */
+    }
+    
+    .hero h1 {
+      font-size: 2.8rem;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+    }
+    
+    .features {
+      grid-template-columns: 1fr; /* 1 columna en móvil */
+      padding: 3rem 1rem;
+    }
+    
+    .auth-buttons {
+      display: none;
+    }
+    
+    .mobile-auth {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2rem;
+    }
+    
+    .mobile-auth a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: white;
+      background: linear-gradient(135deg, var(--color-secundario), #3B82F6);
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 15px rgba(74, 0, 224, 0.3);
+    }
+
+    .mobile-auth a:hover {
+      background: linear-gradient(135deg, #3B82F6, var(--color-secundario));
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(74, 0, 224, 0.4);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .landing-header {
+      padding: 1rem;
+    }
+    
+    .landing-logo {
+      font-size: 1.4rem;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block full_width_content %}
+<!-- Header personalizado para landing -->
+<header class="landing-header">
+  <div class="landing-logo">
+    <div class="landing-logo-icon">📚</div>
+    EduControl
+  </div>
+  <div class="auth-buttons">
+    <a href="{{ url_for('auth.login') }}" class="login">
+      <span>🔐</span>
+      Iniciar Sesión
+    </a>
+  </div>
+</header>
+
+<!-- Hero principal -->
+<section class="hero">
+  <div class="container">
+    <h1>EduControl</h1>
+    <p>Tu plataforma integral para la gestión educativa.
+    Administra estudiantes, docentes, cursos y calificaciones desde un solo lugar, con eficiencia, simplicidad y control.</p>
+
+        <div class="mobile-auth d-md-none">
+      <a href="{{ url_for('auth.login') }}" class="login">
+        <span>🔐</span>
+        <label>Iniciar Sesión</label>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="feature-card">
+    <div class="feature-icon">📚</div>
+    <div class="feature-title">Gestión de Cursos</div>
+    <div class="feature-description">Administra materias, horarios y docentes fácilmente con herramientas intuitivas y eficientes.</div>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">👩‍🎓</div>
+    <div class="feature-title">Control de Estudiantes</div>
+    <div class="feature-description">Registra y consulta información académica completa de cada estudiante en tiempo real.</div>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">📝</div>
+    <div class="feature-title">Calificaciones</div>
+    <div class="feature-description">Sistematiza la evaluación con seguimiento detallado del progreso académico.</div>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">📊</div>
+    <div class="feature-title">Reportes</div>
+    <div class="feature-description">Genera informes detallados y estadísticas precisas para análisis institucional.</div>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">⚡</div>
+    <div class="feature-title">Eficiencia Total</div>
+    <div class="feature-description">Automatiza procesos académicos en un solo flujo de trabajo optimizado.</div>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">🔐</div>
+    <div class="feature-title">Seguridad</div>
+    <div class="feature-description">Acceso seguro y controlado por niveles con autenticación robusta.</div>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">🌐</div>
+    <div class="feature-title">Acceso Universal</div>
+    <div class="feature-description">Consulta y gestiona datos desde cualquier dispositivo, en cualquier momento.</div>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">📱</div>
+    <div class="feature-title">Diseño Adaptativo</div>
+    <div class="feature-description">Funciona perfectamente en celulares, tablets y laptops sin complicaciones.</div>
+  </div>
+</section>
+
+<!-- Footer personalizado para landing -->
+<footer class="landing-footer">
+  <div class="container">
+    <div class="footer-logo-section">
+      <div class="footer-logo-icon">📚</div>
+      EduControl
+    </div>
+    <p class="footer-description">Sistema integral de gestión educativa</p>
+    <p class="footer-copyright">© 2025 EduControl. Todos los derechos reservados.</p>
+  </div>
+</footer>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+  // Funcionalidad mejorada para la landing page
+  console.log('EduControl landing page cargada correctamente.');
+  
+  // Smooth scroll para enlaces internos
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
+  // Animación de aparición cuando se hace scroll
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+
+  // Observar las tarjetas de características
+  document.querySelectorAll('.feature-card').forEach(card => {
+    observer.observe(card);
+  });
+
+  // Efecto de paralaje sutil en el hero (sin afectar el header fijo)
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const hero = document.querySelector('.hero');
+    if (hero && scrolled < hero.offsetHeight) {
+      // Solo aplicar paralaje mientras el hero esté visible
+      hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+    }
+  });
+
+  // Efecto de transparencia del header al hacer scroll
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('.landing-header');
+    const scrolled = window.pageYOffset;
+    
+    if (scrolled > 50) {
+      header.style.background = 'linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(51, 65, 85, 0.95))';
+      header.style.backdropFilter = 'blur(15px)';
+    } else {
+      header.style.background = 'linear-gradient(135deg, #1e293b, #334155)';
+      header.style.backdropFilter = 'blur(10px)';
+    }
+  });
+</script>
+{% endblock %}

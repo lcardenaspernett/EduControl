@@ -1,0 +1,345 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Profesor{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">
+                    <i class="fas fa-chalkboard-teacher me-2"></i>Dashboard del Profesor
+                </h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group me-2">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">
+                            <i class="fas fa-calendar me-1"></i>Hoy
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Estadísticas del Profesor -->
+    <div class="row mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-start border-success border-4 shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Mis Cursos
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                {{ estadisticas.total_cursos }}
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-book fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-start border-primary border-4 shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Total Estudiantes
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                {{ estadisticas.total_estudiantes }}
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-start border-info border-4 shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                Clases Hoy
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                5
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar-day fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-start border-warning border-4 shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                Tareas Pendientes
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                12
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-tasks fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Acciones Rápidas -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        <i class="fas fa-bolt me-2"></i>Acciones Rápidas
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 mb-3">
+                            <a href="{{ url_for('attendance.take_attendance') }}" class="btn btn-primary btn-lg w-100">
+                                <i class="fas fa-calendar-check fa-2x mb-2 d-block"></i>
+                                Tomar Asistencia
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-md-6 mb-3">
+                            <a href="{{ url_for('grades.add_grade') }}" class="btn btn-success btn-lg w-100">
+                                <i class="fas fa-plus-circle fa-2x mb-2 d-block"></i>
+                                Agregar Calificación
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-md-6 mb-3">
+                            <a href="{{ url_for('courses.my_courses') }}" class="btn btn-info btn-lg w-100">
+                                <i class="fas fa-book-open fa-2x mb-2 d-block"></i>
+                                Mis Cursos
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-md-6 mb-3">
+                            <a href="{{ url_for('reports.teacher_reports') }}" class="btn btn-warning btn-lg w-100">
+                                <i class="fas fa-chart-bar fa-2x mb-2 d-block"></i>
+                                Reportes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Mis Cursos -->
+        <div class="col-xl-8 col-lg-7">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        <i class="fas fa-book me-2"></i>Mis Cursos Asignados
+                    </h6>
+                    <a href="{{ url_for('courses.my_courses') }}" class="btn btn-sm btn-primary">Ver todos</a>
+                </div>
+                <div class="card-body">
+                    {% if estadisticas.cursos_asignados %}
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Curso</th>
+                                        <th>Código</th>
+                                        <th>Estudiantes</th>
+                                        <th>Horario</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for curso in estadisticas.cursos_asignados[:5] %}
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="course-avatar me-3">
+                                                    <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                                        <i class="fas fa-book text-white"></i>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="font-weight-bold">{{ curso.nombre }}</div>
+                                                    <div class="text-muted small">{{ curso.descripcion[:50] }}...</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-secondary">{{ curso.codigo }}</span>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-info">{{ curso.estudiantes|length if curso.estudiantes else 0 }}</span>
+                                        </td>
+                                        <td>
+                                            <small class="text-muted">{{ curso.horario if curso.horario else 'Por definir' }}</small>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm">
+                                                <a href="{{ url_for('courses.view_course', id=curso.id) }}" class="btn btn-outline-primary btn-sm">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a href="{{ url_for('attendance.course_attendance', course_id=curso.id) }}" class="btn btn-outline-success btn-sm">
+                                                    <i class="fas fa-calendar-check"></i>
+                                                </a>
+                                                <a href="{{ url_for('grades.course_grades', course_id=curso.id) }}" class="btn btn-outline-warning btn-sm">
+                                                    <i class="fas fa-star"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="text-center py-4">
+                            <i class="fas fa-book fa-3x text-muted mb-3"></i>
+                            <h5 class="text-muted">No tienes cursos asignados</h5>
+                            <p class="text-muted">Contacta al administrador para que te asigne cursos.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Horario del Día -->
+        <div class="col-xl-4 col-lg-5">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        <i class="fas fa-clock me-2"></i>Horario de Hoy
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="schedule-item mb-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-1">Matemáticas I</h6>
+                                <small class="text-muted">Aula 101</small>
+                            </div>
+                            <div class="text-end">
+                                <div class="badge bg-success">08:00 - 09:30</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="schedule-item mb-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-1">Física II</h6>
+                                <small class="text-muted">Laboratorio A</small>
+                            </div>
+                            <div class="text-end">
+                                <div class="badge bg-warning">10:00 - 11:30</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="schedule-item mb-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-1">Química General</h6>
+                                <small class="text-muted">Aula 205</small>
+                            </div>
+                            <div class="text-end">
+                                <div class="badge bg-info">14:00 - 15:30</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="text-center">
+                        <a href="{{ url_for('schedule.my_schedule') }}" class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-calendar me-1"></i>Ver horario completo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recordatorios -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-warning">
+                        <i class="fas fa-bell me-2"></i>Recordatorios
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="reminder-item mb-3 p-2 bg-light rounded">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-exclamation-circle text-warning me-2"></i>
+                            <div>
+                                <small><strong>Entrega de notas</strong></small>
+                                <br>
+                                <small class="text-muted">Matemáticas I - Vence mañana</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="reminder-item mb-3 p-2 bg-light rounded">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-info-circle text-info me-2"></i>
+                            <div>
+                                <small><strong>Reunión de profesores</strong></small>
+                                <br>
+                                <small class="text-muted">Viernes 15:00 - Sala de juntas</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button class="btn btn-outline-warning btn-sm">
+                            <i class="fas fa-plus me-1"></i>Agregar recordatorio
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.schedule-item {
+    padding: 10px;
+    border-left: 3px solid #e3e6f0;
+    transition: border-color 0.3s;
+}
+
+.schedule-item:hover {
+    border-left-color: #4e73df;
+    background-color: #f8f9fc;
+}
+
+.reminder-item {
+    transition: transform 0.2s;
+}
+
+.reminder-item:hover {
+    transform: translateX(5px);
+}
+
+.course-avatar {
+    flex-shrink: 0;
+}
+</style>
+{% endblock %}

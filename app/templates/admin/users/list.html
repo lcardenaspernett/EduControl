@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block title %}Usuarios - Administración{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">
+                    <i class="fas fa-users me-2"></i>Gestión de Usuarios
+                </h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group me-2">
+                        <a href="{{ url_for('main.admin_dashboard') }}" class="btn btn-sm btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-1"></i>Volver al Dashboard
+                        </a>
+                        <button type="button" class="btn btn-sm btn-primary">
+                            <i class="fas fa-plus me-1"></i>Nuevo Usuario
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Lista de Usuarios</h5>
+                </div>
+                <div class="card-body">
+                    {% if usuarios %}
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Usuario</th>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Rol</th>
+                                    <th>Estado</th>
+                                    <th>Fecha Creación</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for usuario in usuarios %}
+                                <tr>
+                                    <td>{{ usuario.id }}</td>
+                                    <td>{{ usuario.username }}</td>
+                                    <td>{{ usuario.nombre }}</td>
+                                    <td>{{ usuario.email }}</td>
+                                    <td>
+                                        <span class="badge bg-{% if usuario.rol == 'admin' %}danger{% elif usuario.rol == 'profesor' %}primary{% else %}success{% endif %}">
+                                            {{ usuario.rol.title() }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-{% if usuario.activo %}success{% else %}secondary{% endif %}">
+                                            {% if usuario.activo %}Activo{% else %}Inactivo{% endif %}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        {% if usuario.fecha_creacion %}
+                                            {{ usuario.fecha_creacion.strftime('%d/%m/%Y') }}
+                                        {% else %}
+                                            N/A
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <button type="button" class="btn btn-sm btn-outline-primary" title="Editar">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-outline-danger" title="Eliminar">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="text-center py-4">
+                        <i class="fas fa-users fa-3x text-muted mb-3"></i>
+                        <h5>No hay usuarios registrados</h5>
+                        <p class="text-muted">Comienza creando el primer usuario del sistema.</p>
+                        <button type="button" class="btn btn-primary">
+                            <i class="fas fa-plus me-1"></i>Crear Primer Usuario
+                        </button>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard de Estudiante - EduControl{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Tarjetas de estadísticas -->
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Cursos Inscripción</h5>
+                    <h2 class="card-text text-primary">{{ stats.total_cursos }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Créditos Totales</h5>
+                    <h2 class="card-text text-success">{{ stats.total_creditos }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Promedio</h5>
+                    <h2 class="card-text text-warning">{{ stats.promedio_general }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Asistencia</h5>
+                    <h2 class="card-text text-info">{{ stats.porcentaje_asistencia }}%</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mis cursos -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Mis Cursos</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Curso</th>
+                                    <th>Profesor</th>
+                                    <th>Calificación</th>
+                                    <th>Asistencia</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for inscripcion in inscripciones %}
+                                <tr>
+                                    <td>{{ inscripcion.curso.nombre }}</td>
+                                    <td>{{ inscripcion.curso.profesor.first_name }} {{ inscripcion.curso.profesor.last_name }}</td>
+                                    <td>
+                                        {% if inscripcion.calificacion %}
+                                        {{ inscripcion.calificacion.nota }}
+                                        {% else %}
+                                        <span class="text-muted">Sin calificar</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if inscripcion.asistencia %}
+                                        {{ inscripcion.asistencia.porcentaje }}%
+                                        {% else %}
+                                        <span class="text-muted">Sin datos</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard de Profesor - EduControl{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Tarjetas de estadísticas -->
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Cursos Asignados</h5>
+                    <h2 class="card-text text-primary">{{ stats.total_cursos }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Estudiantes</h5>
+                    <h2 class="card-text text-success">{{ stats.total_estudiantes }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Calificaciones Pendientes</h5>
+                    <h2 class="card-text text-warning">{{ stats.calificaciones_pendientes }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Asistencia</h5>
+                    <h2 class="card-text text-info">{{ stats.asistencia_pendiente }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mis cursos -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Mis Cursos</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Sección</th>
+                                    <th>Estudiantes</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for curso in cursos %}
+                                <tr>
+                                    <td>{{ curso.nombre }}</td>
+                                    <td>{{ curso.seccion }}</td>
+                                    <td>{{ curso.estudiantes.count() }}</td>
+                                    <td>
+                                        {% if curso.activo %}
+                                        <span class="badge bg-success">Activo</span>
+                                        {% else %}
+                                        <span class="badge bg-secondary">Inactivo</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

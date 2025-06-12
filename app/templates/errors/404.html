@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block title %}Página no encontrada - EduControl{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="text-center mt-5">
+                <!-- Error 404 Icon -->
+                <div class="error-404-icon mb-4">
+                    <i class="bi bi-exclamation-triangle-fill text-warning" style="font-size: 8rem;"></i>
+                </div>
+                
+                <!-- Error Message -->
+                <div class="error-content">
+                    <h1 class="display-1 text-primary font-weight-bold">404</h1>
+                    <h2 class="h3 text-gray-900 mb-4">¡Página no encontrada!</h2>
+                    <p class="text-gray-600 mb-4">
+                        Lo sentimos, la página que estás buscando no existe o ha sido movida.
+                        <br>
+                        Verifica la URL o regresa a la página principal.
+                    </p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="error-actions mb-5">
+                    <a href="/" class="btn btn-primary btn-lg me-3">
+                        <i class="bi bi-house-fill me-2"></i>Ir al Inicio
+                    </a>
+                    <button onclick="history.back()" class="btn btn-outline-secondary btn-lg">
+                        <i class="bi bi-arrow-left me-2"></i>Volver Atrás
+                    </button>
+                </div>
+
+                <!-- Additional Help -->
+                <div class="error-help">
+                    <div class="card bg-light border-0">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">
+                                <i class="bi bi-question-circle-fill me-2"></i>¿Necesitas ayuda?
+                            </h5>
+                            <p class="card-text text-muted mb-3">
+                                Si crees que esto es un error, puedes:
+                            </p>
+                            <div class="row text-center">
+                                <div class="col-md-4 mb-3">
+                                    <div class="help-option">
+                                        <i class="bi bi-envelope-fill text-primary h4"></i>
+                                        <h6 class="mt-2">Contactar Soporte</h6>
+                                        <a href="/contact" class="btn btn-sm btn-outline-primary">
+                                            Enviar Mensaje
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="help-option">
+                                        <i class="bi bi-telephone-fill text-success h4"></i>
+                                        <h6 class="mt-2">Llamar</h6>
+                                        <a href="tel:+573001234567" class="btn btn-sm btn-outline-success">
+                                            (300) 123-4567
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="help-option">
+                                        <i class="bi bi-info-circle-fill text-info h4"></i>
+                                        <h6 class="mt-2">Ver FAQ</h6>
+                                        <a href="#" class="btn btn-sm btn-outline-info">
+                                            Preguntas Frecuentes
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.error-404-icon {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+.display-1 {
+    font-size: 4.5rem;
+    line-height: 1.2;
+}
+
+.error-content h1 {
+    margin-bottom: 0.5rem;
+}
+
+.help-option {
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.help-option:hover {
+    transform: translateY(-5px);
+}
+
+.help-option i {
+    margin-bottom: 1rem;
+}
+
+.error-actions .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+}
+
+.error-help .card {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.error-help .card-title {
+    margin-bottom: 1.5rem;
+}
+
+.error-help .btn {
+    width: 100%;
+}
+
+@media (max-width: 575.98px) {
+    .error-404-icon {
+        font-size: 5rem;
+    }
+    
+    .display-1 {
+        font-size: 3.5rem;
+    }
+}
+</style>
+{% endblock %}

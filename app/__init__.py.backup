@@ -1,0 +1,140 @@
+import os
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
+from flask_migrate import Migrate
+
+# Inicializar extensiones
+db = SQLAlchemy()
+login_manager = LoginManager()
+migrate = Migrate()
+
+def create_app():
+    app = Flask(__name__,
+                template_folder=os.path.join(os.path.dirname(__file__), 'templates'))
+    
+    # Configuración de la aplicación
+    app.config['SECRET_KEY'] = 'tu-clave-secreta-aqui'  # ¡CAMBIAR en producción!
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///educontrol.db'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    
+    # Configuración para JWT (nuevo)
+    app.config['JWT_SECRET_KEY'] = 'jwt-secret-string'  # ¡CAMBIAR en producción!
+    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = 3600  # 1 hora
+    
+    # Inicializar extensiones con la app
+    db.init_app(app)
+    migrate.init_app(app, db)
+    login_manager.init_app(app)
+    
+    # Configurar Flask-Login
+    login_manager.login_view = 'auth.login'  # Cambiar a blueprint
+    login_manager.login_message = 'Por favor inicia sesión para acceder a esta página.'
+    login_manager.login_message_category = 'info'
+    
+    # Importar los modelos
+    from app.models.models import User as Usuario
+    
+    @login_manager.user_loader
+    def load_user(user_id):
+        return Usuario.query.get(int(user_id))
+    
+    # ==================== REGISTRAR BLUEPRINTS NUEVOS ====================
+    
+    # 1. Blueprint de autenticación (YA MIGRADO)
+    from app.blueprints.auth import auth_bp
+    app.register_blueprint(auth_bp, url_prefix='/auth')
+    
+    # 2. Blueprints que se crearán después
+    try:
+        from app.blueprints.admin import admin_bp
+        app.register_blueprint(admin_bp, url_prefix='/admin')
+    except ImportError:
+        print("Admin blueprint no disponible aún - se creará después")
+    
+    try:
+        from app.blueprints.teacher import teacher_bp
+        app.register_blueprint(teacher_bp, url_prefix='/teacher')
+    except ImportError:
+        print("Teacher blueprint no disponible aún - se creará después")
+    
+    try:
+        from app.blueprints.student import student_bp
+        app.register_blueprint(student_bp, url_prefix='/student')
+    except ImportError:
+        print("Student blueprint no disponible aún - se creará después")
+    
+    # 3. API Blueprints
+    try:
+        from app.blueprints.api.v1 import api_v1_bp
+        app.register_blueprint(api_v1_bp, url_prefix='/api/v1')
+    except ImportError:
+        print("API v1 blueprint no disponible aún - se creará después")
+    
+    # ==================== MANTENER RUTAS EXISTENTES (TEMPORALMENTE) ====================
+    
+    # Mantener tus rutas actuales mientras migramos
+    try:
+        from app.routes.main import main
+        app.register_blueprint(main)
+    except ImportError:
+        print("Main routes no encontradas")
+    
+    # Mantener admin routes SI NO está migrado aún
+    try:
+        from app.routes import admin
+        # Solo registrar si no existe el blueprint nuevo
+        if not any(bp.name == 'admin' for bp in app.blueprints.values()):
+            admin.init_app(app)  # O como tengas configurado actualmente
+    except ImportError:
+        pass
+    
+    # Lo mismo para otras rutas existentes
+    try:
+        from app.routes import course, grade, attendance, user
+        # Registrar temporalmente hasta que se migren
+        course.init_app(app) if hasattr(course, 'init_app') else None
+        grade.init_app(app) if hasattr(grade, 'init_app') else None
+        attendance.init_app(app) if hasattr(attendance, 'init_app') else None
+        user.init_app(app) if hasattr(user, 'init_app') else None
+    except ImportError:
+        pass
+    
+    # ==================== MANEJADORES DE ERRORES ====================
+    
+    @app.errorhandler(404)
+    def not_found_error(error):
+        return render_template('errors/404.html'), 404
+    
+    @app.errorhandler(403)
+    def forbidden_error(error):
+        return render_template('errors/403.html'), 403
+    
+    @app.errorhandler(500)
+    def internal_error(error):
+        db.session.rollback()
+        return render_template('errors/500.html'), 500
+    
+    # ==================== FILTROS Y FUNCIONES TEMPLATE ====================
+    
+    @app.template_filter('datetime')
+    def datetime_filter(value, format='%Y-%m-%d %H:%M'):
+        """Filtro para formatear fechas en templates"""
+        if value is None:
+            return ""
+        return value.strftime(format)
+    
+    @app.context_processor
+    def utility_processor():
+        """Variables globales para templates"""
+        return {
+            'current_year': datetime.now().year,
+            'app_name': 'EduControl'
+        }
+    
+    return app
+
+# Para compatibilidad con versiones anteriores
+def init_app(app):
+    """Función de inicialización legacy (si la usas en algún lugar)"""
+    pass

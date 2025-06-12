@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Administrador</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-purple: #8b5cf6;
+            --secondary-purple: #a855f7;
+            --light-purple: #c4b5fd;
+            --dark-purple: #7c3aed;
+            --gradient-purple: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+            --bg-light: #f8fafc;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            background: var(--bg-light);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: var(--text-primary);
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 280px;
+            background: var(--bg-card);
+            border-right: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem;
+            background: var(--gradient-purple);
+            color: white;
+            text-align: center;
+        }
+
+        .sidebar-header h5 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .nav-section {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-section-title {
+            padding: 0 1.5rem 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+        }
+
+        .nav-link:hover {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--primary-purple);
+            transform: translateX(4px);
+        }
+
+        .nav-link.active {
+            background: rgba(139, 92, 246, 0.15);
+            color: var(--primary-purple);
+            border-right: 3px solid var(--primary-purple);
+        }
+
+        .nav-link i {
+            width: 20px;
+            margin-right: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .logout-btn {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            border: none;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            margin: 1rem;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            width: calc(100% - 2rem);
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+            color: white;
+        }
+
+        .main-content {
+            margin-left: 280px;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .header-section {
+            background: var(--gradient-purple);
+            border-radius: 16px;
+            color: white;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .header-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .modern-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .modern-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: none;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-card .card-body {
+            padding: 2rem;
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .stat-primary { background: var(--gradient-purple); }
+        .stat-success { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+        .stat-info { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }
+        .stat-warning { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .stat-trend {
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary-purple), var(--light-purple));
+            border-radius: 1px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: -18px;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 3px solid var(--bg-card);
+            box-shadow: var(--shadow);
+        }
+
+        .timeline-content {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            margin-left: 1rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .export-btn, .create-btn {
+            background: var(--gradient-purple);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .export-btn:hover, .create-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow);
+            color: white;
+        }
+
+        .user-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--gradient-purple);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid var(--bg-card);
+        }
+
+        .status-online { background: #10b981; }
+        .status-away { background: #f59e0b; }
+        .status-offline { background: #6b7280; }
+
+        .menu-toggle {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1100;
+            background: var(--gradient-purple);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            padding: 0.75rem;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow);
+            display: none;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .table-modern {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .table-modern th {
+            background: var(--gradient-purple);
+            color: white;
+            font-weight: 600;
+            border: none;
+            padding: 1rem;
+        }
+
+        .table-modern td {
+            padding: 1rem;
+            border-color: var(--border-color);
+        }
+
+        .btn-action {
+            padding: 0.25rem 0.5rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            margin: 0 0.125rem;
+        }
+
+        .alert-modern {
+            border: none;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-modern .modal-content {
+            border: none;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-modern .modal-header {
+            background: var(--gradient-purple);
+            color: white;
+            border: none;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 0 0.2rem rgba(139, 92, 246, 0.25);
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 1rem;
+            height: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+        }
+
+        .toast-custom {
+            border-radius: 12px;
+            border: none;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .toast-success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        .toast-error {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 1001;
+            }
+            
+            .sidebar.show {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding-top: 4rem;
+            }
+            
+            .header-section {
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Menu Toggle Button -->
+    <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h5><i class="fas fa-tachometer-alt me-2"></i>Dashboard Admin</h5>
+        </div>
+        
+        <nav>
+            <div class="nav-section">
+                <div class="nav-section-title">Principal</div>
+                <button class="nav-link active" data-section="dashboard"><i class="fas fa-home"></i>Inicio</button>
+                <button class="nav-link" data-section="stats"><i class="fas fa-chart-bar"></i>Estadísticas</button>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Usuarios</div>
+                <button class="nav-link" data-section="users"><i class="fas fa-users"></i>Gestionar Usuarios</button>
+                <button class="nav-link" data-section="create-user"><i class="fas fa-user-plus"></i>Crear Usuario</button>
+                <button class="nav-link" data-section="students"><i class="fas fa-user-graduate"></i>Estudiantes</button>
+                <button class="nav-link" data-section="teachers"><i class="fas fa-chalkboard-teacher"></i>Profesores</button>
+                <button class="nav-link" data-section="parents"><i class="fas fa-user-tie"></i>Padres</button>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Académico</div>
+                <button class="nav-link" data-section="courses"><i class="fas fa-book"></i>Cursos</button>
+                <button class="nav-link" data-section="create-course"><i class="fas fa-plus-circle"></i>Crear Curso</button>
+                <button class="nav-link" data-section="periods"><i class="fas fa-calendar-alt"></i>Períodos</button>
+                <button class="nav-link" data-section="schedules"><i class="fas fa-clock"></i>Horarios</button>
+                <button class="nav-link" data-section="evaluations"><i class="fas fa-clipboard-check"></i>Evaluaciones</button>
+                <button class="nav-link" data-section="grades"><i class="fas fa-star"></i>Notas</button>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Reportes</div>
+                <button class="nav-link" data-section="performance"><i class="fas fa-chart-line"></i>Rendimiento</button>
+                <button class="nav-link" data-section="reports"><i class="fas fa-file-alt"></i>Boletines</button>
+                <button class="nav-link" data-section="attendance"><i class="fas fa-calendar-check"></i>Asistencia</button>
+                <button class="nav-link" data-section="export"><i class="fas fa-download"></i>Exportar</button>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Sistema</div>
+                <button class="nav-link" data-section="settings"><i class="fas fa-cog"></i>Configuración</button>
+                <button class="nav-link" data-section="notifications"><i class="fas fa-bell"></i>Notificaciones</button>
+                <button class="nav-link" data-section="security"><i class="fas fa-shield-alt"></i>Seguridad</button>
+                <button class="nav-link" data-section="backup"><i class="fas fa-database"></i>Respaldos</button>
+            </div>
+        </nav>
+
+        <!-- Logout Button -->
+        <a href="#" class="logout-btn" onclick="handleLogout(event)">
+            <i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión
+        </a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Alert Container -->
+        <div id="alertContainer"></div>
+
+        <!-- Dashboard Section -->
+        <div id="dashboard" class="content-section active">
+            <!-- Header Section -->
+            <div class="header-section">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h1 class="header-title">Bienvenido al Dashboard</h1>
+                        <p class="mb-0 opacity-75">Gestiona tu plataforma educativa</p>
+                    </div>
+                    <button class="export-btn">
+                        <i class="fas fa-download me-2"></i>Exportar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Estadísticas -->
+            <div class="row g-4 mb-4">
+                <div class="col-xl-3 col-md-6">
+                    <div class="stat-card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>
+                                    <div class="stat-label mb-2">Total Usuarios</div>
+                                    <div class="stat-number" id="totalUsers">{{ total_usuarios }}</div>
+                                    <div class="stat-trend mt-2">
+                                        <i class="fas fa-arrow-up me-1"></i>+12%
+                                    </div>
+                                </div>
+                                <div class="stat-icon stat-primary">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="stat-card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>
+                                    <div class="stat-label mb-2">Estudiantes</div>
+                                    <div class="stat-number" id="totalStudents">{{ total_estudiantes }}</div>
+                                    <div class="stat-trend mt-2">
+                                        <i class="fas fa-arrow-up me-1"></i>+8%
+                                    </div>
+                                </div>
+                                <div class="stat-icon stat-success">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="stat-card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>
+                                    <div class="stat-label mb-2">Profesores</div>
+                                    <div class="stat-number" id="totalTeachers">{{ total_profesores }}</div>
+                                    <div class="stat-trend mt-2">
+                                        <i class="fas fa-arrow-up me-1"></i>+3%
+                                    </div>
+                                </div>
+                                <div class="stat-icon stat-info">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="stat-card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>
+                                    <div class="stat-label mb-2">Total Cursos</div>
+                                    <div class="stat-number" id="totalCourses">{{ total_cursos }}</div>
+                                    <div class="stat-trend mt-2">
+                                        <i class="fas fa-arrow-up me-1"></i>+5%
+                                    </div>
+                                </div>
+                                <div class="stat-icon stat-warning">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actividad y Usuarios -->
+            <div class="row g-4">
+                <div class="col-xl-8">
+                    <div class="modern-card">
+                        <div class="card-body p-4">
+                            <h2 class="section-title">
+                                <i class="fas fa-clock"></i>Actividad Reciente
+                            </h2>
+                            <div class="timeline" id="recentActivity">
+                                <div class="timeline-item">
+                                    <div class="timeline-marker stat-success"></div>
+                                    <div class="timeline-content">
+                                        <h6 class="fw-semibold">Sistema iniciado</h6>
+                                        <p class="text-muted mb-2">Dashboard de administración activo</p>
+                                        <small class="text-muted"><i class="fas fa-clock me-1"></i>Ahora</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-4">
+                    <div class="modern-card">
+                        <div class="card-body p-4">
+                            <h2 class="section-title">
+                                <i class="fas fa-user-check"></i>Usuarios Activos
+                            </h2>
+                            
+                            <div class="d-flex align-items-center justify-content-between mb-3 p-3 rounded-3" style="background: rgba(139, 92, 246, 0.05);">
+                                <div class="d-flex align-items-center">
+                                    <div class="user-avatar me-3">AD</div>
+                                    <div>
+                                        <div class="fw-semibold">Administrador</div>
+                                        <small class="text-muted">Conectado ahora</small>
+                                    </div>
+                                </div>
+                                <div class="status-indicator status-online"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Crear Usuario Section -->
+        <div id="create-user" class="content-section">
+            <div class="header-section">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h1 class="header-title">Crear Usuario</h1>
+                        <p class="mb-0 opacity-75">Registra nuevos estudiantes y profesores</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-xl-8">
+                    <div class="modern-card">
+                        <div class="card-body p-4">
+                            <form id="createUserForm">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="nombre" class="form-label fw-semibold">Nombre</label>
+                                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="apellido" class="form-label fw-semibold">Apellido</label>
+                                        <input type="text" class="form-control" id="apellido" name="apellido" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label fw-semibold">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email" required>
+                                        <div class="invalid-feedback" id="emailError"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="username" class="form-label fw-semibold">Usuario</label>
+                                        <input type="text" class="form-control" id="username" name="username" required>
+                                        <div class="invalid-feedback" id="usernameError"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="password" class="form-label fw-semibold">Contraseña</label>
+                                        <input type="password" class="form-control" id="password" name="password" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="confirm_password" class="form-label fw-semibold">Confirmar Contraseña</label>
+                                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                                        <div class="invalid-feedback" id="passwordError"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="rol" class="form-label fw-semibold">Rol</label>
+                                        <select class="form-select" id="rol" name="rol" required>
+                                            <option value="">Seleccionar rol</option>
+                                            <option value="estudiante">Estudiante</option>
+                                            <option value="profesor">Profesor</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="telefono" class="form-label fw-semibold">Teléfono</label>
+                                        <input type="tel" class="form-control" id="telefono" name="telefono">
+                                    </div>
+                                    
+                                    <!-- Campos específicos para estudiantes -->
+                                    <div id="studentFields" class="row g-3" style="display: none;">
+                                        <div class="col-12">
+                                            <hr class="my-3">
+                                            <h6 class="text-muted mb-3">Información del Estudiante</h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="fecha_nacimiento" class="form-label fw-semibold">Fecha de Nacimiento</label>
+                                            <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="grado" class="form-label fw-semibold">Grado</label>
+                                            <input type="text" class="form-control" id="grado" name="grado">
+                                        </div>
+                                    </div>
+
+                                    <!-- Campos específicos para profesores -->
+                                    <div id="teacherFields" class="row g-3" style="display: none;">
+                                        <div class="col-12">
+                                            <hr class="my-3">
+                                            <h6 class="text-muted mb-3">Información del Profesor</h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="especialidad" class="form-label fw-semibold">Especialidad</label>
+                                            <input type="text" class="form-control" id="especialidad" name="especialidad">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="fecha_contratacion" class="form-label fw-semibold">Fecha de Contratación</label>
+                                            <input type="date" class="form-control" id="fecha_contratacion" name="fecha_contratacion">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <hr class="my-3">
+                                        <div class="d-flex gap-2">
+                                            <button type="submit" class="create-btn" id="submitBtn">
+                                                <i class="fas fa-user-plus me-2"></i>Crear Usuario
+                                            </button>
+                                            <button type="button" class="btn btn-outline-secondary" onclick="resetForm()">
+                                                <i class="fas fa-undo me-2"></i>Limpiar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gestionar Usuarios Section -->
+        <div id="users" class="content-section">
+            <div class="header-section">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h1 class="header-title">Gestionar Usuarios</h1>
+                        <p class="mb-0 opacity-75">Administra todos los usuarios del sistema</p>
+                    </div>
+                    <button class="export-btn" onclick="exportUsers()">
+                        <i class="fas fa-download me-2"></i>Exportar
+                    </button>
+                </div>
+            </div>
+
+            <div class="modern-card">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="section-title">
+                            <i class="fas fa-users me-2"></i>Lista de Usuarios
+                        </h2>
+                        <div class="input-group" style="max-width: 300px;">
+                            <input type="text" class="form-control" placeholder="Buscar usuario..." id="userSearch">
+                            <button class="btn btn-outline-secondary" type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-modern table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Rol</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody">
+                                <!-- Users will be loaded here dynamically -->
+                                <tr>
+                                    <td>1</td>
+                                    <td>Juan Pérez</td>
+                                    <td>juan@example.com</td>
+                                    <td><span class="badge bg-primary">Estudiante</span></td>
+                                    <td><span class="badge bg-success">Activo</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-action btn-primary" title="Editar">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-action btn-danger" title="Eliminar">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>María García</td>
+                                    <td>maria@example.com</td>
+                                    <td><span class="badge bg-warning">Profesor</span></td>
+                                    <td><span class="badge bg-success">Activo</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-action btn-primary" title="Editar">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-action btn-danger" title="Eliminar">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <nav class="mt-4">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Siguiente</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- Estadísticas Section -->
+        <div id="stats" class="content-section">
+            <div class="header-section">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h1 class="header-title">Estadísticas</h1>
+                        <p class="mb-0 opacity-75">Métricas y análisis de la plataforma</p>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-outline-light">Hoy</button>
+                        <button class="btn btn-outline-light">Semana</button>
+                        <button class="btn btn-outline-light active">Mes</button>
+                        <button class="btn btn-outline-light">Año</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-xl-8">
+                    <div class="modern-card">
+                        <div class="card-body p-4">
+                            <h2 class="section-title">
+                                <i class="fas fa-chart-line me-2"></i>Actividad de Usuarios
+                            </h2>
+                            <div id="userActivityChart" style="height: 300px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-4">
+                    <div class="modern-card">
+                        <div class="card-body p-4">
+                            <h2 class="section-title">
+                                <i class="fas fa-chart-pie me-2"></i>Distribución de Roles
+                            </h2>
+                            <div id="rolesDistributionChart" style="height: 300px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-6">
+                    <div class="modern-card">
+                        <div class="card-body p-4">
+                            <h2 class="section-title">
+                                <i class="fas fa-calendar-check me-2"></i>Asistencia Mensual
+                            </h2>
+                            <div id="attendanceChart" style="height: 300px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-6">
+                    <div class="modern-card">
+                        <div class="card-body p-4">
+                            <h2 class="section-title">
+                                <i class="fas fa-star me-2"></i>Rendimiento Académico
+                            </h2>
+                            <div id="performanceChart" style="height: 300px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cursos Section -->
+        <div id="courses" class="content-section">
+            <div class="header-section">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h1 class="header-title">Gestión de Cursos</h1>
+                        <p class="mb-0 opacity-75">Administra los cursos académicos</p>
+                    </div>
+                    <button class="create-btn" onclick="showCreateCourseModal()">
+                        <i class="fas fa-plus-circle me-2"></i>Nuevo Curso
+                    </button>
+                </div>
+            </div>
+
+            <div class="modern-card">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="section-title">
+                            <i class="fas fa-book me-2"></i>Lista de Cursos
+                        </h2>
+                        <div class="input-group" style="max-width: 300px;">
+                            <input type="text" class="form-control" placeholder="Buscar curso..." id="courseSearch">
+                            <button class="btn btn-outline-secondary" type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-modern table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Nombre</th>
+                                    <th>Profesor</th>
+                                    <th>Estudiantes</th>
+                                    <th>Horario</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="coursesTableBody">
+                                <tr>
+                                    <td>MATH101</td>
+                                    <td>Matemáticas Básicas</td>
+                                    <td>María García</td>
+                                    <td>25</td>
+                                    <td>Lun/Mie 8:00-10:00</td>
+                                    <td><span class="badge bg-success">Activo</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-action btn-primary" title="Editar">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-action btn-info" title="Ver Detalles">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-action btn-danger" title="Eliminar">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>LENG202</td>
+                                    <td>Lenguaje y Comunicación</td>
+                                    <td>Carlos López</td>
+                                    <td>30</td>
+                                    <td>Mar/Jue 10:00-12:00</td>
+                                    <td><span class="badge bg-success">Activo</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-action btn-primary" title="Editar">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-action btn-info" title="Ver Detalles">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-action btn-danger" title="Eliminar">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <nav class="mt-4">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Siguiente</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- Crear Curso Modal -->
+        <div class="modal fade modal-modern" id="createCourseModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i class="fas fa-plus-circle me-2"></i>Crear Nuevo Curso</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="createCourseForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="courseCode" class="form-label fw-semibold">Código del Curso</label>
+                                    <input type="text" class="form-control" id="courseCode" name="courseCode" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="courseName" class="form-label fw-semibold">Nombre del Curso</label>
+                                    <input type="text" class="form-control" id="courseName" name="courseName" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="courseTeacher" class="form-label fw-semibold">Profesor</label>
+                                    <select class="form-select" id="courseTeacher" name="courseTeacher" required>
+                                        <option value="">Seleccionar profesor</option>
+                                        <option value="1">María García</option>
+                                        <option value="2">Carlos López</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="courseGrade" class="form-label fw-semibold">Grado/Nivel</label>
+                                    <select class="form-select" id="courseGrade" name="courseGrade" required>
+                                        <option value="">Seleccionar grado</option>
+                                        <option value="1">Primer Grado</option>
+                                        <option value="2">Segundo Grado</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label for="courseDescription" class="form-label fw-semibold">Descripción</label>
+                                    <textarea class="form-control" id="courseDescription" name="courseDescription" rows="3"></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="courseStart" class="form-label fw-semibold">Fecha de Inicio</label>
+                                    <input type="date" class="form-control" id="courseStart" name="courseStart" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="courseEnd" class="form-label fw-semibold">Fecha de Fin</label>
+                                    <input type="date" class="form-control" id="courseEnd" name="courseEnd" required>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="courseActive" name="courseActive" checked>
+                                        <label class="form-check-label" for="courseActive">Curso activo</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" onclick="submitCourseForm()">Guardar Curso</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.0/apexcharts.min.js"></script>
+
+        <!-- Custom Script -->
+        <script>
+            // Sidebar Toggle Functionality
+            document.addEventListener('DOMContentLoaded', function() {
+                const menuToggle = document.getElementById('menuToggle');
+                const sidebar = document.querySelector('.sidebar');
+                const sidebarOverlay = document.getElementById('sidebarOverlay');
+                
+                menuToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('show');
+                    sidebarOverlay.classList.toggle('show');
+                });
+                
+                sidebarOverlay.addEventListener('click', function() {
+                    sidebar.classList.remove('show');
+                    sidebarOverlay.classList.remove('show');
+                });
+                
+                // Navigation between sections
+                const navLinks = document.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        // Remove active class from all links
+                        navLinks.forEach(l => l.classList.remove('active'));
+                        // Add active class to clicked link
+                        this.classList.add('active');
+                        
+                        // Hide all content sections
+                        document.querySelectorAll('.content-section').forEach(section => {
+                            section.classList.remove('active');
+                        });
+                        
+                        // Show the selected section
+                        const sectionId = this.getAttribute('data-section');
+                        document.getElementById(sectionId).classList.add('active');
+                        
+                        // Close sidebar on mobile
+                        if (window.innerWidth <= 768) {
+                            sidebar.classList.remove('show');
+                            sidebarOverlay.classList.remove('show');
+                        }
+                    });
+                });
+                
+                // Show/hide student/teacher fields based on role selection
+                const roleSelect = document.getElementById('rol');
+                if (roleSelect) {
+                    roleSelect.addEventListener('change', function() {
+                        document.getElementById('studentFields').style.display = 'none';
+                        document.getElementById('teacherFields').style.display = 'none';
+                        
+                        if (this.value === 'estudiante') {
+                            document.getElementById('studentFields').style.display = 'block';
+                        } else if (this.value === 'profesor') {
+                            document.getElementById('teacherFields').style.display = 'block';
+                        }
+                    });
+                }
+                
+                // Initialize charts
+                initializeCharts();
+            });
+            
+            function initializeCharts() {
+                // User Activity Chart
+                const userActivityOptions = {
+                    series: [{
+                        name: 'Usuarios activos',
+                        data: [30, 40, 35, 50, 49, 60, 70, 91, 125, 110, 95, 120]
+                    }],
+                    chart: {
+                        height: 350,
+                        type: 'line',
+                        zoom: {
+                            enabled: false
+                        },
+                        toolbar: {
+                            show: false
+                        }
+                    },
+                    colors: ['#8b5cf6'],
+                    dataLabels: {
+                        enabled: false
+                    },
+                    stroke: {
+                        curve: 'smooth',
+                        width: 3
+                    },
+                    grid: {
+                        row: {
+                            colors: ['#f3f3f3', 'transparent'],
+                            opacity: 0.5
+                        },
+                    },
+                    xaxis: {
+                        categories: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                    },
+                    tooltip: {
+                        theme: 'light'
+                    }
+                };
+                
+                const userActivityChart = new ApexCharts(document.querySelector("#userActivityChart"), userActivityOptions);
+                userActivityChart.render();
+                
+                // Roles Distribution Chart
+                const rolesDistributionOptions = {
+                    series: [44, 55, 13, 43],
+                    chart: {
+                        width: '100%',
+                        type: 'pie',
+                    },
+                    labels: ['Estudiantes', 'Profesores', 'Administradores', 'Padres'],
+                    colors: ['#8b5cf6', '#10b981', '#3b82f6', '#f59e0b'],
+                    responsive: [{
+                        breakpoint: 480,
+                        options: {
+                            chart: {
+                                width: 200
+                            },
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }]
+                };
+                
+                const rolesDistributionChart = new ApexCharts(document.querySelector("#rolesDistributionChart"), rolesDistributionOptions);
+                rolesDistributionChart.render();
+                
+                // Attendance Chart
+                const attendanceOptions = {
+                    series: [{
+                        name: 'Asistencia',
+                        data: [90, 85, 92, 88, 95, 91, 89]
+                    }],
+                    chart: {
+                        height: 350,
+                        type: 'bar',
+                        toolbar: {
+                            show: false
+                        }
+                    },
+                    colors: ['#8b5cf6'],
+                    plotOptions: {
+                        bar: {
+                            borderRadius: 4,
+                            horizontal: false,
+                        }
+                    },
+                    dataLabels: {
+                        enabled: false
+                    },
+                    xaxis: {
+                        categories: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+                    },
+                    tooltip: {
+                        theme: 'light'
+                    }
+                };
+                
+                const attendanceChart = new ApexCharts(document.querySelector("#attendanceChart"), attendanceOptions);
+                attendanceChart.render();
+                
+                // Performance Chart
+                const performanceOptions = {
+                    series: [{
+                        name: 'Promedio',
+                        data: [75, 82, 80, 88, 85, 90, 78]
+                    }],
+                    chart: {
+                        height: 350,
+                        type: 'area',
+                        toolbar: {
+                            show: false
+                        }
+                    },
+                    colors: ['#8b5cf6'],
+                    dataLabels: {
+                        enabled: false
+                    },
+                    stroke: {
+                        curve: 'smooth',
+                        width: 2
+                    },
+                    xaxis: {
+                        categories: ['Matemáticas', 'Lenguaje', 'Ciencias', 'Historia', 'Inglés', 'Arte', 'Educación Física'],
+                    },
+                    tooltip: {
+                        theme: 'light'
+                    }
+                };
+                
+                const performanceChart = new ApexCharts(document.querySelector("#performanceChart"), performanceOptions);
+                performanceChart.render();
+            }
+            
+            function showCreateCourseModal() {
+                const modal = new bootstrap.Modal(document.getElementById('createCourseModal'));
+                modal.show();
+            }
+            
+            function submitCourseForm() {
+                // Validate and submit form
+                const form = document.getElementById('createCourseForm');
+                if (form.checkValidity()) {
+                    // Simulate form submission
+                    showToast('Curso creado exitosamente', 'success');
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('createCourseModal'));
+                    modal.hide();
+                    form.reset();
+                } else {
+                    form.classList.add('was-validated');
+                }
+            }
+            
+            function resetForm() {
+                document.getElementById('createUserForm').reset();
+                document.getElementById('studentFields').style.display = 'none';
+                document.getElementById('teacherFields').style.display = 'none';
+            }
+            
+            function handleLogout(e) {
+                e.preventDefault();
+                showToast('Sesión cerrada exitosamente', 'success');
+                // Redirect to login page after 2 seconds
+                setTimeout(() => {
+                    window.location.href = "{{ url_for('auth.logout') }}";
+                    }, 2000);
+            }
+            
+            function exportUsers() {
+                showToast('Exportando datos de usuarios...', 'info');
+                // In a real app, this would trigger a file download
+                setTimeout(() => {
+                    showToast('Exportación completada', 'success');
+                }, 1500);
+            }
+            
+            function showToast(message, type) {
+                const toastContainer = document.getElementById('toastContainer');
+                const toastEl = document.createElement('div');
+                toastEl.className = `toast toast-custom toast-${type} show`;
+                toastEl.setAttribute('role', 'alert');
+                toastEl.setAttribute('aria-live', 'assertive');
+                toastEl.setAttribute('aria-atomic', 'true');
+                
+                toastEl.innerHTML = `
+                    <div class="toast-body d-flex align-items-center">
+                        <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-info-circle'} me-2"></i>
+                        ${message}
+                        <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                `;
+                
+                toastContainer.appendChild(toastEl);
+                
+                // Remove toast after 5 seconds
+                setTimeout(() => {
+                    toastEl.classList.remove('show');
+                    setTimeout(() => {
+                        toastContainer.removeChild(toastEl);
+                    }, 300);
+                }, 5000);
+            }
+        </script>
+    </div>
+</body>
+</html>

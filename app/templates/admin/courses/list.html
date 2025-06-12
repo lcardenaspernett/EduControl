@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block title %}Cursos - Administración{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">
+                    <i class="fas fa-book me-2"></i>Gestión de Cursos
+                </h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group me-2">
+                        <a href="{{ url_for('main.admin_dashboard') }}" class="btn btn-sm btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-1"></i>Volver al Dashboard
+                        </a>
+                        <button type="button" class="btn btn-sm btn-primary">
+                            <i class="fas fa-plus me-1"></i>Nuevo Curso
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Lista de Cursos</h5>
+                </div>
+                <div class="card-body">
+                    {% if cursos %}
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Código</th>
+                                    <th>Nombre</th>
+                                    <th>Profesor</th>
+                                    <th>Créditos</th>
+                                    <th>Estado</th>
+                                    <th>Estudiantes</th>
+                                    <th>Fecha Creación</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for curso in cursos %}
+                                <tr>
+                                    <td>{{ curso.id }}</td>
+                                    <td><code>{{ curso.codigo }}</code></td>
+                                    <td>{{ curso.nombre }}</td>
+                                    <td>
+                                        {% if curso.profesor %}
+                                            {{ curso.profesor.usuario.nombre }}
+                                        {% else %}
+                                            <span class="text-muted">Sin asignar</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ curso.creditos or 0 }}</td>
+                                    <td>
+                                        <span class="badge bg-{% if curso.activo %}success{% else %}secondary{% endif %}">
+                                            {% if curso.activo %}Activo{% else %}Inactivo{% endif %}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-info">
+                                            {% if curso.inscripciones %}
+                                                {{ curso.inscripciones|length }}
+                                            {% else %}
+                                                0
+                                            {% endif %}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        {% if curso.fecha_creacion %}
+                                            {{ curso.fecha_creacion.strftime('%d/%m/%Y') }}
+                                        {% else %}
+                                            N/A
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <button type="button" class="btn btn-sm btn-outline-primary" title="Editar">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-outline-info" title="Ver Estudiantes">
+                                                <i class="fas fa-users"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-outline-danger" title="Eliminar">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="text-center py-4">
+                        <i class="fas fa-book fa-3x text-muted mb-3"></i>
+                        <h5>No hay cursos registrados</h5>
+                        <p class="text-muted">Comienza creando el primer curso del sistema.</p>
+                        <button type="button" class="btn btn-primary">
+                            <i class="fas fa-plus me-1"></i>Crear Primer Curso
+                        </button>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
