@@ -51,6 +51,71 @@ def admin_dashboard():
                          },
                          usuarios_recientes=usuarios_recientes)
 
+@main_bp.route('/profile/<int:user_id>')
+@main_bp.route('/profile')
+@login_required
+def profile(user_id=None):
+    """Ver perfil de usuario"""
+    if user_id:
+        user = User.query.get_or_404(user_id)
+        if current_user.role.name != 'admin' and current_user.id != user_id:
+            flash('No tienes permisos para ver este perfil.', 'error')
+            return redirect(url_for('main.index'))
+    else:
+        user = current_user
+    
+    return render_template('main/profile.html', user=user)
+
+@main_bp.route('/edit_user/<int:user_id>', methods=['GET', 'POST'])
+@login_required
+def edit_user(user_id):
+    """Editar usuario"""
+    if current_user.role.name != 'admin':
+        flash('No tienes permisos para editar usuarios.', 'error')
+        return redirect(url_for('main.index'))
+    
+    user = User.query.get_or_404(user_id)
+    if request.method == 'POST':
+        user.username = request.form.get('username', user.username)
+        user.email = request.form.get('email', user.email)
+        role_name = request.form.get('role')
+        if role_name:
+            role = Role.query.filter_by(name=role_name).first()
+            if role:
+                user.role = role
+        db.session.commit()
+        flash('Usuario actualizado correctamente.', 'success')
+        return redirect(url_for('main.profile', user_id=user_id))
+    
+    return render_template('main/edit_user.html', user=user)
+
+@main_bp.route('/logout')
+@login_required
+def logout():
+    """Cerrar sesión"""
+    from flask_login import logout_user
+    logout_user()
+    flash('Has cerrado sesión correctamente.', 'success')
+    return redirect(url_for('main.index'))
+
+@main_bp.route('/delete_user/<int:user_id>', methods=['POST'])
+@login_required
+def delete_user(user_id):
+    """Eliminar usuario"""
+    if current_user.role.name != 'admin':
+        flash('No tienes permisos para eliminar usuarios.', 'error')
+        return redirect(url_for('main.index'))
+    
+    user = User.query.get_or_404(user_id)
+    if user.id == current_user.id:
+        flash('No puedes eliminar tu propio usuario.', 'error')
+        return redirect(url_for('main.index'))
+    
+    db.session.delete(user)
+    db.session.commit()
+    flash('Usuario eliminado correctamente.', 'success')
+    return redirect(url_for('main.admin_dashboard'))
+
 @main_bp.route('/teacher/dashboard')
 @login_required
 def teacher_dashboard():
@@ -117,11 +182,7 @@ def student_dashboard():
                          stats=stats,
                          cursos_inscritos=cursos_inscritos)
 
-@main_bp.route('/profile')
-@login_required
-def profile():
-    """Perfil del usuario"""
-    return render_template('main/profile.html')
+
 
 @main_bp.route('/about')
 def about():

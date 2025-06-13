@@ -722,21 +722,7 @@
             }
         }
 
-        /* Overlay for dropdown */
-        .dropdown-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 9999;
-            display: none;
-            background: rgba(0,0,0,0.1);
-        }
 
-        .dropdown-overlay.active {
-            display: block;
-        }
     </style>
 </head>
 <body>
@@ -790,17 +776,17 @@
                         </div>
                     </div>
                     
-                    <a href="#" class="dropdown-item" onclick="alert('Mi Perfil')">
+                    <a href="#" class="dropdown-item">
                         <i class="fas fa-user"></i>
                         <span>Mi Perfil</span>
                     </a>
                     
-                    <a href="#" class="dropdown-item" onclick="alert('Configuración')">
+                    <a href="#" class="dropdown-item">
                         <i class="fas fa-cog"></i>
                         <span>Configuración</span>
                     </a>
                     
-                    <a href="#" class="dropdown-item" onclick="alert('Notificaciones')">
+                    <a href="#" class="dropdown-item">
                         <i class="fas fa-bell"></i>
                         <span>Notificaciones</span>
                     </a>
@@ -820,9 +806,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Dropdown Overlay -->
-    <div class="dropdown-overlay" id="dropdownOverlay"></div>
 
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
@@ -970,84 +953,42 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for usuario in usuarios_recientes %}
                         <tr>
                             <td>
                                 <div class="user-info">
                                     <div class="user-avatar-table">
-                                        <i class="fas fa-user"></i>
+                                        {% if usuario.role.name == 'admin' %}
+                                            <i class="fas fa-user-shield"></i>
+                                        {% elif usuario.role.name == 'teacher' %}
+                                            <i class="fas fa-chalkboard-teacher"></i>
+                                        {% else %}
+                                            <i class="fas fa-user-graduate"></i>
+                                        {% endif %}
                                     </div>
-                                    <span class="user-name">María García</span>
+                                    <span class="user-name">{{ usuario.username }}</span>
                                 </div>
                             </td>
-                            <td>estudiante1@educontrol.com</td>
-                            <td><span class="role-badge student">Student</span></td>
-                            <td>12/06/2025</td>
+                            <td>{{ usuario.email }}</td>
+                            <td>
+                                <span class="role-badge {{ usuario.role.name }}">{{ usuario.role.name }}</span>
+                            </td>
+                            <td>{{ usuario.created_at.strftime('%d/%m/%Y') }}</td>
                             <td>
                                 <div class="action-buttons">
-                                    <button class="btn-action view" title="Ver perfil">
+                                    <a href="{{ url_for('main.profile', user_id=usuario.id) }}" class="btn-action view" title="Ver perfil">
                                         <i class="fas fa-eye"></i>
-                                    </button>
-                                    <button class="btn-action edit" title="Editar">
+                                    </a>
+                                    <a href="{{ url_for('main.edit_user', user_id=usuario.id) }}" class="btn-action edit" title="Editar">
                                         <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="btn-action delete" title="Eliminar">
+                                    </a>
+                                    <a href="{{ url_for('main.delete_user', user_id=usuario.id) }}" class="btn-action delete" title="Eliminar" onclick="return confirm('¿Estás seguro de eliminar este usuario?')">
                                         <i class="fas fa-trash"></i>
-                                    </button>
+                                    </a>
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <div class="user-info">
-                                    <div class="user-avatar-table">
-                                        <i class="fas fa-user"></i>
-                                    </div>
-                                    <span class="user-name">Juan Pérez</span>
-                                </div>
-                            </td>
-                            <td>profesor1@educontrol.com</td>
-                            <td><span class="role-badge teacher">Teacher</span></td>
-                            <td>12/06/2025</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="btn-action view" title="Ver perfil">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                    <button class="btn-action edit" title="Editar">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="btn-action delete" title="Eliminar">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="user-info">
-                                    <div class="user-avatar-table">
-                                        <i class="fas fa-user-shield"></i>
-                                    </div>
-                                    <span class="user-name">Admin EduControl</span>
-                                </div>
-                            </td>
-                            <td>admin@educontrol.com</td>
-                            <td><span class="role-badge admin">Admin</span></td>
-                            <td>10/06/2025</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="btn-action view" title="Ver perfil">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                    <button class="btn-action edit" title="Editar">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="btn-action delete" title="Eliminar">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
@@ -1085,50 +1026,18 @@
             // User Dropdown Toggle
             const userDropdown = document.getElementById('userDropdown');
             const userMenuToggle = document.getElementById('userMenuToggle');
-            const dropdownOverlay = document.getElementById('dropdownOverlay');
-            const userDropdownMenu = document.getElementById('userDropdownMenu');
-
-            // Debug: Check if elements exist
-            console.log('userDropdown:', userDropdown);
-            console.log('userMenuToggle:', userMenuToggle);
-            console.log('dropdownOverlay:', dropdownOverlay);
-            console.log('userDropdownMenu:', userDropdownMenu);
 
             userMenuToggle.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
                 
-                console.log('User menu clicked');
-                
                 const isActive = userDropdown.classList.contains('active');
                 
                 if (isActive) {
                     userDropdown.classList.remove('active');
-                    dropdownOverlay.classList.remove('active');
-                    console.log('Dropdown closed');
                 } else {
                     userDropdown.classList.add('active');
-                    dropdownOverlay.classList.add('active');
-                    console.log('Dropdown opened');
                 }
-            });
-
-            // Close dropdown when clicking overlay or outside
-            dropdownOverlay.addEventListener('click', function() {
-                userDropdown.classList.remove('active');
-                dropdownOverlay.classList.remove('active');
-            });
-
-            document.addEventListener('click', function(e) {
-                if (!userDropdown.contains(e.target)) {
-                    userDropdown.classList.remove('active');
-                    dropdownOverlay.classList.remove('active');
-                }
-            });
-
-            // Prevent dropdown from closing when clicking inside
-            document.getElementById('userDropdownMenu').addEventListener('click', function(e) {
-                e.stopPropagation();
             });
 
             // Sidebar Navigation
@@ -1208,20 +1117,14 @@
                 
                 // For demo purposes, just close the dropdown
                 document.getElementById('userDropdown').classList.remove('active');
-                document.getElementById('dropdownOverlay').classList.remove('active');
             }
         }
 
         // Handle dropdown item clicks
-        document.querySelectorAll('.dropdown-item:not(.logout)').forEach(item => {
+        document.querySelectorAll('.dropdown-item').forEach(item => {
             item.addEventListener('click', function(e) {
-                e.preventDefault();
-                const action = this.querySelector('span').textContent;
-                alert(`Navegando a: ${action}`);
-                
                 // Close dropdown
                 document.getElementById('userDropdown').classList.remove('active');
-                document.getElementById('dropdownOverlay').classList.remove('active');
             });
         });
     </script>
