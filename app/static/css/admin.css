@@ -1,0 +1,182 @@
+/* Estilos personalizados para el panel de administración */
+
+/* Variables de color para el tema */
+:root {
+    --primary-color: #8E2DE2;
+    --primary-light: #4A00E0;
+    --secondary-color: #4A00E0;
+    --success-color: #22c55e;
+    --warning-color: #f59e0b;
+    --danger-color: #ef4444;
+    --info-color: #B794F6;
+    --sidebar-width: 280px;
+    --navbar-height: 70px;
+    --footer-bg: #f8fafc;
+    --footer-text: #64748b;
+    --footer-link-hover: #B794F6;
+}
+
+/* Estilos generales */
+body {
+    background-color: #f8fafc;
+    color: #1e293b;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Estilos para la tabla de usuarios */
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.users-table th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    padding: 15px;
+    text-align: left;
+}
+
+.users-table td {
+    padding: 12px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.users-table tr:hover {
+    background-color: #f8fafc;
+}
+
+/* Estilos para los botones de acción */
+.btn-action {
+    padding: 6px 10px;
+    margin-right: 5px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-action:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-action.view {
+    color: var(--info-color);
+}
+
+.btn-action.edit {
+    color: var(--primary-color);
+}
+
+.btn-action.delete {
+    color: var(--danger-color);
+}
+
+/* Estilos para las notificaciones */
+.toast-custom {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    min-width: 300px;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Estilos para los filtros */
+.filters-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 20px;
+}
+
+/* Estilos para las estadísticas */
+.stats-mini-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
+}
+
+.stats-mini-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para las acciones en lote */
+.bulk-actions {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+    display: none;
+}
+
+.bulk-actions.show {
+    display: block;
+}
+
+/* Estilos para el contador animado */
+.counter {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+/* Estilos para el modal de confirmación */
+.modal-content {
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el loading spinner */
+.loading-spinner {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+.loading-spinner.show {
+    display: block;
+}
+
+/* Estilos para el buscador */
+.search-input {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
+}
+
+.search-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(142, 45, 226, 0.1);
+    outline: none;
+}
+
+/* Estilos para el mensaje de no resultados */
+.no-results {
+    text-align: center;
+    padding: 30px;
+    color: #64748b;
+}
+
+/* Estilos para el mensaje de carga */
+.loading-message {
+    text-align: center;
+    padding: 20px;
+    color: #64748b;
+}

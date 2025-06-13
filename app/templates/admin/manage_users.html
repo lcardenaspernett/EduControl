@@ -1,0 +1,1411 @@
+{% extends "base.html" %}
+
+{% block title %}Gestión de Usuarios - EduControl{% endblock %}
+
+{% block head %}
+{{ super() }}
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<style>
+/* Usar las mismas variables del dashboard */
+:root {
+    --hero-gradient: linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%);
+    --purple-primary: #8E2DE2;
+    --purple-secondary: #4A00E0;
+    --purple-light: #B794F6;
+    --purple-dark: #553C9A;
+    --card-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    --text-white: #ffffff;
+    --text-light: rgba(255, 255, 255, 0.9);
+}
+
+/* Contenedor principal */
+.users-management-container {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%);
+    min-height: 100vh;
+    padding: 2rem 0;
+}
+
+/* Header de la página */
+.page-header {
+    background: var(--hero-gradient);
+    color: white;
+    padding: 2rem 0;
+    margin: -2rem -15px 2rem -15px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.page-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: rotate(45deg);
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
+    50% { transform: translateX(0%) translateY(0%) rotate(45deg); opacity: 1; }
+}
+
+.page-header .container-fluid {
+    position: relative;
+    z-index: 1;
+}
+
+.page-header h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    margin-bottom: 0.5rem;
+}
+
+.page-header p {
+    opacity: 0.9;
+    font-size: 1.1rem;
+    margin-bottom: 0;
+}
+
+/* Cards de estadísticas mini */
+.stats-mini-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stats-mini-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stats-mini-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--hero-gradient);
+}
+
+.stats-mini-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(142, 45, 226, 0.2);
+}
+
+.stats-mini-card .stat-number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--purple-primary);
+    margin-bottom: 0.5rem;
+}
+
+.stats-mini-card .stat-label {
+    color: #6b7280;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Panel de filtros */
+.filters-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.filters-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--hero-gradient);
+}
+
+.filters-header {
+    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+    padding: 20px;
+    border-bottom: 1px solid rgba(142, 45, 226, 0.1);
+}
+
+.filters-header h5 {
+    color: var(--purple-primary);
+    font-weight: 700;
+    margin: 0;
+}
+
+.filters-body {
+    padding: 20px;
+}
+
+.search-input {
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: var(--purple-primary);
+    box-shadow: 0 0 0 3px rgba(142, 45, 226, 0.1);
+    outline: none;
+}
+
+.filter-select {
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
+
+.filter-select:focus {
+    border-color: var(--purple-primary);
+    box-shadow: 0 0 0 3px rgba(142, 45, 226, 0.1);
+    outline: none;
+}
+
+/* Botones */
+.btn-primary-custom {
+    background: var(--hero-gradient);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 10px 20px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.btn-primary-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(142, 45, 226, 0.3);
+    color: white;
+}
+
+.btn-outline-custom {
+    border: 2px solid var(--purple-primary);
+    color: var(--purple-primary);
+    background: transparent;
+    border-radius: 10px;
+    padding: 8px 18px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-outline-custom:hover {
+    background: var(--purple-primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-success-custom {
+    background: linear-gradient(135deg, #10b981, #059669);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    padding: 8px 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-warning-custom {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    padding: 8px 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-danger-custom {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    padding: 8px 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-success-custom:hover,
+.btn-warning-custom:hover,
+.btn-danger-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Tabla de usuarios */
+.users-table-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    position: relative;
+}
+
+.users-table-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--hero-gradient);
+}
+
+.table-header {
+    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+    padding: 20px;
+    border-bottom: 1px solid rgba(142, 45, 226, 0.1);
+}
+
+.table-header h5 {
+    color: var(--purple-primary);
+    font-weight: 700;
+    margin: 0;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+.users-table thead th {
+    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+    color: var(--purple-dark);
+    font-weight: 700;
+    padding: 15px;
+    text-align: left;
+    border-bottom: 2px solid rgba(142, 45, 226, 0.1);
+    font-size: 0.9rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.users-table thead th i {
+    margin-right: 8px;
+    color: var(--purple-primary);
+}
+
+.users-table thead th a {
+    color: var(--purple-primary);
+    text-decoration: none;
+}
+
+.users-table thead th a:hover {
+    color: var(--purple-dark);
+}
+
+.users-table tbody td {
+    padding: 15px;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: middle;
+}
+
+.users-table tbody tr {
+    transition: all 0.3s ease;
+}
+
+.users-table tbody tr:hover {
+    background: linear-gradient(135deg, rgba(142, 45, 226, 0.05), rgba(74, 0, 224, 0.03));
+    transform: translateX(3px);
+}
+
+/* Avatar de usuario */
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--hero-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-right: 15px;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-name {
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.user-email {
+    color: #7f8c8d;
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+/* Badges de rol */
+.role-badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.role-badge.admin {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+}
+
+.role-badge.teacher {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+}
+
+.role-badge.student {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+}
+
+/* Estado activo/inactivo */
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.status-badge.active {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.status-badge.inactive {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* Acciones */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-action {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+}
+
+.btn-action.view {
+    background: #3498db;
+    color: white;
+}
+
+.btn-action.edit {
+    background: #f39c12;
+    color: white;
+}
+
+.btn-action.delete {
+    background: #e74c3c;
+    color: white;
+}
+
+.btn-action:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Checkbox para selección múltiple */
+.user-checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--purple-primary);
+    cursor: pointer;
+}
+
+/* Acciones en lote */
+.bulk-actions {
+    background: linear-gradient(135deg, #fff7ed, #fef3c7);
+    border: 1px solid #fbbf24;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.bulk-actions.show {
+    display: block;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Paginación */
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #f8fafc;
+}
+
+.pagination-info {
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+.pagination {
+    margin: 0;
+}
+
+.page-link {
+    color: var(--purple-primary);
+    border: 1px solid #e5e7eb;
+    padding: 8px 12px;
+    margin: 0 2px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.page-link:hover {
+    background: var(--purple-primary);
+    color: white;
+    border-color: var(--purple-primary);
+}
+
+.page-item.active .page-link {
+    background: var(--hero-gradient);
+    border-color: var(--purple-primary);
+    color: white;
+}
+
+/* Loading spinner */
+.loading-spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Toast notifications */
+.toast-container {
+    position: fixed;
+    top: 90px;
+    right: 20px;
+    z-index: 1050;
+    max-width: 350px;
+}
+
+.toast-custom {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    border: none;
+    margin-bottom: 10px;
+    overflow: hidden;
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #6b7280;
+    cursor: pointer;
+}
+
+/* Efectos de entrada */
+.fade-in {
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .page-header .col-md-4 {
+        margin-top: 15px;
+        text-align: left !important;
+    }
+    
+    .stats-mini-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .users-table {
+        font-size: 0.85rem;
+    }
+    
+    .users-table thead th,
+    .users-table tbody td {
+        padding: 10px 8px;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .btn-action {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .user-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .user-avatar {
+        margin-right: 0;
+        margin-bottom: 8px;
+    }
+}
+
+@media (max-width: 576px) {
+    .stats-mini-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .filters-body .row > div {
+        margin-bottom: 15px;
+    }
+    
+    .pagination-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+/* Animación de contadores */
+.counter {
+    font-variant-numeric: tabular-nums;
+}
+
+/* Estados de carga */
+.table-loading {
+    position: relative;
+}
+
+.table-loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="users-management-container">
+    <!-- Header de la página -->
+    <div class="page-header">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1><i class="fas fa-users-cog me-3"></i>Gestión Avanzada de Usuarios</h1>
+                    <p>Administra, busca y filtra todos los usuarios del sistema</p>
+                </div>
+                <div class="col-md-4 text-end">
+                    <button class="btn btn-light me-2" onclick="exportUsers()">
+                        <i class="fas fa-download me-2"></i>Exportar
+                    </button>
+                    <button class="btn btn-warning" onclick="createUser()">
+                        <i class="fas fa-plus me-2"></i>Nuevo Usuario
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <!-- Estadísticas mini -->
+        <div class="stats-mini-cards fade-in">
+            <div class="stats-mini-card">
+                <div class="stat-number counter" data-target="{{ total_users|default(0) }}">0</div>
+                <div class="stat-label">Total Usuarios</div>
+            </div>
+            <div class="stats-mini-card">
+                <div class="stat-number counter" data-target="{{ active_users|default(0) }}">0</div>
+                <div class="stat-label">Usuarios Activos</div>
+            </div>
+            <div class="stats-mini-card">
+                <div class="stat-number counter" data-target="{{ role_stats.admin|default(0) }}">0</div>
+                <div class="stat-label">Administradores</div>
+            </div>
+            <div class="stats-mini-card">
+                <div class="stat-number counter" data-target="{{ role_stats.teacher|default(0) }}">0</div>
+                <div class="stat-label">Profesores</div>
+            </div>
+            <div class="stats-mini-card">
+                <div class="stat-number counter" data-target="{{ role_stats.student|default(0) }}">0</div>
+                <div class="stat-label">Estudiantes</div>
+            </div>
+        </div>
+
+        <!-- Panel de filtros y búsqueda -->
+        <div class="filters-card fade-in">
+            <div class="filters-header">
+                <h5><i class="fas fa-filter me-2"></i>Filtros y Búsqueda</h5>
+            </div>
+            <div class="filters-body">
+                <form id="filtersForm" method="GET">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Buscar usuarios</label>
+                            <input type="text" 
+                                   class="form-control search-input" 
+                                   name="search" 
+                                   value="{{ search|default('') }}" 
+                                   placeholder="Nombre, email, username..."
+                                   id="searchInput">
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <label class="form-label">Rol</label>
+                            <select class="form-select filter-select" name="role" id="roleFilter">
+                                <option value="">Todos los roles</option>
+                                {% for role in available_roles|default(['admin', 'teacher', 'student']) %}
+                                <option value="{{ role }}" {% if role_filter == role %}selected{% endif %}>
+                                    {{ role.title() }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <label class="form-label">Estado</label>
+                            <select class="form-select filter-select" name="status" id="statusFilter">
+                                <option value="">Todos</option>
+                                <option value="active" {% if status_filter == 'active' %}selected{% endif %}>Activos</option>
+                                <option value="inactive" {% if status_filter == 'inactive' %}selected{% endif %}>Inactivos</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <label class="form-label">Por página</label>
+                            <select class="form-select filter-select" name="per_page" id="perPageFilter">
+                                <option value="10" {% if per_page == 10 %}selected{% endif %}>10</option>
+                                <option value="25" {% if per_page == 25 %}selected{% endif %}>25</option>
+                                <option value="50" {% if per_page == 50 %}selected{% endif %}>50</option>
+                                <option value="100" {% if per_page == 100 %}selected{% endif %}>100</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <label class="form-label">&nbsp;</label>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary-custom">
+                                    <i class="fas fa-search me-2"></i>Filtrar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Acciones en lote -->
+        <div id="bulkActions" class="bulk-actions">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <strong><span id="selectedCount">0</span> usuarios seleccionados</strong>
+                </div>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-success-custom btn-sm" onclick="bulkAction('activate')">
+                        <i class="fas fa-check me-1"></i>Activar
+                    </button>
+                    <button class="btn btn-warning-custom btn-sm" onclick="bulkAction('deactivate')">
+                        <i class="fas fa-pause me-1"></i>Desactivar
+                    </button>
+                    <button class="btn btn-danger-custom btn-sm" onclick="bulkAction('delete')">
+                        <i class="fas fa-trash me-1"></i>Eliminar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabla de usuarios -->
+        <div class="users-table-card fade-in">
+            <div class="table-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5>
+                        <i class="fas fa-table me-2"></i>
+                        Lista de Usuarios 
+                        {% if users and users.total %}({{ users.total }} total){% endif %}
+                    </h5>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-custom btn-sm" onclick="refreshTable()">
+                            <i class="fas fa-sync-alt me-1"></i>Actualizar
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="table-responsive">
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">
+                                <input type="checkbox" class="user-checkbox" id="selectAll">
+                            </th>
+                            <th>
+                                <i class="fas fa-user"></i>Usuario
+                                {% if request %}
+                                <a href="?{{ request.query_string.decode() }}&sort=username&order={{ 'asc' if sort_by == 'username' and sort_order == 'desc' else 'desc' }}" 
+                                   class="text-decoration-none">
+                                    <i class="fas fa-sort ms-1"></i>
+                                </a>
+                                {% endif %}
+                            </th>
+                            <th>
+                                <i class="fas fa-envelope"></i>Email
+                                {% if request %}
+                                <a href="?{{ request.query_string.decode() }}&sort=email&order={{ 'asc' if sort_by == 'email' and sort_order == 'desc' else 'desc' }}" 
+                                   class="text-decoration-none">
+                                    <i class="fas fa-sort ms-1"></i>
+                                </a>
+                                {% endif %}
+                            </th>
+                            <th>
+                                <i class="fas fa-tag"></i>Rol
+                                {% if request %}
+                                <a href="?{{ request.query_string.decode() }}&sort=role&order={{ 'asc' if sort_by == 'role' and sort_order == 'desc' else 'desc' }}" 
+                                   class="text-decoration-none">
+                                    <i class="fas fa-sort ms-1"></i>
+                                </a>
+                                {% endif %}
+                            </th>
+                            <th><i class="fas fa-toggle-on"></i>Estado</th>
+                            <th>
+                                <i class="fas fa-calendar"></i>Registro
+                                {% if request %}
+                                <a href="?{{ request.query_string.decode() }}&sort=created_at&order={{ 'asc' if sort_by == 'created_at' and sort_order == 'desc' else 'desc' }}" 
+                                   class="text-decoration-none">
+                                    <i class="fas fa-sort ms-1"></i>
+                                </a>
+                                {% endif %}
+                            </th>
+                            <th><i class="fas fa-cog"></i>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if users and users.items %}
+                            {% for user in users.items %}
+                            <tr>
+                                <td>
+                                    <input type="checkbox" 
+                                           class="user-checkbox user-select" 
+                                           value="{{ user.id }}"
+                                           {% if current_user and user.id == current_user.id %}disabled{% endif %}>
+                                </td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">
+                                            {% if user.role == 'admin' %}
+                                                <i class="fas fa-user-shield"></i>
+                                            {% elif user.role == 'teacher' %}
+                                                <i class="fas fa-chalkboard-teacher"></i>
+                                            {% else %}
+                                                <i class="fas fa-user-graduate"></i>
+                                            {% endif %}
+                                        </div>
+                                        <div>
+                                            <div class="user-name">{{ user.username or 'Sin username' }}</div>
+                                            {% if user.nombre or user.apellido %}
+                                            <div class="user-email">{{ user.nombre or '' }} {{ user.apellido or '' }}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>{{ user.email or 'Sin email' }}</td>
+                                <td>
+                                    <span class="role-badge {{ user.role or 'student' }}">
+                                        {{ (user.role or 'student').upper() }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="status-badge {{ 'active' if user.is_active else 'inactive' }}">
+                                        {{ 'Activo' if user.is_active else 'Inactivo' }}
+                                    </span>
+                                </td>
+                                <td>
+                                    {% if user.created_at %}
+                                        {{ user.created_at.strftime('%d/%m/%Y') }}
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-action view" 
+                                                onclick="viewUser('{{ user.id }}')" 
+                                                title="Ver perfil">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-action edit" 
+                                                onclick="editUser('{{ user.id }}')" 
+                                                title="Editar">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        {% if not current_user or user.id != current_user.id %}
+                                        <button class="btn-action delete" 
+                                                onclick="confirmDeleteUser('{{ user.id }}', '{{ user.username }}')" 
+                                                title="Eliminar">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="7" class="text-center py-5">
+                                    <div class="text-muted">
+                                        <i class="fas fa-users fa-3x mb-3"></i>
+                                        <h5>No se encontraron usuarios</h5>
+                                        <p>Intenta ajustar los filtros de búsqueda</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Paginación -->
+            {% if users and users.pages and users.pages > 1 %}
+            <div class="pagination-container">
+                <div class="pagination-info">
+                    Mostrando 
+                    {% if users.items %}
+                        {{ users.per_page * (users.page - 1) + 1 }} - 
+                        {{ users.per_page * (users.page - 1) + users.items|length }}
+                    {% else %}
+                        0
+                    {% endif %}
+                    de {{ users.total or 0 }} usuarios
+                </div>
+                
+                <nav>
+                    <ul class="pagination">
+                        {% if users.has_prev %}
+                        <li class="page-item">
+                            <a class="page-link" href="?{{ request.query_string.decode() if request else '' }}&page={{ users.prev_num }}">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                        </li>
+                        {% endif %}
+                        
+                        {% if users.iter_pages %}
+                            {% for page_num in users.iter_pages() %}
+                                {% if page_num %}
+                                    {% if page_num != users.page %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?{{ request.query_string.decode() if request else '' }}&page={{ page_num }}">{{ page_num }}</a>
+                                    </li>
+                                    {% else %}
+                                    <li class="page-item active">
+                                        <span class="page-link">{{ page_num }}</span>
+                                    </li>
+                                    {% endif %}
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <span class="page-link">…</span>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        
+                        {% if users.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?{{ request.query_string.decode() if request else '' }}&page={{ users.next_num }}">
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Toast container -->
+<div class="toast-container" id="toastContainer"></div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    initializeCounters();
+    initializeFilters();
+    initializeBulkActions();
+    initializeSearch();
+});
+
+function initializeCounters() {
+    setTimeout(function() {
+        var counters = document.querySelectorAll('.counter');
+        
+        for (var i = 0; i < counters.length; i++) {
+            animateCounter(counters[i]);
+        }
+    }, 500);
+}
+
+function animateCounter(counter) {
+    var target = parseInt(counter.getAttribute('data-target')) || 0;
+    var count = 0;
+    var increment = Math.max(1, Math.ceil(target / 50));
+    
+    var timer = setInterval(function() {
+        count += increment;
+        if (count >= target) {
+            counter.textContent = target;
+            clearInterval(timer);
+        } else {
+            counter.textContent = count;
+        }
+    }, 30);
+}
+
+function initializeFilters() {
+    var searchInput = document.getElementById('searchInput');
+    var roleFilter = document.getElementById('roleFilter');
+    var statusFilter = document.getElementById('statusFilter');
+    var perPageFilter = document.getElementById('perPageFilter');
+    
+    if (!searchInput || !roleFilter || !statusFilter || !perPageFilter) {
+        console.warn('Algunos elementos de filtros no fueron encontrados');
+        return;
+    }
+    
+    var searchTimeout;
+    searchInput.addEventListener('input', function() {
+        var self = this;
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(function() {
+            if (self.value.length === 0 || self.value.length >= 3) {
+                document.getElementById('filtersForm').submit();
+            }
+        }, 500);
+    });
+    
+    var filters = [roleFilter, statusFilter, perPageFilter];
+    for (var i = 0; i < filters.length; i++) {
+        filters[i].addEventListener('change', function() {
+            document.getElementById('filtersForm').submit();
+        });
+    }
+}
+
+function initializeSearch() {
+    var searchInput = document.getElementById('searchInput');
+    if (!searchInput) return;
+    
+    var searchTimeout;
+    searchInput.addEventListener('input', function() {
+        var query = this.value.trim();
+        
+        if (query.length >= 3) {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(function() {
+                searchUsersRealTime(query);
+            }, 300);
+        }
+    });
+}
+
+function searchUsersRealTime(query) {
+    fetch('/admin/api/users/search?q=' + encodeURIComponent(query) + '&limit=5')
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(function(data) {
+            if (data.success) {
+                showSearchResults(data.users);
+            }
+        })
+        .catch(function(error) {
+            console.error('Error en búsqueda:', error);
+        });
+}
+
+function showSearchResults(users) {
+    console.log('Resultados de búsqueda:', users);
+}
+
+function initializeBulkActions() {
+    var selectAllCheckbox = document.getElementById('selectAll');
+    var userCheckboxes = document.querySelectorAll('.user-select');
+    var bulkActions = document.getElementById('bulkActions');
+    var selectedCount = document.getElementById('selectedCount');
+    
+    if (!selectAllCheckbox || !bulkActions || !selectedCount) {
+        console.warn('Algunos elementos de acciones en lote no fueron encontrados');
+        return;
+    }
+    
+    selectAllCheckbox.addEventListener('change', function() {
+        var self = this;
+        for (var i = 0; i < userCheckboxes.length; i++) {
+            if (!userCheckboxes[i].disabled) {
+                userCheckboxes[i].checked = self.checked;
+            }
+        }
+        updateBulkActions();
+    });
+    
+    for (var i = 0; i < userCheckboxes.length; i++) {
+        userCheckboxes[i].addEventListener('change', updateBulkActions);
+    }
+    
+    function updateBulkActions() {
+        var selectedUsers = document.querySelectorAll('.user-select:checked');
+        var count = selectedUsers.length;
+        
+        if (count > 0) {
+            bulkActions.classList.add('show');
+            selectedCount.textContent = count;
+        } else {
+            bulkActions.classList.remove('show');
+        }
+        
+        var enabledCheckboxes = document.querySelectorAll('.user-select:not(:disabled)');
+        var checkedEnabledCheckboxes = document.querySelectorAll('.user-select:not(:disabled):checked');
+        
+        if (checkedEnabledCheckboxes.length === 0) {
+            selectAllCheckbox.checked = false;
+            selectAllCheckbox.indeterminate = false;
+        } else if (checkedEnabledCheckboxes.length === enabledCheckboxes.length) {
+            selectAllCheckbox.checked = true;
+            selectAllCheckbox.indeterminate = false;
+        } else {
+            selectAllCheckbox.checked = false;
+            selectAllCheckbox.indeterminate = true;
+        }
+    }
+}
+
+function bulkAction(action) {
+    var selectedCheckboxes = document.querySelectorAll('.user-select:checked');
+    var selectedUsers = [];
+    
+    for (var i = 0; i < selectedCheckboxes.length; i++) {
+        selectedUsers.push(parseInt(selectedCheckboxes[i].value));
+    }
+    
+    if (selectedUsers.length === 0) {
+        showToast('No hay usuarios seleccionados', 'warning');
+        return;
+    }
+    
+    var message = '';
+    switch(action) {
+        case 'activate':
+            message = '¿Activar ' + selectedUsers.length + ' usuarios?';
+            break;
+        case 'deactivate':
+            message = '¿Desactivar ' + selectedUsers.length + ' usuarios?';
+            break;
+        case 'delete':
+            message = '¿ELIMINAR definitivamente ' + selectedUsers.length + ' usuarios?\n\nEsta acción no se puede deshacer.';
+            break;
+        default:
+            return;
+    }
+    
+    if (confirm(message)) {
+        performBulkAction(action, selectedUsers);
+    }
+}
+
+function performBulkAction(action, userIds) {
+    var data = {
+        action: action,
+        user_ids: userIds
+    };
+    
+    fetch('/admin/api/users/bulk-action', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCsrfToken()
+        },
+        body: JSON.stringify(data)
+    })
+    .then(function(response) {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(function(data) {
+        if (data.success) {
+            showToast(data.message, 'success');
+            setTimeout(function() {
+                location.reload();
+            }, 1500);
+        } else {
+            showToast(data.message || 'Error en la acción', 'error');
+        }
+    })
+    .catch(function(error) {
+        console.error('Error:', error);
+        showToast('Error al ejecutar la acción', 'error');
+    });
+}
+
+function viewUser(userId) {
+    window.location.href = '/admin/users/' + userId;
+}
+
+function editUser(userId) {
+    window.location.href = '/admin/users/manage/' + userId + '/edit';
+}
+
+function confirmDeleteUser(userId, username) {
+    if (confirm('¿Estás seguro de que quieres eliminar al usuario "' + username + '"?\n\nEsta acción no se puede deshacer.')) {
+        deleteUser(userId);
+    }
+}
+
+function deleteUser(userId) {
+    fetch('/admin/users/manage/' + userId + '/delete', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCsrfToken()
+        }
+    })
+    .then(function(response) {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(function(data) {
+        if (data.success) {
+            showToast(data.message, 'success');
+            setTimeout(function() {
+                location.reload();
+            }, 1500);
+        } else {
+            showToast(data.message || 'Error al eliminar usuario', 'error');
+        }
+    })
+    .catch(function(error) {
+        console.error('Error:', error);
+        showToast('Error al eliminar usuario', 'error');
+    });
+}
+
+function createUser() {
+    window.location.href = '/admin/users/create';
+}
+
+function exportUsers() {
+    showToast('Preparando exportación...', 'info');
+    window.location.href = '/admin/users/export';
+}
+
+function refreshTable() {
+    location.reload();
+}
+
+function refreshStats() {
+    fetch('/admin/api/users/stats')
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(function(data) {
+            if (data.success) {
+                var counters = document.querySelectorAll('.counter');
+                for (var i = 0; i < counters.length; i++) {
+                    var target = counters[i].getAttribute('data-target');
+                }
+            }
+        })
+        .catch(function(error) {
+            console.error('Error updating stats:', error);
+        });
+}
+
+function getCsrfToken() {
+    var token = document.querySelector('meta[name=csrf-token]');
+    return token ? token.getAttribute('content') : '';
+}
+
+function showToast(message, type, duration) {
+    type = type || 'info';
+    duration = duration || 5000;
+    
+    var toastContainer = document.getElementById('toastContainer');
+    if (!toastContainer) {
+        console.warn('Toast container not found');
+        return;
+    }
+    
+    var toastId = 'toast-' + Date.now();
+    var toastEl = document.createElement('div');
+    toastEl.id = toastId;
+    toastEl.className = 'toast-custom show';
+    toastEl.setAttribute('role', 'alert');
+    
+    var iconMap = {
+        "success": "fas fa-check-circle text-success",
+        "error": "fas fa-exclamation-circle text-danger",
+        "warning": "fas fa-exclamation-triangle text-warning",
+        "info": "fas fa-info-circle text-info"
+    };
+    
+    var colorMap = {
+        "success": "#10b981",
+        "error": "#ef4444",
+        "warning": "#f59e0b",
+        "info": "#3498db"
+    };
+    
+    toastEl.innerHTML = 
+        '<div class="d-flex align-items-center p-3">' +
+            '<i class="' + iconMap[type] + ' me-3" style="font-size: 1.2rem;"></i>' +
+            '<div class="flex-grow-1">' +
+                '<strong>' + type.charAt(0).toUpperCase() + type.slice(1) + '</strong>' +
+                '<div style="font-size: 0.9rem; margin-top: 2px;">' + message + '</div>' +
+            '</div>' +
+            '<button type="button" class="btn-close" onclick="removeToast(\'' + toastId + '\')" aria-label="Close">' +
+                '<i class="fas fa-times"></i>' +
+            '</button>' +
+        '</div>' +
+        '<div style="height: 3px; background: ' + colorMap[type] + '; margin-top: 10px; border-radius: 0 0 12px 12px;"></div>';
+    
+    toastContainer.appendChild(toastEl);
+    
+    setTimeout(function() {
+        removeToast(toastId);
+    }, duration);
+}
+
+function removeToast(toastId) {
+    var toast = document.getElementById(toastId);
+    if (toast) {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(100%)';
+        setTimeout(function() {
+            if (toast.parentNode) {
+                toast.parentNode.removeChild(toast);
+            }
+        }, 300);
+    }
+}
+
+window.addEventListener('error', function(e) {
+    console.error('Error en gestión de usuarios:', e.error);
+});
+
+window.addEventListener('unhandledrejection', function(e) {
+    console.error('Promise rejection no manejado:', e.reason);
+});
+
+document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && e.key === 'f') {
+        e.preventDefault();
+        var searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.focus();
+        }
+    }
+    
+    if (e.ctrlKey && e.key === 'n') {
+        e.preventDefault();
+        createUser();
+    }
+    
+    if (e.key === 'Escape') {
+        var selectedCheckboxes = document.querySelectorAll('.user-select:checked');
+        for (var i = 0; i < selectedCheckboxes.length; i++) {
+            selectedCheckboxes[i].checked = false;
+        }
+        
+        var selectAll = document.getElementById('selectAll');
+        if (selectAll) {
+            selectAll.checked = false;
+            selectAll.indeterminate = false;
+        }
+        
+        var bulkActions = document.getElementById('bulkActions');
+        if (bulkActions) {
+            bulkActions.classList.remove('show');
+        }
+    }
+});
+
+function validateForm() {
+    return true;
+}
+</script>
+{% endblock %}

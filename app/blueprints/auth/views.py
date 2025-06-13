@@ -76,10 +76,11 @@ def register():
 # -----------------------------
 # CERRAR SESIÓN
 # -----------------------------
+@login_required
 def logout():
     """Cerrar sesión"""
     logout_user()
-    return redirect('/')
+    return redirect(url_for('main.index'))
 
 # -----------------------------
 # PERFIL

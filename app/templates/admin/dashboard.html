@@ -1105,20 +1105,10 @@
             window.addEventListener('resize', handleResize);
         });
 
-        // Logout function
-        function logout() {
-            // Show confirmation dialog
-            if (confirm('¿Estás seguro de que deseas cerrar sesión?')) {
-                // Add any logout logic here (e.g., clear session, redirect)
-                alert('Cerrando sesión...');
-                
-                // Example: Redirect to login page
-                // window.location.href = 'login.html';
-                
-                // For demo purposes, just close the dropdown
-                document.getElementById('userDropdown').classList.remove('active');
-            }
-        }
+         // Logout function
+         function logout() {
+             window.location.href = "{{ url_for('auth.logout') }}";
+         }
 
         // Handle dropdown item clicks
         document.querySelectorAll('.dropdown-item').forEach(item => {
