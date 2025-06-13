@@ -1,0 +1,17 @@
+EduControl/
+├── app/
+│   ├── static/
+│   │   ├── css/
+│   │   ├── js/
+│   │   └── img/
+│   ├── templates/
+│   ├── models/
+│   ├── blueprints/
+│   └── utils/
+├── tests/
+├── uploads/
+├── migrations/
+├── venv/
+├── config.py
+├── requirements.txt
+└── run.py

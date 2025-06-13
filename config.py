@@ -49,6 +49,8 @@ class ProductionConfig(Config):
     """Configuración para producción"""
     DEBUG = False
     SQLALCHEMY_ECHO = False
+    # Configurar base de datos PostgreSQL para producción
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'postgresql://user:pass@localhost/educontrol'
 
 class TestingConfig(Config):
     """Configuración para testing"""

@@ -18,11 +18,22 @@ class User(UserMixin, db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
     last_login = db.Column(db.DateTime, nullable=True)
     
+    # Campos de seguridad
+    failed_login_attempts = db.Column(db.Integer, default=0)
+    last_failed_login = db.Column(db.DateTime, nullable=True)
+    locked_until = db.Column(db.DateTime, nullable=True)
+    password_reset_token = db.Column(db.String(128), nullable=True)
+    password_reset_expires = db.Column(db.DateTime, nullable=True)
+    last_login_attempt = db.Column(db.DateTime, nullable=True)
+    
     # Foreign Key - CORREGIDO
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'), nullable=False)
     
     # Relationships - CORREGIDO
     role = db.relationship('Role', backref='user_roles', lazy='joined')  # Usar lazy='joined' para cargar el rol siempre
+    
+    # Relación con refresh tokens
+    refresh_tokens = db.relationship('RefreshToken', back_populates='user', lazy=True)
     
     # Propiedad para obtener el nombre del rol
     @property
@@ -40,66 +51,35 @@ class User(UserMixin, db.Model):
     
     def __init__(self, username, email, password, first_name, last_name, role_id=None, **kwargs):
         self.username = username
-        self.email = email
+        self.email = email.lower()
         self.set_password(password)
         self.first_name = first_name
         self.last_name = last_name
-        
-        # Optional fields
-        self.phone = kwargs.get('phone')
-        self.is_active = kwargs.get('is_active', True)
-        
-        # Asegurar que el usuario tenga un rol
-        if role_id:
-            self.role_id = role_id
-        else:
-            # Buscar el rol teacher por defecto
-            teacher_role = Role.query.filter_by(name='teacher').first()
-            if teacher_role:
-                self.role_id = teacher_role.id
-            else:
-                # Si no existe el rol teacher, usar admin
-                self.role_id = 1
+        self.role_id = role_id
+        self.failed_login_attempts = 0
+        self.locked_until = None
+        self.last_failed_login = None
+        self.password_reset_token = None
+        self.password_reset_expires = None
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
+    @property
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
+    @property
+    def role_name(self):
+        return self.role.name if self.role else None
 
     @property
     def is_admin(self):
-        return self.role.name.lower() in ['admin', 'administrador']
+        return self.role.name == 'admin' if self.role else False
 
-    @property
-    def is_teacher(self):
-        return self.role.name.lower() in ['teacher', 'profesor']
-
-    @property
-    def is_student(self):
-        return self.role.name.lower() in ['student', 'estudiante']
-
-    def get_id(self):
-        return str(self.id)
-
-    def is_authenticated(self):
-        return self.is_active
-
-    def is_active(self):
-        return self.is_active
-
-    def is_anonymous(self):
-        return False
-
-    def get_roles(self):
-        return [self.role.name]
-
-    def has_role(self, role_name):
-        return self.role.name.lower() == role_name.lower()
-
-    def get_full_name(self):
-        return f"{self.first_name} {self.last_name}"
-    
     def set_password(self, password):
-        """Hash and set password"""
         self.password_hash = generate_password_hash(password)
-    
+
     def check_password(self, password):
-        """Check if provided password matches hash"""
         return check_password_hash(self.password_hash, password)
     
     def update_last_login(self):
@@ -237,6 +217,7 @@ class User(UserMixin, db.Model):
 # Imports necesarios para las relaciones
 from .grade import Grade
 from .attendance import Attendance
+from .token import RefreshToken
 from .course import Course
 from .subject import Subject
 from .submission import Submission

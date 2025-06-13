@@ -18,13 +18,20 @@ def create_app(config_name='development'):
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or 'tu-clave-secreta-desarrollo'
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or 'sqlite:///educontrol.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET_KEY') or 'jwt-secret-string'
-    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = 3600
+    from app.config.security import SecurityConfig
+    app.config['JWT_SECRET_KEY'] = SecurityConfig.JWT_SECRET_KEY
+    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = SecurityConfig.JWT_ACCESS_TOKEN_EXPIRES
+    app.config['JWT_REFRESH_TOKEN_EXPIRES'] = SecurityConfig.JWT_REFRESH_TOKEN_EXPIRES
+    app.config['JWT_ALGORITHM'] = SecurityConfig.JWT_ALGORITHM
 
     # Inicializar extensiones
     db.init_app(app)
     migrate.init_app(app, db)
     login_manager.init_app(app)
+
+    # Inicializar extensiones de seguridad JWT
+    from app.extensions import init_security_extensions
+    init_security_extensions(app)   
 
     # Configuración de Flask-Login
     login_manager.login_view = 'auth.login'
@@ -66,6 +73,14 @@ def create_app(config_name='development'):
         print("✅ Auth blueprint registrado")
     except ImportError as e:
         print(f"❌ Error importando auth blueprint: {e}")
+
+    # 2.1. Blueprint de autenticación JWT (API)
+    try:
+        from app.blueprints.auth.routes_jwt import auth_jwt_bp
+        app.register_blueprint(auth_jwt_bp)
+        print("✅ Auth JWT blueprint registrado")
+    except ImportError as e:
+        print(f"❌ Error importando auth JWT blueprint: {e}")       
 
     # 3. Blueprint de administrador
     try:
